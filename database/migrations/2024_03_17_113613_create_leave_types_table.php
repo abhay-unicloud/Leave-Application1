@@ -1,0 +1,44 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('leave_types', function (Blueprint $table) {
+            $table->id('LeaveType_id');
+            $table->string('LeaveTypes');
+            $table->integer('Total_leave`s/year');
+            // $table->timestamps();    
+            // $table->integer('Emp_id'); 
+            // $table->integer('Casual_leave');
+            // $table->integer('Vacation_leave');
+            // $table->integer('Stick_leave');
+            // $table->integer('Maternity/Paternity_leave');
+            // $table->integer('Family/Medical_leave');
+            // $table->integer('Study_leave');
+            // $table->integer('Special_leave');
+            // $table->integer('Military_leave');
+            // $table->integer('Administrative_leave');
+            // $table->integer('Other_leave');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('leave_types');
+    }
+};
