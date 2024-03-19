@@ -1,5 +1,5 @@
 <?php
-
+use Doctrine\DBAL\Types\Type;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('leaves', function (Blueprint $table) {
             $table->id('Leave_id');
-            $table->integer('Emp_id');
+            $table->string('Emp_id');
             $table->string('LeaveTypes');
             $table->date('start_date');
             $table->date('end_date');

@@ -19,3 +19,6 @@ Route::get('/', function () {
 Route::get('/index2', function () {
     return view('pages.index2');
 })->name('index2');
+Route::get('/Leave-Application', function () {
+    return view('pages2.Application-form');
+})->name('Leave-Application');
