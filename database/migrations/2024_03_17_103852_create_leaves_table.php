@@ -14,14 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('leaves', function (Blueprint $table) {
-            $table->id('Leave_id');
-            $table->string('Emp_id');
-            $table->string('LeaveTypes');
+            $table->id();
+            $table->bigInteger('emp_id');
+            $table->string('leave_types');
             $table->date('start_date');
             $table->date('end_date');
             $table->string('reason');
-            $table->string('Location');
-            $table->enum('Status', array('Appoved','Decline','Pending'))->default('Pending')->nullable()->change();
+            $table->string('location');
+            $table->enum('status', array('Appoved','Decline','Pending'))->default('Pending')->nullable()->change();
             $table->string('comment')->nullable()->change();
             
         });

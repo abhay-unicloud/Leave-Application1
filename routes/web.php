@@ -22,3 +22,6 @@ Route::get('/index2', function () {
 Route::get('/Leave-Application', function () {
     return view('pages2.Application-form');
 })->name('Leave-Application');
+Route::get('/registration-employee-form', function () {
+    return view('pages2.registration-employee-form');
+})->name('registration-employee-form');

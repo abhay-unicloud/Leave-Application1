@@ -14,11 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('employees', function (Blueprint $table) {
-            $table->id('Emp_id');
+            $table->id();
+            $table->bigInteger('emp_id');
             $table->string('FirstName');
             $table->string('LastName');
             $table->string('Designation');
-            $table->integer('Mobile_No.');
+            $table->integer('MobileNo');
             $table->enum('Gender', array('Male','Female','Other'))->nullable()->change();
             $table->string('Addresses');
             // $table->string('LeaveTypes');

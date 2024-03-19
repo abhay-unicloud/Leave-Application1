@@ -546,10 +546,10 @@
                       </a>
                       <ul class="collapse submenu list-unstyled" id="forms" data-bs-parent="#accordionExample">
                           <li>
-                              <a href="./form-bootstrap-basic.html"> Basic </a>
+                              <a href="{{route('Leave-Application')}}"> Leave-Application-From </a>
                           </li>
                           <li>
-                              <a href="./form-input-group-basic.html"> Input Group </a>
+                              <a href="{{route('registration-employee-form')}}"> Input Group </a>
                           </li>
                           <li>
                               <a href="./form-layouts.html"> Layouts </a>

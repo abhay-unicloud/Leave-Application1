@@ -16,7 +16,7 @@
                 <nav class="breadcrumb-style-one" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#">Form</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Leave-Application</li>
+                        <li class="breadcrumb-item active" aria-current="page">Registration-Employee</li>
                     </ol>
                 </nav>
             </div>
@@ -39,7 +39,7 @@
                         <div class="widget-header">
                             <div class="row">
                                 <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                    <h4>Leave Application</h4>
+                                    <h4>Registration-Employee</h4>
                                 </div>
                             </div>
                         </div>
@@ -81,38 +81,15 @@
                                         </div>
                                     </div>
 
-                                    <div class="row mb-4">
+                                    <div class="row">
                                         <div class="col">
-                                            <label class="form-check-label" for="start-date">
-                                                Duration:</label>
-
-                                            <input type="date" id="start-date" class="form-control" name="startDate">
-                                            <label class="form-check-label" for="email">TO</label>
-                                            <input type="date" id="end-date" class="form-control" name="endDate">
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-4">
-                                        <div class="col-sm-12">
-                                            <label class="form-check-label" for="email">Leave Type:</label>
-                                            <select class="form-select" id="inlineFormSelectPref">
-                                                <option value="Select a leave type">Select a leave type</option>
-                                                <option value="CL">CL</option>
-                                                <option value="VL">VL</option>
-                                                <option value="ML">ML</option>
-                                                <option value="PL">PL</option>
-                                            </select>
+                                            <label class="form-check-label" for="">Address:</label>
+                                            <textarea name="address" id="" class="form-control" cols="20" rows="5">Write Your Address</textarea>
                                         </div>
                                     </div>
                                     <div class="row mb-4">
                                         <div class="col-sm-12">
-                                            <label class="form-check-label" for="email">Reason:</label>
-                                            <textarea id="leave-reason" class="form-control" name="leaveReason" rows="4" cols="50"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-4">
-                                        <div class="col-sm-12">
-                                            <input class="btn btn-primary" type="submit" value="Request">
+                                            <button class="btn btn-primary" type="submit" value="Request">Request</button>
                                         </div>
                                     </div>
                                 </div>

@@ -14,9 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('leave_types', function (Blueprint $table) {
-            $table->id('LeaveType_id');
+            $table->id();
+            $table->bigInteger('leavetype_id');
             $table->string('LeaveTypes');
-            $table->integer('Total_leave`s/year');
+            $table->integer('total_leave_year');
             // $table->timestamps();    
             // $table->integer('Emp_id'); 
             // $table->integer('Casual_leave');

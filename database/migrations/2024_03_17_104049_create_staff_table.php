@@ -14,13 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('staff', function (Blueprint $table) {
-            $table->id('Emp_id');
+            $table->id();
+            $table->bigInteger('emp_id');
             $table->string('FirstName');
             $table->string('LastName');
             $table->string('Designation');
-            $table->integer('Mobile_No.');
-            $table->enum('Gender', array('Male','Female','Other'))->nullable()->change();
-            $table->enum('Duty', array('Online','Offline'))->nullable()->change();
+            $table->integer('MobileNo');
+            $table->enum('gender', array('Male','Female','Other'))->nullable()->change();
+            $table->enum('duty', array('Online','Offline'))->nullable()->change();
             
         });
     }
