@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Mycontroller;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,3 +26,4 @@ Route::get('/Leave-Application', function () {
 Route::get('/registration-employee-form', function () {
     return view('pages2.registration-employee-form');
 })->name('registration-employee-form');
+Route::get('/insert', [Mycontroller::class, 'insert'])->name('insert');

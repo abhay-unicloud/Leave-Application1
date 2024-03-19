@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('staff', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('emp_id');
-            $table->string('FirstName');
-            $table->string('LastName');
-            $table->string('Designation');
-            $table->integer('MobileNo');
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('designation');
+            $table->integer('mobile_no');
             $table->enum('gender', array('Male','Female','Other'))->nullable()->change();
             $table->enum('duty', array('Online','Offline'))->nullable()->change();
             

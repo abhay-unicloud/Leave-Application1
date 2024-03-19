@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\signup;
+use App\Models\Employee;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\Console\Input\Input;
@@ -15,38 +16,18 @@ use  Illuminate\Database\Query\Builder;
 use App\Http\Controllers\Item;
 class Mycontroller extends Controller
 {
-    function home()
+        public function insert(Request $request)
     {
-        // return view('myFolder/view');
-        return view('pages.index');
-    }
-    function contact()
-    {
-        // return view('myFolder/view');
-        return view('pages.contact');
-    }
-    function loading()
-    {
-        // return view('myFolder/view');
-        return view('pages.login2');
-    }
-    function registration()
-    {
-        // return view('myFolder/view');
-        return view('pages.registration');
-    }
-    public function dashboard2(Request $request)
-    {   
-        return view('pages.dashboard2');
- 
-    }
-    public function insert(Request $request)
-    {
-        $signup = new signup();
-        $signup->user = $request->input('user');
-        $signup->email = $request->input('email');
-        $signup->password = bcrypt($request->input('password'));
-        $signup->save();
+        $employees = new Employee();
+        $employees->emp_id = $request->input('emp_id');
+        $employees->FirstName = $request->input('FirstName');
+        $employees->LastName = $request->input('LastName');
+        $employees->Gender = $request->input('Gender');
+        $employees->Designation = $request->input('Designation');
+        $employees->MobileNo = $request->input('MobileNo');
+        $employees->Addresses = $request->input('Addresses');
+        // $employees->password = bcrypt($request->input('password'));
+        $employees->save();
 
         return redirect()->back()->with('success', 'data stored successfully');
     }

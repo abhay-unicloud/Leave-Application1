@@ -49,33 +49,38 @@
                             <form action="#" id="leave-form">
                                 <div class="row mb-4">
                                     <div class="col-sm-12">
-                                        <label class="form-check-label" for="email">Employee-Id:</label>
-                                        <input type="text" class="form-control" name="email">
+                                        <label class="form-check-label" for="emp_id">Employee-Id:</label>
+                                        <input type="text" class="form-control" name="emp_id">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col">
                                         <label class="form-check-label" for="firstName">First Name:</label>
-                                        <input type="text" id="firstName" class="form-control" name="firstName">
+                                        <input type="text" id="firstName" class="form-control" name="FirstName">
                                     </div>
                                     <div class="row">
                                         <div class="col">
-                                            <label class="form-check-label" for="email">Last Name:</label>
-                                            <input type="text" class="form-control" name="lastName">
+                                            <label class="form-check-label" for="LastName">Last Name:</label>
+                                            <input type="text" class="form-control" name="LastName">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col">
-                                            <label class="form-check-label" for="email">Designation:</label>
+                                            <label class="form-check-label" for="MobileNo">Mobile No:</label>
+                                            <input type="number" class="form-control" name="MobileNo">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <label class="form-check-label" for="designation">Designation:</label>
                                             <input type="text" class="form-control" name="designation">
                                         </div>
                                     </div>
                                     <div class="row mb-4">
                                         <div class="col-sm-12">
-                                            <label class="form-check-label" for="email">Gender:</label>
-                                            <select class="form-select" id="inlineFormSelectPref">
-                                                <option value="Select a gender">Select your Gender</option>
-                                                <option value="Male">Male</option>
+                                            <label class="form-check-label" for="">Gender:</label>
+                                            <select class="form-select" name="Gender" id="inlineFormSelectPref">
+                                              <option value="Male">Male</option>
                                                 <option value="Female">Female</option>
                                             </select>
                                         </div>
@@ -84,7 +89,7 @@
                                     <div class="row">
                                         <div class="col">
                                             <label class="form-check-label" for="">Address:</label>
-                                            <textarea name="address" id="" class="form-control" cols="20" rows="5">Write Your Address</textarea>
+                                            <textarea name="Addresses" id="" class="form-control" cols="20" rows="5">Write Your Address</textarea>
                                         </div>
                                     </div>
                                     <div class="row mb-4">
