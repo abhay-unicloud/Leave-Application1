@@ -45,29 +45,42 @@
                         </div>
                         <div class="widget-content widget-content-area">
 
+                            @if(session()->has('success'))
+                            <p>
+                                {{ session()->get('success') }}
+                            </p>
+                            @endif
 
-                            <form action="#" id="leave-form">
-                                <div class="row mb-4">
+                            @if ($errors->any())
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                            @endif
+                            <form action="{{route('insert')}}" method="POST">
+                                @csrf
+                                <!-- <div class="row mb-4">
                                     <div class="col-sm-12">
                                         <label class="form-check-label" for="emp_id">Employee-Id:</label>
                                         <input type="text" class="form-control" name="emp_id">
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="row">
                                     <div class="col">
                                         <label class="form-check-label" for="firstName">First Name:</label>
-                                        <input type="text" id="firstName" class="form-control" name="FirstName">
+                                        <input type="text" id="firstName" class="form-control" name="first_name">
                                     </div>
                                     <div class="row">
                                         <div class="col">
                                             <label class="form-check-label" for="LastName">Last Name:</label>
-                                            <input type="text" class="form-control" name="LastName">
+                                            <input type="text" class="form-control" name="last_name">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col">
                                             <label class="form-check-label" for="MobileNo">Mobile No:</label>
-                                            <input type="number" class="form-control" name="MobileNo">
+                                            <input type="number" class="form-control" name="mobile_no">
                                         </div>
                                     </div>
                                     <div class="row">
@@ -79,8 +92,8 @@
                                     <div class="row mb-4">
                                         <div class="col-sm-12">
                                             <label class="form-check-label" for="">Gender:</label>
-                                            <select class="form-select" name="Gender" id="inlineFormSelectPref">
-                                              <option value="Male">Male</option>
+                                            <select class="form-select" name="gender" id="inlineFormSelectPref">
+                                                <option value="Male">Male</option>
                                                 <option value="Female">Female</option>
                                             </select>
                                         </div>
@@ -89,12 +102,12 @@
                                     <div class="row">
                                         <div class="col">
                                             <label class="form-check-label" for="">Address:</label>
-                                            <textarea name="Addresses" id="" class="form-control" cols="20" rows="5">Write Your Address</textarea>
+                                            <textarea name="address" id="" class="form-control" cols="20" rows="5">Write Your Address</textarea>
                                         </div>
                                     </div>
                                     <div class="row mb-4">
                                         <div class="col-sm-12">
-                                            <button class="btn btn-primary" type="submit" value="Request">Request</button>
+                                            <button class="btn btn-primary" type="submit">Submit</button>
                                         </div>
                                     </div>
                                 </div>

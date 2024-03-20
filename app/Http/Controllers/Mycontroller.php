@@ -19,13 +19,13 @@ class Mycontroller extends Controller
         public function insert(Request $request)
     {
         $employees = new Employee();
-        $employees->emp_id = $request->input('emp_id');
-        $employees->FirstName = $request->input('FirstName');
-        $employees->LastName = $request->input('LastName');
-        $employees->Gender = $request->input('Gender');
-        $employees->Designation = $request->input('Designation');
-        $employees->MobileNo = $request->input('MobileNo');
-        $employees->Addresses = $request->input('Addresses');
+        // $employees->emp_id = $request->input('emp_id');
+        $employees->first_name = $request->input('first_name');
+        $employees->last_name = $request->input('last_name');
+        $employees->gender = $request->input('gender');
+        $employees->designation = $request->input('designation');
+        $employees->mobile_no = $request->input('mobile_no');
+        $employees->addresses = $request->input('address');
         // $employees->password = bcrypt($request->input('password'));
         $employees->save();
 
