@@ -27,3 +27,4 @@ Route::get('/registration-employee-form', function () {
     return view('pages2.registration-employee-form');
 })->name('registration-employee-form');
 Route::post('/insert', [Mycontroller::class, 'insert'])->name('insert');
+Route::post('/emp_data', [Mycontroller::class, 'view'])->name('emp_data');

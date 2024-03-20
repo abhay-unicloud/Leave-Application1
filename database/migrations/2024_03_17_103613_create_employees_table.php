@@ -15,16 +15,15 @@ return new class extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('emp_id');
             $table->string('first_name');
             $table->string('last_name');
             $table->string('designation');
-            $table->integer('mobile_no');
-            $table->enum('gender', array('Male','Female','Other'))->nullable()->change();
-            $table->string('addresses');
-            // $table->string('LeaveTypes');
-            
-            
+            $table->string('mobile_no');
+            $table->integer('gender')->nullable();
+            $table->string('addresses')->nullable();
+            $table->string('password');
+            $table->integer('status');
+            $table->timestamps();
         });
     }
 

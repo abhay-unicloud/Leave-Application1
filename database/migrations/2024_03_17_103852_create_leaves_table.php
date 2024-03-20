@@ -16,14 +16,15 @@ return new class extends Migration
         Schema::create('leaves', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('emp_id');
-            $table->string('leave_types');
+            $table->string('lt_name');
             $table->date('start_date');
             $table->date('end_date');
             $table->string('reason');
             $table->string('location');
-            $table->enum('status', array('Appoved','Decline','Pending'))->default('Pending')->nullable()->change();
+            $table->integer('status1')->default('2')->nullable()->change();
             $table->string('comment')->nullable()->change();
-            
+            $table->integer('status');
+            $table->timestamps();
         });
     }
 

@@ -26,7 +26,7 @@ class Mycontroller extends Controller
         $employees->designation = $request->input('designation');
         $employees->mobile_no = $request->input('mobile_no');
         $employees->addresses = $request->input('address');
-        // $employees->password = bcrypt($request->input('password'));
+        $employees->password = bcrypt($request->input('password'));
         $employees->save();
 
         return redirect()->back()->with('success', 'data stored successfully');
@@ -59,13 +59,14 @@ class Mycontroller extends Controller
         Auth::logout();
         return redirect()->intended('loading');
     }
-    public function view() {
-        $signup= signup::all()->where('delete1','=','0');
-        // echo "<pre>";
-        // print_r($data->toArray());
-        // echo "</pre>";
-        // die;
-         return view("pages.view" ,compact('signup'));
+    public function view($id) {
+         $employee = Employee::find($id);
+    
+    if ($employee) {
+        return response()->json($employee);
+    } else {
+        return response()->json(['error' => 'Employee not found'], 404);
+    }
     }
     public function edit($id) {
         $signup= signup::find($id);

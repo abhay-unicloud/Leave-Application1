@@ -50,7 +50,7 @@
                                 <div class="row mb-4">
                                     <div class="col-sm-12">
                                         <label class="form-check-label" for="email">Employee-Id:</label>
-                                        <input type="text" class="form-control" name="email">
+                                        <input type="text" id="empId" value="1" class="form-control" value="" name="email">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -124,4 +124,30 @@
         </div>
     </div>
 </div>
-@stop
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+        $('#empId').keyup(function() {
+            var empId = $(this).val();
+
+            // Send AJAX request
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('emp_data') }}",
+                data: {
+                    '{{$id}}': empId,
+                    _token: "{{ csrf_token() }}"
+                },
+                success: function(response) {
+                    // Update HTML with fetched data
+                    $('#phoneNumber').text(response.phone_number);
+                    $('#employeeName').text(response.name);
+                  },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        });
+    });
+</script>
+@endsection

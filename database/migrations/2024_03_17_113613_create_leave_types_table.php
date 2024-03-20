@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('leave_types', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('leavetype_id');
-            $table->string('LeaveTypes');
+            $table->string('lt_name');
             $table->integer('total_leave_year');
-            // $table->timestamps();    
+            $table->integer('status');
+            $table->timestamps();    
             // $table->integer('Emp_id'); 
             // $table->integer('Casual_leave');
             // $table->integer('Vacation_leave');

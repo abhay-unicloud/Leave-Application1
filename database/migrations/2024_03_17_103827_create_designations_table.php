@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('designations', function (Blueprint $table) {
             $table->id();
-            // $table->timestamps();
-            $table->bigInteger('desig_id');
-            $table->string('designation');
+            $table->string('dst_name');
+            $table->integer('status');
+            $table->timestamps();
         });
     }
 

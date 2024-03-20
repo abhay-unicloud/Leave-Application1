@@ -20,9 +20,10 @@ return new class extends Migration
             $table->string('last_name');
             $table->string('designation');
             $table->integer('mobile_no');
-            $table->enum('gender', array('Male','Female','Other'))->nullable()->change();
-            $table->enum('duty', array('Online','Offline'))->nullable()->change();
-            
+            $table->integer('gender')->nullable()->change();
+            $table->integer('duty')->nullable()->change();
+            $table->integer('status');
+            $table->timestamps();
         });
     }
 

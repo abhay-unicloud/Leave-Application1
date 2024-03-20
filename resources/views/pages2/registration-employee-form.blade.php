@@ -4,6 +4,7 @@
     .h2 {
         color: green;
     }
+
 </style>
 @endpush
 @section('content')
@@ -43,7 +44,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="widget-content widget-content-area">
+                        <div class="widget-content widget-content-area ">
 
                             @if(session()->has('success'))
                             <p>
@@ -66,48 +67,63 @@
                                         <input type="text" class="form-control" name="emp_id">
                                     </div>
                                 </div> -->
+                                
                                 <div class="row">
-                                    <div class="col">
+                                    <div class="col-md-6">
                                         <label class="form-check-label" for="firstName">First Name:</label>
                                         <input type="text" id="firstName" class="form-control" name="first_name">
                                     </div>
-                                    <div class="row">
-                                        <div class="col">
+                                   
+                                    <!-- <div class="row-4"> -->
+                                        <div class="col-md-6">
                                             <label class="form-check-label" for="LastName">Last Name:</label>
                                             <input type="text" class="form-control" name="last_name">
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <label class="form-check-label" for="MobileNo">Mobile No:</label>
-                                            <input type="number" class="form-control" name="mobile_no">
+                                </div>
+
+
+                                    <!-- </div> -->
+                                    <div class="row mt-4">
+                                        <div class="col-md-4">
+                                            <label class="form-check-label " for="MobileNo">Mobile No:</label>
+                                            <input type="text"  class="form-control" name="mobile_no">
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
+                                    
+                                        <div class="col-md-4">
                                             <label class="form-check-label" for="designation">Designation:</label>
                                             <input type="text" class="form-control" name="designation">
                                         </div>
-                                    </div>
-                                    <div class="row mb-4">
-                                        <div class="col-sm-12">
+                                    
+                                    
+                                        <div class="col-md-4">
                                             <label class="form-check-label" for="">Gender:</label>
                                             <select class="form-select" name="gender" id="inlineFormSelectPref">
-                                                <option value="Male">Male</option>
-                                                <option value="Female">Female</option>
+                                                <option value="1">Male</option>
+                                                <option value="2">Female</option>
+                                                <option value="3">Other</option>
                                             </select>
                                         </div>
                                     </div>
-
-                                    <div class="row">
+                                    <div class="row mt-4">
                                         <div class="col">
-                                            <label class="form-check-label" for="">Address:</label>
-                                            <textarea name="address" id="" class="form-control" cols="20" rows="5">Write Your Address</textarea>
+                                            <label class="form-check-label" for="password">Password:</label>
+                                            <input type="password" id="show_hide" class="form-control" name="password">
+                                            <span id="btn-password" class="btn" onclick="togglepassword()">Show</span>
                                         </div>
                                     </div>
+
+                                    <div class="row mt-4">
+                                        <div class="col">
+                                            <label class="form-check-label" for="">Address:</label>
+                                            <textarea name="address" id="" class="form-control" cols="20" rows="5" placeholder="Write Employee Address here (Optional)"></textarea>
+                                        </div>
+                                    </div>
+
+
                                     <div class="row mb-4">
                                         <div class="col-sm-12">
-                                            <button class="btn btn-primary" type="submit">Submit</button>
+                                            <br>
+                                            <button class="btn btn-primary"  type="submit">Submit</button>
                                         </div>
                                     </div>
                                 </div>
