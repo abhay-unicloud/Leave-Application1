@@ -17,12 +17,13 @@ return new class extends Migration
             $table->id();
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('designation');
+            $table->integer('dpt_id');
+            $table->integer('dst_id');
             $table->string('mobile_no');
             $table->integer('gender')->nullable();
             $table->string('addresses')->nullable();
             $table->string('password');
-            $table->integer('status');
+            $table->integer('status')->nullable();
             $table->timestamps();
         });
     }

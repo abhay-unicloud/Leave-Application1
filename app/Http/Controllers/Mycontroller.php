@@ -14,20 +14,24 @@ use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Support\Facades\Auth;
 use  Illuminate\Database\Query\Builder;
 use App\Http\Controllers\Item;
+use App\Models\Department;
+use App\Models\Designation;
+
 class Mycontroller extends Controller
 {
         public function insert(Request $request)
     {
-        $employees = new Employee();
-        // $employees->emp_id = $request->input('emp_id');
-        $employees->first_name = $request->input('first_name');
-        $employees->last_name = $request->input('last_name');
-        $employees->gender = $request->input('gender');
-        $employees->designation = $request->input('designation');
-        $employees->mobile_no = $request->input('mobile_no');
-        $employees->addresses = $request->input('address');
-        $employees->password = bcrypt($request->input('password'));
-        $employees->save();
+        $employee = new Employee();
+        // $employee->emp_id = $request->input('emp_id');
+        $employee->first_name = $request->input('first_name');
+        $employee->last_name = $request->input('last_name');
+        $employee->gender = $request->input('gender');
+        $employee->dpt_id = $request->input('department');
+        $employee->dst_id = $request->input('designation');
+        $employee->mobile_no = $request->input('mobile_no');
+        $employee->addresses = $request->input('address');
+        $employee->password = bcrypt($request->input('password'));
+        $employee->save();
 
         return redirect()->back()->with('success', 'data stored successfully');
     }
@@ -67,6 +71,32 @@ class Mycontroller extends Controller
     } else {
         return response()->json(['error' => 'Employee not found'], 404);
     }
+    }
+    public function tables() {
+        $employee= DB::select('SHOW TABLES');
+        return view("pages.tables" ,compact('employee'));
+        // return redirect()->intended('update')->compact('signup');
+    }
+    public function registration_employee() {
+        $department= Department::all();
+        $designation= Designation::all();
+        return view("pages.registration-employee-form" ,compact('designation'),compact('department'));
+        // return redirect()->intended('update')->compact('signup');
+    }
+    public function datatable_department() {
+        $department= Department::all();
+        return view("pages.datatable-department" ,compact('department'));
+        // return redirect()->intended('update')->compact('signup');
+    }
+    public function datatable_designation() {
+        $designation= Designation::all();
+        return view("pages.datatable-designation" ,compact('designation'));
+        // return redirect()->intended('update')->compact('signup');
+    }
+    public function datatable_employee() {
+        $employee= Employee::all();
+        return view("pages.datatable-employee" ,compact('employee'));
+        // return redirect()->intended('update')->compact('signup');
     }
     public function edit($id) {
         $signup= signup::find($id);

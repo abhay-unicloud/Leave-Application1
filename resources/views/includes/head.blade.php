@@ -19,3 +19,17 @@
     <!-- <link href="C:\new xampp\htdocs\Leave-Application-1\Leave-Application\public\assets\src\assets\css\light\dashboard\dash_1.css" rel="stylesheet" type="text/css" /> -->
     <link href="{{ asset('assets/src/assets/css/light/dashboard/dash_1.css') }}" rel="stylesheet" type="text/css" />
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
+
+    
+    <!-- BEGIN PAGE LEVEL CUSTOM STYLES -->
+    <link rel="stylesheet" type="text/css" href="{{url('assets/src/plugins/src/table/datatable/datatables.css')}}">
+
+    <link rel="stylesheet" type="text/css" href="{{url('assets/src/plugins/css/light/table/datatable/dt-global_style.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url('assets/src/plugins/css/light/table/datatable/custom_dt_custom.css')}}">
+
+    <link rel="stylesheet" type="text/css" href="{{url('assets/src/plugins/css/dark/table/datatable/dt-global_style.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url('assets/src/plugins/css/dark/table/datatable/custom_dt_custom.css')}}">
+
+    <!-- END PAGE LEVEL CUSTOM STYLES -->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />

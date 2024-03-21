@@ -21,10 +21,16 @@ Route::get('/index2', function () {
     return view('pages.index2');
 })->name('index2');
 Route::get('/Leave-Application', function () {
-    return view('pages2.Application-form');
+    return view('pages.Application-form');
 })->name('Leave-Application');
-Route::get('/registration-employee-form', function () {
-    return view('pages2.registration-employee-form');
-})->name('registration-employee-form');
+Route::get('/registration-employee-form', [Mycontroller::class,'registration_employee'])->name('registration-employee-form');
+Route::get('/tables', [Mycontroller::class, 'tables'])->name('tables');
+Route::get('/datatable-employee', [Mycontroller::class, 'datatable_employee'])->name('datatable-employees');
+Route::get('/datatable-department', [Mycontroller::class, 'datatable_department'])->name('datatable-departments');
+Route::get('/datatable-designation', [Mycontroller::class, 'datatable_designation'])->name('datatable-designations');
+Route::get('/datatable-staff', [Mycontroller::class, 'datatable_staff'])->name('datatable-staff');
+Route::get('/datatable-leaves', [Mycontroller::class, 'datatable_leaves'])->name('datatable-leaves');
+Route::get('/datatable-leave-types', [Mycontroller::class, 'leave-types'])->name('datatable-leave_types');
+Route::get('/datatable-migrations', [Mycontroller::class, 'migrations'])->name('datatable-migrations');  
 Route::post('/insert', [Mycontroller::class, 'insert'])->name('insert');
 Route::post('/emp_data', [Mycontroller::class, 'view'])->name('emp_data');
