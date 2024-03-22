@@ -24,7 +24,9 @@ return new class extends Migration
             $table->string('addresses')->nullable();
             $table->string('password');
             $table->integer('status')->nullable();
+            
             $table->timestamps();
+            $table->integer('delete1');
         });
     }
 

@@ -34,3 +34,7 @@ Route::get('/datatable-leave-types', [Mycontroller::class, 'leave-types'])->name
 Route::get('/datatable-migrations', [Mycontroller::class, 'migrations'])->name('datatable-migrations');  
 Route::post('/insert', [Mycontroller::class, 'insert'])->name('insert');
 Route::post('/emp_data', [Mycontroller::class, 'view'])->name('emp_data');
+Route::get('updating-employee-form', [Mycontroller::class,'updating_employee'])->name('updating-employee-form-dst-dpt');
+Route::get('updating-employee-form/edit/{id}', [Mycontroller::class, 'edit'])->name('updating-employee-form-edit');
+Route::post('updating-employee-form', [Mycontroller::class, 'update'])->name('updating-employee-form/update');
+Route::get('updating-employee-formdelete/{id}', [Mycontroller::class, 'delete'])->name('updating-employee-form-delete');

@@ -16,6 +16,7 @@ use  Illuminate\Database\Query\Builder;
 use App\Http\Controllers\Item;
 use App\Models\Department;
 use App\Models\Designation;
+use App\Models\Staff;
 
 class Mycontroller extends Controller
 {
@@ -30,8 +31,21 @@ class Mycontroller extends Controller
         $employee->dst_id = $request->input('designation');
         $employee->mobile_no = $request->input('mobile_no');
         $employee->addresses = $request->input('address');
+        $employee->delete1 = 0;
         $employee->password = bcrypt($request->input('password'));
         $employee->save();
+
+        $staff = new Staff();
+        $staff->emp_id = $employee->id;
+        $staff->first_name = $request->input('first_name');
+        $staff->last_name = $request->input('last_name');
+        $staff->gender = $request->input('gender');
+        $staff->dpt_id = $request->input('department');
+        $staff->dst_id = $request->input('designation');
+        $staff->mobile_no = $request->input('mobile_no');
+        $staff->delete1 = 0;
+        
+        $staff->save();
 
         return redirect()->back()->with('success', 'data stored successfully');
     }
@@ -83,9 +97,15 @@ class Mycontroller extends Controller
         return view("pages.registration-employee-form" ,compact('designation'),compact('department'));
         // return redirect()->intended('update')->compact('signup');
     }
+    public function updating_employee() {
+        $department= Department::all();
+        $designation= Designation::all();
+        return view("pages.updating-employee-form" ,compact('designation'),compact('department'));
+        // return redirect()->intended('update')->compact('signup');
+    }
     public function datatable_department() {
         $department= Department::all();
-        return view("pages.datatable-department" ,compact('department'));
+        return view("pages.datatable-department"  ,compact('department'));
         // return redirect()->intended('update')->compact('signup');
     }
     public function datatable_designation() {
@@ -94,13 +114,16 @@ class Mycontroller extends Controller
         // return redirect()->intended('update')->compact('signup');
     }
     public function datatable_employee() {
-        $employee= Employee::all();
+        $employee= Employee::all()->where('delete1','=','0');
         return view("pages.datatable-employee" ,compact('employee'));
         // return redirect()->intended('update')->compact('signup');
     }
     public function edit($id) {
-        $signup= signup::find($id);
-        return view("pages.update" ,compact('signup'));
+        $department= Department::all();
+        $designation= Designation::all();
+        $employee= Employee::find($id);
+        return view("pages.updating-employee-form" ,compact('designation','department','employee'));
+        // return view("pages.updating-employee-form" ,compact('employee'));
         // return redirect()->intended('update')->compact('signup');
     }
     public function show($id) {
@@ -109,25 +132,33 @@ class Mycontroller extends Controller
         // return redirect()->intended('update')->compact('signup');
     }
     public function delete($id) {
-        $signup= signup::find($id);
-        $signup->delete1 = 1;
-        $signup->save();
+        $staff= Staff::find($id);
+        $staff->delete1 = 1;
+        $staff->save();
+        $employee= Employee::find($id);
+        $employee->delete1 = 1;
+        $employee->save();
         
         return redirect()->back()->with('success', 'updated successfully');
         // return redirect()->intended('update')->compact('signup');
     }
     public function update(Request $request)
     {
-        $signup = signup::find($request->input('id'));
-        $signup->user = $request->input('user');
-        $signup->email = $request->input('email');
-        $signup->save();
+        $employee = Employee::find($request->input('id'));
+        $employee->first_name = $request->input('first_name');
+        $employee->last_name = $request->input('last_name');
+        $employee->gender = $request->input('gender');
+        $employee->dpt_id = $request->input('department');
+        $employee->dst_id = $request->input('designation');
+        $employee->mobile_no = $request->input('mobile_no');
+        $employee->addresses = $request->input('address');
+        $employee->save();
         //     echo "<pre>";
         // print_r($signup->toArray());
         // echo "</pre>";
         // die;
         
-        return redirect()->route('view')->with('success', 'updated successfully');
+        return redirect()->route('datatable-employees')->with('success', 'updated successfully');
         // return redirect()->back()->with('success', 'updated successfully');
     }
 }
