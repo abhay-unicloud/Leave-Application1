@@ -59,7 +59,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="widget-content widget-content-area m-2 p-3">
+                            <div class="widget-content widget-content-area m-1 p-2">
 
                                 @if (session()->has('success'))
                                     <p>

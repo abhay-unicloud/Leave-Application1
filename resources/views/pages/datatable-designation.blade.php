@@ -8,31 +8,21 @@
             <div class="page-meta">
                 <nav class="breadcrumb-style-one" aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Table</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Employee Table</li>
+                        <li class="breadcrumb-item"><a href="{{route('tables')}}">Table</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Designation Table</li>
                     </ol>
                 </nav>
             </div>
             <!-- /BREADCRUMB -->
 
-            <!-- <div id="navSection" data-bs-spy="affix" class="nav sidenav" style="right: 0px; display: block;">
-                        <div class="sidenav-content">
-                            <a href="#flStackForm" class="nav-link">Utilities</a>
-                            <a href="#flHorizontalForm" class="nav-link">Horizontal form</a>
-                            <a href="#flHorizontalFormlabel" class="nav-link">Horizontal form label</a>
-                            <a href="#flLoginForm" class="nav-link active">Gutter</a>
-                            <a href="#flFormsGrid" class="nav-link">Form Grid</a>
-                            <a href="#flAutoSizing" class="nav-link">Auto-sizing</a>
-                            <a href="#flInlineForm" class="nav-link">Inline Forms</a>
-                        </div>
-                    </div> -->
+       
             <div class="row">
                 <div id="flStackForm" class="col-lg-12 layout-spacing layout-top-spacing">
                     <div class="statbox widget box box-shadow">
                         <div class="widget-header">
                             <div class="row">
                                 <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                    <h4>Employee Table</h4>
+                                    <h4>Designation Table</h4>
                                 </div>
                             </div>
                         </div>
@@ -44,7 +34,7 @@
                         <div class="row layout-spacing">
                             <div class="col-lg-12">
                                 <div class="statbox widget box box-shadow">
-                                    <div class="widget-content widget-content-area">
+                                    <div class="widget-content widget-content-area m-1 p-2">
                                         <table id="style-3" class="table style-3 dt-table-hover">
                                             <thead>
                                                 <tr>

@@ -8,8 +8,8 @@
             <div class="page-meta">
                 <nav class="breadcrumb-style-one" aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Table</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Employee Table</li>
+                        <li class="breadcrumb-item"><a href="{{route('tables')}}">Table</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Staff Table</li>
                     </ol>
                 </nav>
             </div>
@@ -22,7 +22,7 @@
                         <div class="widget-header">
                             <div class="row">
                                 <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                    <h4>Employee Table</h4>
+                                    <h4>Staff Table</h4>
                                 </div>
                             </div>
                         </div>
@@ -31,7 +31,7 @@
                         <div class="row layout-spacing">
                             <div class="col-lg-12">
                                 <div class="statbox widget box box-shadow">
-                                    <div class="widget-content widget-content-area">
+                                    <div class="widget-content widget-content-area m-1 p-2">
                                         <table id="style-3" class="table style-3 dt-table-hover">
                                             <thead>
                                                 <tr>
@@ -83,7 +83,7 @@
                                                     </span></td>
                                                     <td class="text-center">
                                                         <ul class="table-controls">
-                                                            <li><a href="{{route('updating-employee-form-edit',[$row->id])}}" class="bs-tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" data-original-title="Edit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 p-1 br-8 mb-1">
+                                                            <li><a href="{{route('updating-employee-form-edit',[$row->emp_id])}}" class="bs-tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" data-original-title="Edit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 p-1 br-8 mb-1">
                                                                         <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
                                                                     </svg></a></li>
                                                             <li><a onclick="return confirm('Are you sure you want to delete this item?');" href="{{route('updating-employee-form-delete',[$row->id])}}" class="bs-tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete" data-original-title="Delete"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash p-1 br-8 mb-1">

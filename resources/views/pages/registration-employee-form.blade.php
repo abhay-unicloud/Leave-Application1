@@ -59,7 +59,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="widget-content widget-content-area m-2 p-3">
+                        <div class="widget-content widget-content-area m-1 p-2">
 
                             @if(session()->has('success'))
                             <p>
@@ -86,17 +86,17 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <label class="form-check-label" for="firstName">First Name:</label>
-                                        <input type="text" id="firstName" class="form-control" name="first_name">
+                                        <input type="text" id="firstName" class="form-control" name="first_name" required>
                                     </div>
 
                                     <!-- <div class="row-4"> -->
                                     <div class="col-md-4">
                                         <label class="form-check-label" for="LastName">Last Name:</label>
-                                        <input type="text" class="form-control" name="last_name">
+                                        <input type="text" class="form-control" name="last_name" required>
                                     </div>
                                     <div class="col-md-4">
                                         <label class="form-check-label " for="MobileNo">Mobile No:</label>
-                                        <input type="text" class="form-control" name="mobile_no">
+                                        <input type="text" class="form-control" name="mobile_no" required>
                                     </div>
                                 </div>
 
@@ -141,9 +141,14 @@
                                 <div class="row mt-4">
                                     
                                     <div class="col-md-4">
+                                        <label class="form-check-label" for="password">Email:</label>
+                                        {{-- <span class="password-toggle-icon"><i class="fas fa-eye"></i></span> --}}
+                                        <input type="email" id="email" class="form-control" name="email" required>
+                                    </div>
+                                    <div class="col-md-4">
                                         <label class="form-check-label" for="password">Password:</label>
                                         <span class="password-toggle-icon"><i class="fas fa-eye"></i></span>
-                                        <input type="password" id="password" class="form-control" name="password">
+                                        <input type="password" id="password" class="form-control" name="password" required>
                                     </div>
                                
                                 

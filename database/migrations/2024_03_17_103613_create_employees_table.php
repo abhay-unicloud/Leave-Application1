@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('mobile_no');
             $table->integer('gender')->nullable();
             $table->string('addresses')->nullable();
+            $table->string('email');
             $table->string('password');
             $table->integer('status')->nullable();
             

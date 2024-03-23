@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 // use Session;
+use App\Models\Leave_types;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -16,6 +17,7 @@ use  Illuminate\Database\Query\Builder;
 use App\Http\Controllers\Item;
 use App\Models\Department;
 use App\Models\Designation;
+use App\Models\Leave;
 use App\Models\Staff;
 
 class Mycontroller extends Controller
@@ -31,6 +33,7 @@ class Mycontroller extends Controller
         $employee->dst_id = $request->input('designation');
         $employee->mobile_no = $request->input('mobile_no');
         $employee->addresses = $request->input('address');
+        $employee->email = $request->input('email');
         $employee->delete1 = 0;
         $employee->status = 0;
         $employee->password = bcrypt($request->input('password'));
@@ -50,6 +53,22 @@ class Mycontroller extends Controller
 
         $staff->save();
 
+        return redirect()->back()->with('success', 'data stored successfully');
+    }
+    public function request(Request $request)
+    {
+        $leave = new Leave();
+        $leave->emp_id = $request->input('emp_id');
+        $leave->lt_id = $request->input('lt_id');
+        $leave->start_date = $request->input('start_date');
+        $leave->end_date = $request->input('end_date');
+        $leave->reason = $request->input('reason');
+        $leave->location = $request->input('location');
+        $leave->delete1 = 0;
+        $leave->status = 0;
+        $leave->save();
+
+       
         return redirect()->back()->with('success', 'data stored successfully');
     }
     public function login3(Request $request)
@@ -80,14 +99,23 @@ class Mycontroller extends Controller
         Auth::logout();
         return redirect()->intended('loading');
     }
-    public function view($id)
+    public function view(Request $request,$id)
     {
-        $employee = Employee::find($id);
+        $empId =  $request->input('emp_id');
+        $employee = Employee::where('id', $empId)->first();
 
         if ($employee) {
-            return response()->json($employee);
+            // If employee data found, return it as JSON response
+            return response()->json([
+                'success' => true,
+                'employee' => $employee
+            ]);
         } else {
-            return response()->json(['error' => 'Employee not found'], 404);
+            // If no employee data found, return an error response
+            return response()->json([
+                'success' => false,
+                'message' => 'Employee not found'
+            ]);
         }
     }
     public function tables()
@@ -101,6 +129,13 @@ class Mycontroller extends Controller
         $department = Department::all();
         $designation = Designation::all();
         return view("pages.registration-employee-form", compact('designation'), compact('department'));
+        // return redirect()->intended('update')->compact('signup');
+    }
+    public function Application_form()
+    {
+        $Leave_types = Leave_types::all();
+      
+        return view("pages.Application-form", compact('Leave_types'));
         // return redirect()->intended('update')->compact('signup');
     }
     public function updating_employee()
@@ -120,6 +155,12 @@ class Mycontroller extends Controller
     {
         $designation = Designation::all();
         return view("pages.datatable-designation", compact('designation'));
+        // return redirect()->intended('update')->compact('signup');
+    }
+    public function datatable_leave_types()
+    {
+        $leave_types = Leave_types::all();
+        return view("pages.datatable-leave_types", compact('leave_types'));
         // return redirect()->intended('update')->compact('signup');
     }
     public function datatable_employee()

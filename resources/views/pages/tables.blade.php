@@ -36,15 +36,15 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="widget-content widget-content-area">
+                        <div class="widget-content widget-content-area m-1 p-2">
                             <div class="table-responsive">
                                 <table class="table table-hover table-striped table-bordered">
                                     <thead>
                                         <tr>
                                             <th class="checkbox-area" scope="col">
-                                                <div class="form-check form-check-primary">
+                                                {{-- <div class="form-check form-check-primary">
                                                     <input class="form-check-input" id="mixed_parent_all" type="checkbox">
-                                                </div>
+                                                </div> --}}
                                             </th>
                                             <th class="" scope="col">Name</th>
                                             <th scope="col">Date</th>

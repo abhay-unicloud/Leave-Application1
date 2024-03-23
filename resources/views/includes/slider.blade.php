@@ -119,6 +119,9 @@
                           <li>
                               <a href="{{route('datatable-staff')}}"> Staff Table </a>
                           </li>
+                          <li>
+                              <a href="{{route('datatable-leave_types')}}"> Leave_types Table </a>
+                          </li>
                       </ul>
                   </li>
 
