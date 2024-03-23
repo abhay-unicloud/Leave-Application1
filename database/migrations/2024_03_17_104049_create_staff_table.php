@@ -25,7 +25,7 @@ return new class extends Migration
             $table->integer('duty')->nullable();
             $table->integer('status');
             $table->timestamps();
-            $table->integer('delete1');
+            $table->integer('delete2');
         });
     }
 

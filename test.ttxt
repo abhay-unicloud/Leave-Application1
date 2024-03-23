@@ -1,0 +1,17 @@
+
+    try {
+        // Update Table 1
+        Employee::where('id', $id)->update(['delete1' => 1]);
+
+        // Update Table 2
+        Staff::where('emp_id', $id)->update(['delete1' => 1]);
+
+        DB::commit();
+
+        return redirect()->back()->with('success', 'Data updated successfully');
+    } catch (\Exception $e) {
+        // If an error occurs, rollback the transaction
+        DB::rollback();
+        
+        return redirect()->back()->with('error', 'Failed to update data');
+    }

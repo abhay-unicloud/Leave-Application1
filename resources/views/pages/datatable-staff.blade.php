@@ -43,15 +43,15 @@
                                                     <th>Designation</th>
                                                     <th>Mobile No.</th>
                                                     <th>Gender</th>
-                                                    <th>Address</th>
+                                                    <th>Duty</th>
                                                     <th class="text-center">Status</th>
                                                     <th class="text-center dt-no-sorting">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach($employee as $row)
+                                                @foreach($staff as $row)
                                                 <tr>
-                                                    <td class="checkbox-column text-center"> {{$row->id}} </td>
+                                                    <td class="checkbox-column text-center"> {{$row->emp_id}} </td>
                                                     <!-- <td class="text-center">
                                                             <span><img src="../src/assets/img/profile-17.jpeg" class="profile-img" alt="avatar"></span>
                                                         </td> -->
@@ -71,7 +71,7 @@
                                                         Undefined
                                                         @endif 
                                                     </td>
-                                                    <td> {{$row->addresses}} </td>
+                                                    <td> {{$row->duty}} </td>
                                                     <td class="text-center"><span class="shadow-none badge badge-primary"> 
                                                         @if($row->status==0) 
                                                         Pending
