@@ -154,7 +154,7 @@
                               <a href="{{route('add_depart')}}"> Add Departments </a>
                           </li>
                           <li>
-                              <a href="./form-validation.html"> Validation </a>
+                              <a href="{{route('add_design')}}"> Add Designations </a>
                           </li>
                           <li>
                               <a href="./form-input-mask.html"> Input Mask </a>
