@@ -37,41 +37,57 @@
                                                 <tr>
                                                     <th class="checkbox-column text-center"> Employee Id </th>
                                                     <!-- <th class="text-center">Image</th> -->
-                                                    <th>First Name</th>
-                                                    <th>Last Name</th>
-                                                    <th>Department</th>
-                                                    <th>Designation</th>
-                                                    <th>Mobile No.</th>
-                                                    <th>Gender</th>
-                                                    <th>Address</th>
+                                                    <th>Leave Type</th>
+                                                    <th>Start Date</th>
+                                                    <th>End Date</th>
+                                                    <th>Reason</th>
+                                                    <th>Location</th>
+                                                    <th>Approval</th>
+                                                    <th>Comment</th>
                                                     <th class="text-center">Status</th>
                                                     <th class="text-center dt-no-sorting">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach($employee as $row)
+                                                @foreach($leaves as $row)
                                                 <tr>
-                                                    <td class="checkbox-column text-center"> {{$row->id}} </td>
+                                                    <td class="checkbox-column text-center"> {{$row->emp_id}} </td>
                                                     <!-- <td class="text-center">
                                                             <span><img src="../src/assets/img/profile-17.jpeg" class="profile-img" alt="avatar"></span>
                                                         </td> -->
 
-                                                    <td> {{$row->first_name}} </td>
-                                                    <td> {{$row->last_name}} </td>
-                                                    <td> {{$row->dpt_name}} </td>
-                                                    <td> {{$row->dst_name}} </td>
-                                                    <td> {{$row->mobile_no}} </td>
-                                                    <td>   @if($row->gender==1) 
-                                                        Male
-                                                        @elseif($row->gender==2) 
-                                                        Female
-                                                        @elseif($row->gender==3) 
-                                                        Other
+                                                    <td> {{$row->lt_name}} </td>
+                                                    <td> {{$row->start_date}} </td>
+                                                    <td> {{$row->end_date}} </td>
+                                                    <td> {{$row->reason}} </td>
+                                                    <td> {{$row->location}} </td>
+                                                   
+                                                    <td class="text-center"><span class="shadow-none badge badge-primary"> 
+                                                        {{-- @if($row->approval==0) 
+                                                        Pending
+                                                        @elseif($row->approval==1) 
+                                                        Approved
                                                         @else
-                                                        Undefined
-                                                        @endif 
-                                                    </td>
-                                                    <td> {{$row->addresses}} </td>
+                                                        Decline
+                                                        @endif --}}
+                                                        {{-- <select class="form-select"  id="inlineFormSelectPref">
+                                                            <option value="0"{{$row->approval === 0 ? 'selected' : '' }}>Pending</option>
+                                                            <option value="1"{{$row->approval === 1 ? 'selected' : '' }}>Approved
+                                                            </option>
+                                                            <option value="2"{{$row->approval === 2 ? 'selected' : '' }}>decline
+                                                            </option>
+                                                        </select> --}}
+                                                        <div class="btn-group  mb-2 me-4" role="group">
+                                                            <button id="btndefault" type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+                                                            <div class="dropdown-menu" aria-labelledby="btndefault">
+                                                                <a href="javascript:void(0);" class="dropdown-item"><i class="flaticon-home-fill-1 mr-1"></i>Action</a>
+                                                                <a href="javascript:void(0);" class="dropdown-item"><i class="flaticon-gear-fill mr-1"></i>Another action</a>
+                                                                <a href="javascript:void(0);" class="dropdown-item"><i class="flaticon-bell-fill-2 mr-1"></i>Something else here</a>
+                                                                <a href="javascript:void(0);" class="dropdown-item"><i class="flaticon-dots mr-1"></i>Separated link</a>
+                                                            </div>
+                                                        </div>
+                                                    </span></td>
+                                                    <td> {{$row->comment}} </td>
                                                     <td class="text-center"><span class="shadow-none badge badge-primary"> 
                                                         @if($row->status==0) 
                                                         Pending

@@ -93,8 +93,9 @@
                                                                 </ul>
                                                             </td>
                                                         </tr>
-                                                    @endforeach
-                                                </tbody>
+                                                        @endforeach
+                                                    </tbody>
+                                                    <a href="{{route('add_depart')}}"><button class="btn btn-info mb-2 me-4">Add More</button></a>
                                             </table>
                                         </div>
                                     </div>
@@ -105,5 +106,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    {{-- </div> --}}
 @endsection

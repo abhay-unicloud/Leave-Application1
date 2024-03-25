@@ -77,6 +77,7 @@
                                                 </tr>
                                                 @endforeach
                                             </tbody>
+                                            <a href="{{route('add_design')}}"><button class="btn btn-info mb-2 me-4">Add More</button></a>
                                         </table>
                                     </div>
                                 </div>

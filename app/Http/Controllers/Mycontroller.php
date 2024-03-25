@@ -56,7 +56,8 @@ class Mycontroller extends Controller
         return redirect()->back()->with('success', 'data stored successfully');
     }
     public function request(Request $request)
-    {
+    {   if(($request->input('start_date')) <= ($request->input('end_date'))){
+
         $leave = new Leave();
         $leave->emp_id = $request->input('emp_id');
         $leave->lt_id = $request->input('lt_id');
@@ -66,10 +67,41 @@ class Mycontroller extends Controller
         $leave->location = $request->input('location');
         $leave->delete1 = 0;
         $leave->status = 0;
+        $leave->approval = 0;
         $leave->save();
+        return redirect()->back()->with('success', 'Request Send successfully');
+    }
+    return redirect()->back()->with('success', 'Request Send Unsuccessfull');
+    }
+    public function add_depart(Request $request)
+    {   
 
-       
-        return redirect()->back()->with('success', 'data stored successfully');
+        $department = new Department();
+        $department->dpt_name = $request->input('department');
+        $department->status = 0;
+        $department->save();
+        return redirect()->back()->with('success', 'Department Add successfully');
+   
+    }
+    public function add_design(Request $request)
+    {   
+
+        $designation = new Designation();
+        $designation->dst_name = $request->input('designation');
+        $designation->status = 0;
+        $designation->save();
+        return redirect()->back()->with('success', 'Designation Add successfully');
+   
+    }
+    public function add_depart_form()
+    {   
+        return view("pages.department-form");
+   
+    }
+    public function add_design_form()
+    {   
+        return view("pages.designation-form");
+   
     }
     public function login3(Request $request)
     {
@@ -103,9 +135,10 @@ class Mycontroller extends Controller
     {
         $empId =  $request->input('emp_id');
         $employee = Employee::where('id', $empId)->first();
-
+        
         if ($employee) {
             // If employee data found, return it as JSON response
+            Session::put('data_retrived', 1);
             return response()->json([
                 'success' => true,
                 'employee' => $employee
@@ -122,52 +155,66 @@ class Mycontroller extends Controller
     {
         $employee = DB::select('SHOW TABLES');
         return view("pages.tables", compact('employee'));
-        // return redirect()->intended('update')->compact('signup');
+        
     }
     public function registration_employee()
     {
         $department = Department::all();
         $designation = Designation::all();
         return view("pages.registration-employee-form", compact('designation'), compact('department'));
-        // return redirect()->intended('update')->compact('signup');
+      
     }
     public function Application_form()
     {
         $Leave_types = Leave_types::all();
       
         return view("pages.Application-form", compact('Leave_types'));
-        // return redirect()->intended('update')->compact('signup');
+ 
     }
     public function updating_employee()
     {
         $department = Department::all();
         $designation = Designation::all();
         return view("pages.updating-employee-form", compact('designation'), compact('department'));
-        // return redirect()->intended('update')->compact('signup');
+       
     }
     public function datatable_department()
     {
         $department = Department::all();
         return view("pages.datatable-department", compact('department'));
-        // return redirect()->intended('update')->compact('signup');
+     
     }
     public function datatable_designation()
     {
         $designation = Designation::all();
         return view("pages.datatable-designation", compact('designation'));
-        // return redirect()->intended('update')->compact('signup');
+    
     }
     public function datatable_leave_types()
     {
         $leave_types = Leave_types::all();
         return view("pages.datatable-leave_types", compact('leave_types'));
-        // return redirect()->intended('update')->compact('signup');
+    }
+    public function datatable_leaves()
+    {
+        // $leaves = Leave::all();
+        $leaves = DB::table('leaves')
+        ->join('leave_types','leaves.lt_id','=','leave_types.id')
+        ->select('*')
+        ->get();
+        return view("pages.datatable-leaves", compact('leaves'));
     }
     public function datatable_employee()
     {
-        $employee = Employee::all()->where('delete1', '=', '0');
+        // $employee = Employee::all()->where('delete1', '=', '0');
+        $employee = DB::table('employees')
+        ->join('designations','employees.dst_id','=','designations.id')
+        ->join('departments','employees.dpt_id','=','departments.id')
+        ->where('delete1', '=', '0')
+        ->select('*')
+        ->get();
         return view("pages.datatable-employee", compact('employee'));
-        // return redirect()->intended('update')->compact('signup');
+      
     }
     public function datatable_staff()
     {
@@ -178,7 +225,7 @@ class Mycontroller extends Controller
         // die;
 
         return view("pages.datatable-staff", compact('staff'));
-        // return redirect()->intended('update')->compact('signup');
+        
     }
     public function edit($id)
     {
@@ -186,14 +233,13 @@ class Mycontroller extends Controller
         $designation = Designation::all();
         $employee = Employee::find($id);
         return view("pages.updating-employee-form", compact('designation', 'department', 'employee'));
-        // return view("pages.updating-employee-form" ,compact('employee'));
-        // return redirect()->intended('update')->compact('signup');
+       
     }
     public function show($id)
     {
         $signup = signup::find($id);
         return view("pages.show", compact('signup'));
-        // return redirect()->intended('update')->compact('signup');
+        
     }
     public function delete($id)
     {
@@ -208,20 +254,11 @@ class Mycontroller extends Controller
 
             return redirect()->back()->with('success', 'Data updated successfully');
         } catch (\Exception $e) {
-            // If an error occurs, rollback the transaction
+           
             DB::rollback();
 
             return redirect()->back()->with('error', 'Failed to update data');
         }
-        // $employee= Employee::find($id);
-        // $employee->delete1 = 1;
-        // $employee->save();
-        // $staff= Staff::find($id,'emp_id');
-        // $staff->delete2 = 1;
-        // $staff->save();
-
-        // return redirect()->back()->with('success', 'updated successfully');
-        // return redirect()->intended('update')->compact('signup');
     }
     public function update(Request $request)
     {
@@ -240,6 +277,6 @@ class Mycontroller extends Controller
         // die;
 
         return redirect()->route('datatable-employees')->with('success', 'updated successfully');
-        // return redirect()->back()->with('success', 'updated successfully');
+        
     }
 }

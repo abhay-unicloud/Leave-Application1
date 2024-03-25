@@ -32,8 +32,13 @@ Route::get('/datatable-designation', [Mycontroller::class, 'datatable_designatio
 Route::get('/datatable-staff', [Mycontroller::class, 'datatable_staff'])->name('datatable-staff');
 Route::get('/datatable-leaves', [Mycontroller::class, 'datatable_leaves'])->name('datatable-leaves');
 Route::get('/datatable-leave-types', [Mycontroller::class, 'datatable_leave_types'])->name('datatable-leave_types');
+Route::get('/datatable-leaves', [Mycontroller::class, 'datatable_leaves'])->name('datatable-leaves');
 Route::get('/datatable-migrations', [Mycontroller::class, 'migrations'])->name('datatable-migrations');  
 Route::post('/insert', [Mycontroller::class, 'insert'])->name('insert');
+Route::post('/add_design', [Mycontroller::class, 'add_design'])->name('add_design');
+Route::get('/add_design', [Mycontroller::class, 'add_design_form'])->name('add_design');
+Route::get('/add_depart', [Mycontroller::class, 'add_depart_form'])->name('add_depart');
+Route::post('/add_depart', [Mycontroller::class, 'add_depart'])->name('add_depart');
 Route::post('/request', [Mycontroller::class, 'request'])->name('request');
 Route::post('/emp_data/{id}', [Mycontroller::class, 'view'])->name('emp_data');
 Route::get('updating-employee-form', [Mycontroller::class,'updating_employee'])->name('updating-employee-form-dst-dpt');

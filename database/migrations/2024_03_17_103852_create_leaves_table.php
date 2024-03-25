@@ -21,11 +21,11 @@ return new class extends Migration
             $table->date('end_date');
             $table->string('reason');
             $table->string('location');
-            $table->integer('status1')->nullable();
+            $table->integer('approval')->nullable();
             $table->string('comment')->nullable();
             $table->integer('status');
-            $table->integer('delete1');
             $table->timestamps();
+            $table->integer('delete1');
         });
     }
 

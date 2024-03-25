@@ -122,6 +122,9 @@
                           <li>
                               <a href="{{route('datatable-leave_types')}}"> Leave_types Table </a>
                           </li>
+                          <li>
+                          <a href="{{route('datatable-leaves')}}"> Leaves Table </a>
+                          </li>
                       </ul>
                   </li>
 
@@ -148,7 +151,7 @@
                               <a href="{{route('registration-employee-form')}}"> Registration-employee-form </a>
                           </li>
                           <li>
-                              <a href="./form-layouts.html"> Layouts </a>
+                              <a href="{{route('add_depart')}}"> Add Departments </a>
                           </li>
                           <li>
                               <a href="./form-validation.html"> Validation </a>

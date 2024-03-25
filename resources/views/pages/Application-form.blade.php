@@ -32,30 +32,19 @@
                     <nav class="breadcrumb-style-one" aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#">Form</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Updating-Employee</li>
+                            <li class="breadcrumb-item active" aria-current="page">Leave-Application</li>
                         </ol>
                     </nav>
                 </div>
                 <!-- /BREADCRUMB -->
 
-                <!-- <div id="navSection" data-bs-spy="affix" class="nav sidenav" style="right: 0px; display: block;">
-                                                                <div class="sidenav-content">
-                                                                    <a href="#flStackForm" class="nav-link">Utilities</a>
-                                                                    <a href="#flHorizontalForm" class="nav-link">Horizontal form</a>
-                                                                    <a href="#flHorizontalFormlabel" class="nav-link">Horizontal form label</a>
-                                                                    <a href="#flLoginForm" class="nav-link active">Gutter</a>
-                                                                    <a href="#flFormsGrid" class="nav-link">Form Grid</a>
-                                                                    <a href="#flAutoSizing" class="nav-link">Auto-sizing</a>
-                                                                    <a href="#flInlineForm" class="nav-link">Inline Forms</a>
-                                                                </div>
-                                                            </div> -->
                 <div class="row">
                     <div id="flStackForm" class="col-lg-12 layout-spacing layout-top-spacing">
                         <div class="statbox widget box box-shadow">
                             <div class="widget-header">
                                 <div class="row">
                                     <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                        <h4>Updating-Employee</h4>
+                                        <h4>Leave-Application</h4>
                                     </div>
                                 </div>
                             </div>
@@ -76,18 +65,13 @@
                                 @endif
                                 <form action="{{ route('request') }}" method="POST">
                                     @csrf
-                                    <!-- <div class="row mb-4">
-                                                                            <div class="col-sm-12">
-                                                                                <label class="form-check-label" for="emp_id">Employee-Id:</label>
-                                                                                <input type="text" class="form-control" name="emp_id">
-                                                                            </div>
-                                                                        </div> -->
+                                    
                                     <div class="row">
                                         <div class="col-md-4">
                                             <label class="form-check-label" for="firstName">Employee-Id:</label>
                                             <input type="text" id="emp_id" class="form-control" name="emp_id">
                                         </div>
-
+                                        
                                         <div class="col-md-4">
                                             <label class="form-check-label" for="firstName">First Name:</label>
                                             <strong><p id="first_name"></p></strong>   
@@ -137,11 +121,11 @@
                                         </div>
                                         <div class="col-md-4">
                                             <label class="form-check-label" for="start-date"> Duration:</label>
-                                            <input type="date" id="start-date" class="form-control" name="startDate">
+                                            <input type="date" id="start-date" class="form-control" name="start_date">
                                         </div>
                                             <div class="col-md-4">
                                             <label class="form-check-label" for="email">TO</label>
-                                            <input type="date" id="end-date" class="form-control" name="endDate">
+                                            <input type="date" id="end-date" class="form-control" name="end_date">
                                         </div>
                                         
                                         
@@ -150,7 +134,7 @@
                                     <div class="row mb-4">
                                         <div class="col-md-6">
                                             <label class="form-check-label" for="email">Reason:</label>
-                                            <textarea id="leave-reason" class="form-control" name="leaveReason" rows="4" cols="50"></textarea>
+                                            <textarea id="leave-reason" class="form-control" name="reason" rows="4" cols="50"></textarea>
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-check-label" for="email">Location:</label>
