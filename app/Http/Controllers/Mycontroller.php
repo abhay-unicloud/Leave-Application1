@@ -199,8 +199,8 @@ class Mycontroller extends Controller
     {
         // $leaves = Leave::all();
         $leaves = DB::table('leaves')
-        ->join('leave_types','leaves.lt_id','=','leave_types.id')
-        ->select('*')
+        ->join('leave_types','leave_types.id','=','leaves.lt_id')
+        ->select('leaves.id as leave_id','emp_id','lt_name','start_date','end_date','reason','location','approval','comment','leaves.status as leave_status')
         ->get();
         return view("pages.datatable-leaves", compact('leaves'));
     }
@@ -233,7 +233,18 @@ class Mycontroller extends Controller
         $designation = Designation::all();
         $employee = Employee::find($id);
         return view("pages.updating-employee-form", compact('designation', 'department', 'employee'));
-       
+    }
+    public function edit_leaves($id)
+    {
+      
+        $leaves = Leave::select('leaves.id as leave_id', 'leave_types.id as leave_type_id', 'employees.id as emp_id', 'lt_name', 'start_date', 'end_date', 'reason', 'location', 'approval', 'comment','first_name','last_name','dpt_name','dst_name','mobile_no','gender','addresses','email')
+        ->join('leave_types','leaves.lt_id','=','leave_types.id')
+        ->join('employees','leaves.emp_id','=','employees.id')
+        ->join('designations','employees.dst_id','=','designations.id')
+        ->join('departments','employees.dpt_id','=','departments.id')
+        ->where('leaves.id', $id) // Use the fetched $leaveId here
+        ->first();
+        return view("pages.updating-leaves-form", compact('leaves'));
     }
     public function show($id)
     {
@@ -277,6 +288,20 @@ class Mycontroller extends Controller
         // die;
 
         return redirect()->route('datatable-employees')->with('success', 'updated successfully');
+        
+    }
+    public function update_leaves(Request $request)
+    {
+        $leaves = Leave::find($request->input('id'));
+        $leaves->approval = $request->input('approval');
+        $leaves->comment = $request->input('comment');
+        $leaves->save();
+        //     echo "<pre>";
+        // print_r($signup->toArray());
+        // echo "</pre>";
+        // die;
+
+        return redirect()->route('datatable-leaves')->with('success', 'updated successfully');
         
     }
 }

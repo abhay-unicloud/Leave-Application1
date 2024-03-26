@@ -66,12 +66,7 @@
                                 @endif
                                 <form action="{{ route('updating-employee-form-update', [$employee->id]) }}" method="POST">
                                     @csrf
-                                    <!-- <div class="row mb-4">
-                                        <div class="col-sm-12">
-                                            <label class="form-check-label" for="emp_id">Employee-Id:</label>
-                                            <input type="text" class="form-control" name="emp_id">
-                                        </div>
-                                    </div> -->
+                                   
                                     <input type="hidden" name="id" value="{{ $employee->id }}">
                                     <div class="row">
                                         <div class="col-md-4">
