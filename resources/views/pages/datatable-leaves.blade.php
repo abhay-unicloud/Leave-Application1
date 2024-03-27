@@ -1,4 +1,5 @@
 @extends('layouts.default')
+
 @section('content')
     <div id="content" class="main-content">
         <div class="container">
@@ -9,7 +10,7 @@
                     <nav class="breadcrumb-style-one" aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('tables') }}">Table</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Employee Table</li>
+                            <li class="breadcrumb-item active" aria-current="page">Leaves Table</li>
                         </ol>
                     </nav>
                 </div>
@@ -22,7 +23,7 @@
                             <div class="widget-header">
                                 <div class="row">
                                     <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                        <h4>Employee Table</h4>
+                                        <h4>Leaves Table</h4>
                                     </div>
                                 </div>
                             </div>
@@ -39,7 +40,7 @@
                                                         <!-- <th class="text-center">Image</th> -->
                                                         <th>Leave Type</th>
                                                         <th>Start Date</th>
-                                                        <th>End Date</th>
+                                                        <th>How long</th>
                                                         <th>Reason</th>
                                                         <th>Location</th>
                                                         <th>Approval</th>
@@ -62,7 +63,13 @@
                                                         <td> {{ $row->location }} </td>
                                    
                                                         <td class="text-center"><span id="approval"
-                                                                class="shadow-none badge badge-warning">
+                                                                class="shadow-none badge  @if ($row->approval == 0)
+                                                                badge-light-warning
+                                                            @elseif($row->approval == 1)
+                                                            badge-light-success
+                                                            @else
+                                                            badge-light-danger
+                                                            @endif">
                                                                 @if ($row->approval == 0)
                                                                     Pending
                                                                 @elseif($row->approval == 1)
@@ -74,7 +81,13 @@
                                                             </span></td>
                                                         <td> {{ $row->comment }} </td>
                                                         <td  id="approvalStatus" class="text-center"><span 
-                                                                class="shadow-none badge badge-primary" >
+                                                                class="shadow-none badge   @if ($row->leave_status == 0)
+                                                                badge-warning
+                                                            @elseif($row->leave_status == 1)
+                                                            badge-success
+                                                            @else
+                                                            badge-danger
+                                                            @endif" >
                                                                 @if ($row->leave_status == 0)
                                                                     Pending
                                                                 @elseif($row->leave_status == 1)

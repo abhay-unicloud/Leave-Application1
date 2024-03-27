@@ -120,12 +120,12 @@
                                             </select>
                                         </div>
                                         <div class="col-md-4">
-                                            <label class="form-check-label" for="start-date"> Duration:</label>
+                                            <label class="form-check-label" for="start-date"> From:</label>
                                             <input type="date" id="start-date" class="form-control" name="start_date">
                                         </div>
                                             <div class="col-md-4">
-                                            <label class="form-check-label" for="email">TO</label>
-                                            <input type="date" id="end-date" class="form-control" name="end_date">
+                                            <label class="form-check-label" for="email">How long</label>
+                                            <input type="number" id="end-date" class="form-control" name="end_date">
                                         </div>
                                         
                                         

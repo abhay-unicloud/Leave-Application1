@@ -18,7 +18,7 @@ return new class extends Migration
             $table->bigInteger('emp_id');
             $table->string('lt_id');
             $table->date('start_date');
-            $table->date('end_date');
+            $table->integer('end_date');
             $table->string('reason');
             $table->string('location');
             $table->integer('approval')->nullable();

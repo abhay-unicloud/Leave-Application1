@@ -83,3 +83,7 @@ SELECT * FROM `leaves` `l` INNER JOIN `leave_types` `lt` ON l.lt_id=lt.id WHERE 
 
 
     gender==1? "Male":gender==2? "Female" :gender=<3? "other": "undefined")
+        $to = $request->input('email');
+        $subject =  $request->input('subject');
+        $message =  $request->input('message');
+        

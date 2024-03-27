@@ -23,6 +23,9 @@ Route::get('/index2', function () {
 // Route::get('/Leave-Application', function () {
 //     return view('pages.Application-form');
 // })->name('Leave-Application');
+// Route::get('/send_email', function () {
+//     return view('pages.test-mail');
+// })->name('send_email');
 Route::get('/Leave-Application', [Mycontroller::class,'Application_form'])->name('Leave-Application');
 Route::get('/registration-employee-form', [Mycontroller::class,'registration_employee'])->name('registration-employee-form');
 Route::get('/tables', [Mycontroller::class, 'tables'])->name('tables');
@@ -43,7 +46,9 @@ Route::post('/request', [Mycontroller::class, 'request'])->name('request');
 Route::post('/emp_data/{id}', [Mycontroller::class, 'view'])->name('emp_data');
 Route::get('updating-employee-form', [Mycontroller::class,'updating_employee'])->name('updating-employee-form-dst-dpt');
 Route::get('updating-employee-form/edit/{id}', [Mycontroller::class, 'edit'])->name('updating-employee-form-edit');
+Route::get('updating-employee-form/view/{id}', [Mycontroller::class, 'edit'])->name('updating-employee-form-view');
 Route::post('updating-employee-form', [Mycontroller::class, 'update'])->name('updating-employee-form-update');
 Route::get('updating-leaves-form/edit/{id}', [Mycontroller::class, 'edit_leaves'])->name('updating-leaves-form-edit');
 Route::post('updating-leaves-form', [Mycontroller::class, 'update_leaves'])->name('updating-leaves-form-update');
 Route::get('updating-employee-formdelete/{id}', [Mycontroller::class, 'delete'])->name('updating-employee-form-delete');
+Route::post('/send_email', [Mycontroller::class, 'sendEmail'])->name('send_email');

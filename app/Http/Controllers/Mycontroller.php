@@ -10,6 +10,7 @@ use App\Models\signup;
 use App\Models\Employee;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Symfony\Component\Console\Input\Input;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Support\Facades\Auth;
@@ -19,6 +20,9 @@ use App\Models\Department;
 use App\Models\Designation;
 use App\Models\Leave;
 use App\Models\Staff;
+use Illuminate\Support\Str;
+use PHPMailer\PHPMailer\PHPMailer;  
+use PHPMailer\PHPMailer\Exception;
 
 class Mycontroller extends Controller
 {
@@ -36,6 +40,7 @@ class Mycontroller extends Controller
         $employee->email = $request->input('email');
         $employee->delete1 = 0;
         $employee->status = 0;
+        $hashpassword= Str::random(10);
         $employee->password = bcrypt($request->input('password'));
         $employee->save();
 
@@ -56,7 +61,7 @@ class Mycontroller extends Controller
         return redirect()->back()->with('success', 'data stored successfully');
     }
     public function request(Request $request)
-    {   if(($request->input('start_date')) <= ($request->input('end_date'))){
+    {   if(($request->input('end_date'))>0){
 
         $leave = new Leave();
         $leave->emp_id = $request->input('emp_id');
@@ -71,7 +76,10 @@ class Mycontroller extends Controller
         $leave->save();
         return redirect()->back()->with('success', 'Request Send successfully');
     }
-    return redirect()->back()->with('success', 'Request Send Unsuccessfull');
+    else{
+        return redirect()->back()->with('success', 'Request Send Unsuccessfull');
+    }
+    
     }
     public function add_depart(Request $request)
     {   
@@ -304,4 +312,59 @@ class Mycontroller extends Controller
         return redirect()->route('datatable-leaves')->with('success', 'updated successfully');
         
     }
+    public function sendEmail(Request $request)
+{
+    // $to = $request->input('email');
+    // $subject =  $request->input('subject');
+    // $emailMessage =  $request->input('message');
+    
+    // Mail::send([], [], function ($mail) use ($to, $subject, $emailMessage) {
+    //     $mail->to($to)
+    //          ->subject($subject)
+    //          ->setBody($emailMessage, 'text/plain'); // Specify the content type as text/plain
+    // });
+
+    // return "Email sent successfully.";
+    // Create an instance of PHPMailer class  
+$mail = new PHPMailer; 
+ 
+// SMTP configurations 
+$mail->isSMTP(); 
+$mail->Host = 'smtp.hostinger.com'; 
+$mail->SMTPAuth = true; 
+$mail->Username = 'abhay@unicloudtech.com'; 
+$mail->Password = 'abhayuni8955@'; 
+$mail->SMTPSecure = 'ssl'; 
+$mail->Port = 465; 
+ 
+// Sender info  
+$mail->setFrom('abhay@unicloudtech.com', 'Abhay unicloud'); 
+ 
+// Add a recipient  
+$mail->addAddress('rahul@unicloudtech.com');  
+ 
+// Add cc or bcc   
+
+// Email subject  
+$mail->Subject = 'Send Email via SMTP in Laravel';  
+  
+// Set email format to HTML  
+$mail->isHTML(true);  
+  
+// Email body content  
+$mailContent = '  
+    <h2>Send HTML Email using SMTP Server in Laravel</h2>  
+    <p>It is a test email by CodexWorld, sent via SMTP server with PHPMailer in Laravel.</p>  
+    <p>Read the tutorial and download this script from <a href="https://www.codexworld.com/">CodexWorld</a>.</p>';  
+$mail->Body = $mailContent;  
+  
+// Send email  
+if(!$mail->send()){  
+    echo 'Message could not be sent. Mailer Error: '.$mail->ErrorInfo;  
+}else{  
+    echo 'Message has been sent.';  
+}
+}
+
+    
 }
