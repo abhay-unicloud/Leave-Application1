@@ -50,7 +50,13 @@
 
                                                             <td> {{ $row->dpt_name }} </td>
                                                             <td class="text-center"><span
-                                                                    class="shadow-none badge badge-primary">
+                                                                    class="shadow-none badge    @if ($row->status == 0)
+                                                                    badge-light-primary
+                                                                @elseif($row->status == 1)
+                                                                badge-light-success
+                                                                @else
+                                                                badge-light-danger
+                                                                @endif ">
                                                                     @if ($row->status == 0)
                                                                         Pending
                                                                     @elseif($row->status == 1)
@@ -61,7 +67,7 @@
                                                                 </span></td>
                                                             <td class="text-center">
                                                                 <ul class="table-controls">
-                                                                    <li><a href="javascript:void(0);" class="bs-tooltip"
+                                                                    <li><a href="{{route('updating-department-form-edit',[$row->id])}}" class="bs-tooltip"
                                                                             data-bs-toggle="tooltip" data-bs-placement="top"
                                                                             title="Edit" data-original-title="Edit"><svg
                                                                                 xmlns="http://www.w3.org/2000/svg"

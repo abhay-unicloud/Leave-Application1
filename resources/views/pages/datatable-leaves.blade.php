@@ -64,7 +64,7 @@
                                    
                                                         <td class="text-center"><span id="approval"
                                                                 class="shadow-none badge  @if ($row->approval == 0)
-                                                                badge-light-warning
+                                                                badge-light-primary
                                                             @elseif($row->approval == 1)
                                                             badge-light-success
                                                             @else
@@ -82,11 +82,11 @@
                                                         <td> {{ $row->comment }} </td>
                                                         <td  id="approvalStatus" class="text-center"><span 
                                                                 class="shadow-none badge   @if ($row->leave_status == 0)
-                                                                badge-warning
+                                                                badge-light-primary
                                                             @elseif($row->leave_status == 1)
-                                                            badge-success
+                                                            badge-light-success
                                                             @else
-                                                            badge-danger
+                                                            badge-light-danger
                                                             @endif" >
                                                                 @if ($row->leave_status == 0)
                                                                     Pending

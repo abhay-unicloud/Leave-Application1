@@ -26,8 +26,21 @@ Route::get('/index2', function () {
 // Route::get('/send_email', function () {
 //     return view('pages.test-mail');
 // })->name('send_email');
-Route::get('/Leave-Application', [Mycontroller::class,'Application_form'])->name('Leave-Application');
-Route::get('/registration-employee-form', [Mycontroller::class,'registration_employee'])->name('registration-employee-form');
+
+/* Forms Start*/
+Route::get('/Leave-Application', [Mycontroller::class, 'Application_form'])->name('Leave-Application');
+Route::get('/registration-employee-form', [Mycontroller::class, 'registration_employee'])->name('registration-employee-form');
+/* Forms End*/
+/* Forms Insertion Start*/
+Route::post('/insert', [Mycontroller::class, 'insert'])->name('insert');
+Route::post('/add_design', [Mycontroller::class, 'add_design'])->name('add_design');
+Route::get('/add_design', [Mycontroller::class, 'add_design_form'])->name('add_design');
+Route::get('/add_depart', [Mycontroller::class, 'add_depart_form'])->name('add_depart');
+Route::post('/add_depart', [Mycontroller::class, 'add_depart'])->name('add_depart');
+Route::post('/request', [Mycontroller::class, 'request'])->name('request');
+Route::post('/emp_data/{id}', [Mycontroller::class, 'view'])->name('emp_data');
+/* Forms Insertion End*/
+/* Tables and Datatables Start*/
 Route::get('/tables', [Mycontroller::class, 'tables'])->name('tables');
 Route::get('/datatable-employee', [Mycontroller::class, 'datatable_employee'])->name('datatable-employees');
 Route::get('/datatable-department', [Mycontroller::class, 'datatable_department'])->name('datatable-departments');
@@ -36,19 +49,19 @@ Route::get('/datatable-staff', [Mycontroller::class, 'datatable_staff'])->name('
 Route::get('/datatable-leaves', [Mycontroller::class, 'datatable_leaves'])->name('datatable-leaves');
 Route::get('/datatable-leave-types', [Mycontroller::class, 'datatable_leave_types'])->name('datatable-leave_types');
 Route::get('/datatable-leaves', [Mycontroller::class, 'datatable_leaves'])->name('datatable-leaves');
-Route::get('/datatable-migrations', [Mycontroller::class, 'migrations'])->name('datatable-migrations');  
-Route::post('/insert', [Mycontroller::class, 'insert'])->name('insert');
-Route::post('/add_design', [Mycontroller::class, 'add_design'])->name('add_design');
-Route::get('/add_design', [Mycontroller::class, 'add_design_form'])->name('add_design');
-Route::get('/add_depart', [Mycontroller::class, 'add_depart_form'])->name('add_depart');
-Route::post('/add_depart', [Mycontroller::class, 'add_depart'])->name('add_depart');
-Route::post('/request', [Mycontroller::class, 'request'])->name('request');
-Route::post('/emp_data/{id}', [Mycontroller::class, 'view'])->name('emp_data');
-Route::get('updating-employee-form', [Mycontroller::class,'updating_employee'])->name('updating-employee-form-dst-dpt');
+Route::get('/datatable-migrations', [Mycontroller::class, 'migrations'])->name('datatable-migrations');
+/* Tables and Datatables End*/
+/* Forms update Start*/
+Route::get('updating-employee-form', [Mycontroller::class, 'updating_employee'])->name('updating-employee-form-dst-dpt');
 Route::get('updating-employee-form/edit/{id}', [Mycontroller::class, 'edit'])->name('updating-employee-form-edit');
 Route::get('updating-employee-form/view/{id}', [Mycontroller::class, 'edit'])->name('updating-employee-form-view');
 Route::post('updating-employee-form', [Mycontroller::class, 'update'])->name('updating-employee-form-update');
+Route::get('updating-department-form/edit/{id}', [Mycontroller::class, 'edit_department'])->name('updating-department-form-edit');
+Route::post('updating-department-form', [Mycontroller::class, 'update_department'])->name('updating-department-form-update');
+Route::get('updating-designation-form/edit/{id}', [Mycontroller::class, 'edit_designation'])->name('updating-designation-form-edit');
+Route::post('updating-designation-form', [Mycontroller::class, 'update_designation'])->name('updating-designation-form-update');
+Route::get('updating-employee-form/delete/{id}', [Mycontroller::class, 'delete'])->name('updating-employee-form-delete');
 Route::get('updating-leaves-form/edit/{id}', [Mycontroller::class, 'edit_leaves'])->name('updating-leaves-form-edit');
 Route::post('updating-leaves-form', [Mycontroller::class, 'update_leaves'])->name('updating-leaves-form-update');
-Route::get('updating-employee-formdelete/{id}', [Mycontroller::class, 'delete'])->name('updating-employee-form-delete');
-Route::post('/send_email', [Mycontroller::class, 'sendEmail'])->name('send_email');
+/* Forms update End*/
+Route::get('/send_email', [Mycontroller::class, 'sendEmail'])->name('send_email');

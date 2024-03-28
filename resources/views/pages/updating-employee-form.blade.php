@@ -154,7 +154,7 @@
                                     <div class="row mb-4">
                                         <div class="col-sm-12">
                                             <br>
-                                            <button class="btn btn-primary" type="submit">Submit</button>
+                                            <button class="btn btn-primary" type="submit">Update</button>
                                         </div>
                                     </div>
 

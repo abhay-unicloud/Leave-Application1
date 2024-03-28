@@ -20,10 +20,11 @@ use App\Models\Department;
 use App\Models\Designation;
 use App\Models\Leave;
 use App\Models\Staff;
+use App\Mail\SampleMail;
 use Illuminate\Support\Str;
-use PHPMailer\PHPMailer\PHPMailer;  
+use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-
+use App\CPU\Helpers;
 class Mycontroller extends Controller
 {
     public function insert(Request $request)
@@ -37,13 +38,14 @@ class Mycontroller extends Controller
         $employee->dst_id = $request->input('designation');
         $employee->mobile_no = $request->input('mobile_no');
         $employee->addresses = $request->input('address');
-        $employee->email = $request->input('email');
+        $email = $request->input('email');
+        $employee->email =$email;
         $employee->delete1 = 0;
         $employee->status = 0;
-        $hashpassword= Str::random(10);
-        $employee->password = bcrypt($request->input('password'));
+        $hashpassword = Str::random(10);
+        $employee->password = bcrypt($request->$hashpassword);
         $employee->save();
-
+        $sendmail=Helpers::sendEmail($email,$hashpassword);
         $staff = new Staff();
         $staff->emp_id = $employee->id;
         $staff->first_name = $request->input('first_name');
@@ -61,55 +63,50 @@ class Mycontroller extends Controller
         return redirect()->back()->with('success', 'data stored successfully');
     }
     public function request(Request $request)
-    {   if(($request->input('end_date'))>0){
+    {
+        if (($request->input('end_date')) > 0) {
 
-        $leave = new Leave();
-        $leave->emp_id = $request->input('emp_id');
-        $leave->lt_id = $request->input('lt_id');
-        $leave->start_date = $request->input('start_date');
-        $leave->end_date = $request->input('end_date');
-        $leave->reason = $request->input('reason');
-        $leave->location = $request->input('location');
-        $leave->delete1 = 0;
-        $leave->status = 0;
-        $leave->approval = 0;
-        $leave->save();
-        return redirect()->back()->with('success', 'Request Send successfully');
-    }
-    else{
-        return redirect()->back()->with('success', 'Request Send Unsuccessfull');
-    }
-    
+            $leave = new Leave();
+            $leave->emp_id = $request->input('emp_id');
+            $leave->lt_id = $request->input('lt_id');
+            $leave->start_date = $request->input('start_date');
+            $leave->end_date = $request->input('end_date');
+            $leave->reason = $request->input('reason');
+            $leave->location = $request->input('location');
+            $leave->delete1 = 0;
+            $leave->status = 0;
+            $leave->approval = 0;
+            $leave->save();
+            return redirect()->back()->with('success', 'Request Send successfully');
+        } else {
+            return redirect()->back()->with('success', 'Request Send Unsuccessfull');
+        }
     }
     public function add_depart(Request $request)
-    {   
+    {
 
         $department = new Department();
         $department->dpt_name = $request->input('department');
         $department->status = 0;
         $department->save();
         return redirect()->back()->with('success', 'Department Add successfully');
-   
     }
     public function add_design(Request $request)
-    {   
+    {
 
         $designation = new Designation();
         $designation->dst_name = $request->input('designation');
         $designation->status = 0;
         $designation->save();
         return redirect()->back()->with('success', 'Designation Add successfully');
-   
     }
     public function add_depart_form()
-    {   
+    {
         return view("pages.department-form");
-   
     }
     public function add_design_form()
-    {   
+    {
         return view("pages.designation-form");
-   
     }
     public function login3(Request $request)
     {
@@ -139,11 +136,11 @@ class Mycontroller extends Controller
         Auth::logout();
         return redirect()->intended('loading');
     }
-    public function view(Request $request,$id)
+    public function view(Request $request, $id)
     {
         $empId =  $request->input('emp_id');
         $employee = Employee::where('id', $empId)->first();
-        
+
         if ($employee) {
             // If employee data found, return it as JSON response
             Session::put('data_retrived', 1);
@@ -163,40 +160,34 @@ class Mycontroller extends Controller
     {
         $employee = DB::select('SHOW TABLES');
         return view("pages.tables", compact('employee'));
-        
     }
     public function registration_employee()
     {
-        $department = Department::all();
-        $designation = Designation::all();
+        $department = Department::all()->where('status', '=', 1);
+        $designation = Designation::all()->where('status', '=', 1);
         return view("pages.registration-employee-form", compact('designation'), compact('department'));
-      
     }
     public function Application_form()
     {
         $Leave_types = Leave_types::all();
-      
+
         return view("pages.Application-form", compact('Leave_types'));
- 
     }
     public function updating_employee()
     {
         $department = Department::all();
         $designation = Designation::all();
         return view("pages.updating-employee-form", compact('designation'), compact('department'));
-       
     }
     public function datatable_department()
     {
         $department = Department::all();
         return view("pages.datatable-department", compact('department'));
-     
     }
     public function datatable_designation()
     {
         $designation = Designation::all();
         return view("pages.datatable-designation", compact('designation'));
-    
     }
     public function datatable_leave_types()
     {
@@ -207,22 +198,20 @@ class Mycontroller extends Controller
     {
         // $leaves = Leave::all();
         $leaves = DB::table('leaves')
-        ->join('leave_types','leave_types.id','=','leaves.lt_id')
-        ->select('leaves.id as leave_id','emp_id','lt_name','start_date','end_date','reason','location','approval','comment','leaves.status as leave_status')
-        ->get();
+            ->join('leave_types', 'leave_types.id', '=', 'leaves.lt_id')
+            ->select('leaves.id as leave_id', 'emp_id', 'lt_name', 'start_date', 'end_date', 'reason', 'location', 'approval', 'comment', 'leaves.status as leave_status')
+            ->get();
         return view("pages.datatable-leaves", compact('leaves'));
     }
     public function datatable_employee()
     {
         // $employee = Employee::all()->where('delete1', '=', '0');
-        $employee = DB::table('employees')
-        ->join('designations','employees.dst_id','=','designations.id')
-        ->join('departments','employees.dpt_id','=','departments.id')
-        ->where('delete1', '=', '0')
-        ->select('*')
-        ->get();
+        $employee = Employee::select('employees.id as employee_id', 'first_name', 'last_name', 'dpt_name', 'dst_name', 'mobile_no', 'gender', 'addresses', 'email')
+            ->join('designations', 'employees.dst_id', '=', 'designations.id')
+            ->join('departments', 'employees.dpt_id', '=', 'departments.id')
+            ->where('delete1', '=', '0')
+            ->get();
         return view("pages.datatable-employee", compact('employee'));
-      
     }
     public function datatable_staff()
     {
@@ -233,7 +222,6 @@ class Mycontroller extends Controller
         // die;
 
         return view("pages.datatable-staff", compact('staff'));
-        
     }
     public function edit($id)
     {
@@ -242,23 +230,34 @@ class Mycontroller extends Controller
         $employee = Employee::find($id);
         return view("pages.updating-employee-form", compact('designation', 'department', 'employee'));
     }
+    public function edit_department($id)
+    {
+        $department = Department::find($id);
+
+        return view("pages.updating-department-form", compact('department'));
+    }
+    public function edit_designation($id)
+    {
+        $designation = Designation::find($id);
+
+        return view("pages.updating-designation-form", compact('designation'));
+    }
     public function edit_leaves($id)
     {
-      
-        $leaves = Leave::select('leaves.id as leave_id', 'leave_types.id as leave_type_id', 'employees.id as emp_id', 'lt_name', 'start_date', 'end_date', 'reason', 'location', 'approval', 'comment','first_name','last_name','dpt_name','dst_name','mobile_no','gender','addresses','email')
-        ->join('leave_types','leaves.lt_id','=','leave_types.id')
-        ->join('employees','leaves.emp_id','=','employees.id')
-        ->join('designations','employees.dst_id','=','designations.id')
-        ->join('departments','employees.dpt_id','=','departments.id')
-        ->where('leaves.id', $id) // Use the fetched $leaveId here
-        ->first();
+
+        $leaves = Leave::select('leaves.id as leave_id', 'leave_types.id as leave_type_id', 'employees.id as emp_id', 'lt_name', 'start_date', 'end_date', 'reason', 'location', 'approval', 'comment', 'first_name', 'last_name', 'dpt_name', 'dst_name', 'mobile_no', 'gender', 'addresses', 'email')
+            ->join('leave_types', 'leaves.lt_id', '=', 'leave_types.id')
+            ->join('employees', 'leaves.emp_id', '=', 'employees.id')
+            ->join('designations', 'employees.dst_id', '=', 'designations.id')
+            ->join('departments', 'employees.dpt_id', '=', 'departments.id')
+            ->where('leaves.id', $id) // Use the fetched $leaveId here
+            ->first();
         return view("pages.updating-leaves-form", compact('leaves'));
     }
     public function show($id)
     {
         $signup = signup::find($id);
         return view("pages.show", compact('signup'));
-        
     }
     public function delete($id)
     {
@@ -273,7 +272,7 @@ class Mycontroller extends Controller
 
             return redirect()->back()->with('success', 'Data updated successfully');
         } catch (\Exception $e) {
-           
+
             DB::rollback();
 
             return redirect()->back()->with('error', 'Failed to update data');
@@ -296,7 +295,6 @@ class Mycontroller extends Controller
         // die;
 
         return redirect()->route('datatable-employees')->with('success', 'updated successfully');
-        
     }
     public function update_leaves(Request $request)
     {
@@ -310,61 +308,43 @@ class Mycontroller extends Controller
         // die;
 
         return redirect()->route('datatable-leaves')->with('success', 'updated successfully');
-        
     }
-    public function sendEmail(Request $request)
-{
-    // $to = $request->input('email');
-    // $subject =  $request->input('subject');
-    // $emailMessage =  $request->input('message');
-    
-    // Mail::send([], [], function ($mail) use ($to, $subject, $emailMessage) {
-    //     $mail->to($to)
-    //          ->subject($subject)
-    //          ->setBody($emailMessage, 'text/plain'); // Specify the content type as text/plain
-    // });
+    public function update_department(Request $request)
+    {
+        $department = Department::find($request->input('id'));
+        $department->dpt_name = $request->input('department');
+        $department->status = $request->input('status');
+        $department->save();
+        //     echo "<pre>";
+        // print_r($signup->toArray());
+        // echo "</pre>";
+        // die;
 
-    // return "Email sent successfully.";
-    // Create an instance of PHPMailer class  
-$mail = new PHPMailer; 
- 
-// SMTP configurations 
-$mail->isSMTP(); 
-$mail->Host = 'smtp.hostinger.com'; 
-$mail->SMTPAuth = true; 
-$mail->Username = 'abhay@unicloudtech.com'; 
-$mail->Password = 'abhayuni8955@'; 
-$mail->SMTPSecure = 'ssl'; 
-$mail->Port = 465; 
- 
-// Sender info  
-$mail->setFrom('abhay@unicloudtech.com', 'Abhay unicloud'); 
- 
-// Add a recipient  
-$mail->addAddress('rahul@unicloudtech.com');  
- 
-// Add cc or bcc   
+        return redirect()->route('datatable-departments')->with('success', 'updated successfully');
+    }
+    public function update_designation(Request $request)
+    {
+        $designation = Designation::find($request->input('id'));
+        $designation->dst_name = $request->input('designation');
+        $designation->status = $request->input('status');
+        $designation->save();
+        //     echo "<pre>";
+        // print_r($signup->toArray());
+        // echo "</pre>";
+        // die;
 
-// Email subject  
-$mail->Subject = 'Send Email via SMTP in Laravel';  
-  
-// Set email format to HTML  
-$mail->isHTML(true);  
-  
-// Email body content  
-$mailContent = '  
-    <h2>Send HTML Email using SMTP Server in Laravel</h2>  
-    <p>It is a test email by CodexWorld, sent via SMTP server with PHPMailer in Laravel.</p>  
-    <p>Read the tutorial and download this script from <a href="https://www.codexworld.com/">CodexWorld</a>.</p>';  
-$mail->Body = $mailContent;  
-  
-// Send email  
-if(!$mail->send()){  
-    echo 'Message could not be sent. Mailer Error: '.$mail->ErrorInfo;  
-}else{  
-    echo 'Message has been sent.';  
-}
-}
+        return redirect()->route('datatable-designations')->with('success', 'updated successfully');
+    }
+    public function sendEmail()
+    {
+        
+    $content = [
+        'subject' => 'This is the mail subject',
+        'body' => 'This is the email body of how to send email from laravel 10 with mailtrap.'
+    ];
 
-    
+    Mail::to('rahul@unicloudtech.com')->send(new SampleMail($content));
+
+    return "Email has been sent.";
+    }
 }
