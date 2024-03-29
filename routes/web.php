@@ -15,9 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth.check')->group(function () {
-    Route::get('/', function () {
-        return view('pages.index');
-    })->name('index');
+    Route::get('/', [Mycontroller::class, 'index'])->name('index');
     // Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 });
 
@@ -27,14 +25,14 @@ Route::get('/index2', function () {
 // Route::get('/Leave-Application', function () {
 //     return view('pages.Application-form');
 // })->name('Leave-Application');
-Route::get('/emp_login', function () {
-    return view('pages.employee-login');
-})->name('emp_login');
+Route::get('/employee-login',  [Mycontroller::class, 'employee_login'])->name('employee_login');
+Route::get('/employee-logout',  [Mycontroller::class, 'logout'])->name('employee_logout');
 
 /* Forms Start*/
 Route::get('/Leave-Application', [Mycontroller::class, 'Application_form'])->name('Leave-Application');
 Route::get('/registration-employee-form', [Mycontroller::class, 'registration_employee'])->name('registration-employee-form');
-Route::post('/employee-login', [Mycontroller::class, 'login3'])->name('employee-login');
+Route::post('/employee-login', [Mycontroller::class, 'login3'])->name('employee_login');
+Route::post('/check_exists', [Mycontroller::class, 'check_exists'])->name('check_exists');
 /* Forms End*/
 /* Forms Insertion Start*/
 Route::post('/insert', [Mycontroller::class, 'insert'])->name('insert');
@@ -64,7 +62,7 @@ Route::post('updating-employee-form', [Mycontroller::class, 'update'])->name('up
 Route::get('updating-department-form/edit/{id}', [Mycontroller::class, 'edit_department'])->name('updating-department-form-edit');
 Route::post('updating-department-form', [Mycontroller::class, 'update_department'])->name('updating-department-form-update');
 Route::get('updating-designation-form/edit/{id}', [Mycontroller::class, 'edit_designation'])->name('updating-designation-form-edit');
-Route::post('updating-designation-form', [Mycontroller::class, 'update_designation'])->name('updating-designation-form-update');
+Route::post('updating-designation-form', [Mycontroller ::class, 'update_designation'])->name('updating-designation-form-update');
 Route::get('updating-employee-form/delete/{id}', [Mycontroller::class, 'delete'])->name('updating-employee-form-delete');
 Route::get('updating-leaves-form/edit/{id}', [Mycontroller::class, 'edit_leaves'])->name('updating-leaves-form-edit');
 Route::post('updating-leaves-form', [Mycontroller::class, 'update_leaves'])->name('updating-leaves-form-update');

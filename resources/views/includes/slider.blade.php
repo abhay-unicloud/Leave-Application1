@@ -36,7 +36,7 @@
               <div class="profile-info">
                   <div class="user-info">
                       <div class="profile-img">
-                          <img src="{{ asset('assets/src/assets/img/profile-30.png') }}" alt="avatar">
+                         <a href="{{route('employee_logout')}}"> <img src="{{ asset('assets/src/assets/img/profile-30.png') }}" alt="avatar"></a>
                       </div>
                       <div class="profile-content">
                           <h6 class="">Shaun Park</h6>

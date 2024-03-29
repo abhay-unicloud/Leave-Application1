@@ -15,17 +15,7 @@
             </div>
             <!-- /BREADCRUMB -->
 
-            <!-- <div id="navSection" data-bs-spy="affix" class="nav sidenav" style="right: 0px; display: block;">
-                        <div class="sidenav-content">
-                            <a href="#flStackForm" class="nav-link">Utilities</a>
-                            <a href="#flHorizontalForm" class="nav-link">Horizontal form</a>
-                            <a href="#flHorizontalFormlabel" class="nav-link">Horizontal form label</a>
-                            <a href="#flLoginForm" class="nav-link active">Gutter</a>
-                            <a href="#flFormsGrid" class="nav-link">Form Grid</a>
-                            <a href="#flAutoSizing" class="nav-link">Auto-sizing</a>
-                            <a href="#flInlineForm" class="nav-link">Inline Forms</a>
-                        </div>
-                    </div> -->
+            
                     <div class="row">
                         <div id="flStackForm" class="col-lg-12 layout-spacing layout-top-spacing">
                     <div class="statbox widget box box-shadow">

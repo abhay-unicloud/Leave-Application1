@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Leave_types;
+use Illuminate\Hashing\BcryptHasher;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -25,10 +26,14 @@ use Illuminate\Support\Str;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use App\CPU\Helpers;
+
 class Mycontroller extends Controller
 {
     public function insert(Request $request)
     {
+        // $exist = Employee::where('email', $request->input('email'))->first();
+        // if ($exist) {
+
         $employee = new Employee();
         $employee->first_name = $request->input('first_name');
         $employee->last_name = $request->input('last_name');
@@ -38,14 +43,13 @@ class Mycontroller extends Controller
         $employee->mobile_no = $request->input('mobile_no');
         $employee->addresses = $request->input('address');
         $email = $request->input('email');
-        $employee->email =$email;
+        $employee->email = $email;
         $employee->delete1 = 0;
         $employee->status = 0;
         $hashpassword = Str::random(10);
-        $employee->password = bcrypt($request->$hashpassword);
+        $employee->password = Hash::Make($hashpassword);
         $employee->save();
-        $sendmail=Helpers::sendEmail($employee->id,$email,$hashpassword);
-        
+
         $staff = new Staff();
         $staff->emp_id = $employee->id;
         $staff->first_name = $request->input('first_name');
@@ -59,8 +63,22 @@ class Mycontroller extends Controller
         $staff->duty = 0;
 
         $staff->save();
+        set_time_limit(0);
+        $sendmail = Helpers::sendEmail($employee->id, $email, $hashpassword);
 
         return redirect()->back()->with('success', 'data stored successfully');
+        // } else {
+        //     return redirect()->back()->with('error', 'already Exists');
+        // }
+    }public function check_exists(Request $request)
+    {
+        $dataExists = Employee::where('email', '=', $request->input('email'))->first();
+        
+        if ($dataExists) {
+            return response()->json(['exists' => true]);
+        } else {
+            return response()->json(['exists' => false]);
+        }
     }
     public function request(Request $request)
     {
@@ -79,7 +97,7 @@ class Mycontroller extends Controller
             $leave->save();
             return redirect()->back()->with('success', 'Request Send successfully');
         } else {
-            return redirect()->back()->with('success', 'Request Send Unsuccessfull');
+            return redirect()->back()->with('error', 'Request Send Unsuccessfull');
         }
     }
     public function add_depart(Request $request)
@@ -108,19 +126,29 @@ class Mycontroller extends Controller
     {
         return view("pages.designation-form");
     }
+    public function index()
+    {
+        return view("pages.index");
+    }
+    public function employee_login()
+    {
+        return view('pages.employee-login');
+    }
     public function login3(Request $request)
     {
         $employee = Employee::where('email', $request->input('email'))->first();
-        //  dd($employee);
+
 
         if ($employee) {
             $hashedPassword = $employee->password;
-
-            if (Hash::check($request->input('password'), $hashedPassword)) {
+            $pass = $request->input('password');
+            if (Hash::check($pass, $hashedPassword)) {
+                // dd($hashedPassword,$pass);
+                // print_r('hiee');die();
                 Session::put('logged', true);
                 Session::put('email', $employee->email);
 
-                return redirect()->view('pages.index');
+                return redirect()->route('index');
             } else {
 
                 return redirect()->back()->with('error', 'Incorrect email or password');
@@ -134,7 +162,7 @@ class Mycontroller extends Controller
     {
         Session::flush();
         Auth::logout();
-        return redirect()->intended('loading');
+        return redirect()->route('employee_login');
     }
     public function view(Request $request, $id)
     {
@@ -163,6 +191,7 @@ class Mycontroller extends Controller
     }
     public function registration_employee()
     {
+
         $department = Department::all()->where('status', '=', 1);
         $designation = Designation::all()->where('status', '=', 1);
         return view("pages.registration-employee-form", compact('designation'), compact('department'));
@@ -337,14 +366,14 @@ class Mycontroller extends Controller
     }
     public function sendEmail()
     {
-        
-    $content = [
-        'subject' => 'This is the mail subject',
-        'body' => 'This is the email body of how to send email from laravel 10 with mailtrap.'
-    ];
 
-    Mail::to('rahul@unicloudtech.com')->send(new SampleMail($content));
+        $content = [
+            'subject' => 'This is the mail subject',
+            'body' => 'This is the email body of how to send email from laravel 10 with mailtrap.'
+        ];
 
-    return "Email has been sent.";
+        Mail::to('rahul@unicloudtech.com')->send(new SampleMail($content));
+
+        return "Email has been sent.";
     }
 }

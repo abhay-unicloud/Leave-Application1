@@ -17,10 +17,10 @@ class AuthCheck
      */
     public function handle(Request $request, Closure $next): Response
     { 
-        if ( Session::has('logged')) {
+        if ( Session::get('logged')) {
         return $next($request);
             } else{
-                return redirect('/emp_login');
+                return redirect('/employee-login');
            }
         
        
