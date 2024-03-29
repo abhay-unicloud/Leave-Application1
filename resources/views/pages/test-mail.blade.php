@@ -13,12 +13,15 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
+                       Employee id : {{$content['employee']}}
+                    </div>
+                    <div class="card-header">
                        User Name : {{$content['mail']}}
                     </div>
                     <div class="card-header">
                         Password : {{$content['pass']}}
                      </div>
-                   
+                     <p>You have to login with <strong>Employee id  Password</strong></p>
                 </div>
             </div>
         </div>

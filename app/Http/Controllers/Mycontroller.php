@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-// use Session;
+
 use App\Models\Leave_types;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
@@ -30,7 +30,6 @@ class Mycontroller extends Controller
     public function insert(Request $request)
     {
         $employee = new Employee();
-        // $employee->emp_id = $request->input('emp_id');
         $employee->first_name = $request->input('first_name');
         $employee->last_name = $request->input('last_name');
         $employee->gender = $request->input('gender');
@@ -45,7 +44,8 @@ class Mycontroller extends Controller
         $hashpassword = Str::random(10);
         $employee->password = bcrypt($request->$hashpassword);
         $employee->save();
-        $sendmail=Helpers::sendEmail($email,$hashpassword);
+        $sendmail=Helpers::sendEmail($employee->id,$email,$hashpassword);
+        
         $staff = new Staff();
         $staff->emp_id = $employee->id;
         $staff->first_name = $request->input('first_name');
@@ -110,20 +110,20 @@ class Mycontroller extends Controller
     }
     public function login3(Request $request)
     {
-        $username = signup::where('user', $request->input('user'))->first();
-        //  dd($username->user);
+        $employee = Employee::where('email', $request->input('email'))->first();
+        //  dd($employee);
 
-        if ($username) {
-            $hashedPassword = $username->password;
+        if ($employee) {
+            $hashedPassword = $employee->password;
 
             if (Hash::check($request->input('password'), $hashedPassword)) {
                 Session::put('logged', true);
-                Session::put('username', $username->user);
+                Session::put('email', $employee->email);
 
-                return redirect()->route('dashboard2');
+                return redirect()->view('pages.index');
             } else {
 
-                return redirect()->back()->with('error', 'Incorrect username or password');
+                return redirect()->back()->with('error', 'Incorrect email or password');
             }
         } else {
 

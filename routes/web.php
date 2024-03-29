@@ -14,22 +14,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.index');
-})->name('index');
+Route::middleware('auth.check')->group(function () {
+    Route::get('/', function () {
+        return view('pages.index');
+    })->name('index');
+    // Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+});
+
 Route::get('/index2', function () {
     return view('pages.index2');
 })->name('index2');
 // Route::get('/Leave-Application', function () {
 //     return view('pages.Application-form');
 // })->name('Leave-Application');
-// Route::get('/send_email', function () {
-//     return view('pages.test-mail');
-// })->name('send_email');
+Route::get('/emp_login', function () {
+    return view('pages.employee-login');
+})->name('emp_login');
 
 /* Forms Start*/
 Route::get('/Leave-Application', [Mycontroller::class, 'Application_form'])->name('Leave-Application');
 Route::get('/registration-employee-form', [Mycontroller::class, 'registration_employee'])->name('registration-employee-form');
+Route::post('/employee-login', [Mycontroller::class, 'login3'])->name('employee-login');
 /* Forms End*/
 /* Forms Insertion Start*/
 Route::post('/insert', [Mycontroller::class, 'insert'])->name('insert');

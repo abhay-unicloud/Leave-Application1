@@ -17,20 +17,12 @@ class AuthCheck
      */
     public function handle(Request $request, Closure $next): Response
     { 
-        if ( Session::get('logged')) {
+        if ( Session::has('logged')) {
         return $next($request);
             } else{
-                return redirect()->intended('loading');
+                return redirect('/emp_login');
            }
-            // $credentials = $request->validate([
-            //     'user' => ['required', 'user'],
-            //     'password' => ['required'],
-            // ]);
-            // if (Auth::attempt($credentials)) {
-            //     $request->session()->regenerate();
-     
-            //     return redirect()->intended('dashboard2');
-            // }
+        
        
     }
 }

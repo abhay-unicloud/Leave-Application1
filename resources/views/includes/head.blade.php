@@ -32,6 +32,7 @@
     <link rel="stylesheet" type="text/css" href="{{url('assets/src/plugins/css/dark/table/datatable/dt-global_style.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url('assets/src/plugins/css/dark/table/datatable/custom_dt_custom.css')}}">
     
+    <link rel="stylesheet" type="text/css" href="{{url('assets/src/assets/css/dark/authentication/auth-boxed.css')}}">
     <!-- END PAGE LEVEL CUSTOM STYLES -->
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />

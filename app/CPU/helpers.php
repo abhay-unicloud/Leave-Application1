@@ -5,11 +5,12 @@ use Illuminate\Support\Facades\Mail;
 
 class Helpers {
 
-    public static function sendEmail($mail, $pass)
+    public static function sendEmail($employee ,$mail, $pass)
     {
         
         $content = [
             'subject' => 'This is the mail subject',
+            'employee' => $employee ,
             'mail' => $mail ,
             'pass' => $pass ,
         ];
