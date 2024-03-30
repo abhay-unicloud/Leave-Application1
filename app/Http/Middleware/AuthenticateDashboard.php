@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Middleware;
+use Illuminate\Support\Facades\Session;
 
 use Closure;
 use Illuminate\Http\Request;
@@ -17,11 +18,10 @@ class AuthenticateDashboard
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::check()) {
+        if ( Session::get('admin_logged')) {
             return $next($request);
-        }
-
-        // If the user is not authenticated, redirect to login
-        return redirect('/emp_login');
+                } else{
+                    return redirect('/admin-login');
+               }
     }
 }

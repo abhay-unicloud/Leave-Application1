@@ -17,12 +17,13 @@ class AuthCheck
      */
     public function handle(Request $request, Closure $next): Response
     { 
-        if ( Session::get('logged')) {
+        if ( Session::get('emp_logged')) {
         return $next($request);
             } else{
                 return redirect('/employee-login');
            }
         
+       
        
     }
 }

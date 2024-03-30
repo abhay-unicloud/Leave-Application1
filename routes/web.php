@@ -14,8 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth.check')->group(function () {
+Route::middleware('auth.dashboard')->group(function () {
     Route::get('/', [Mycontroller::class, 'index'])->name('index');
+    // Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+});
+Route::middleware('auth.check')->group(function () {
+    Route::get('/home', [Mycontroller::class, 'home'])->name('home');
     // Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 });
 
@@ -25,13 +29,17 @@ Route::get('/index2', function () {
 // Route::get('/Leave-Application', function () {
 //     return view('pages.Application-form');
 // })->name('Leave-Application');
-Route::get('/employee-login',  [Mycontroller::class, 'employee_login'])->name('employee_login');
-Route::get('/employee-logout',  [Mycontroller::class, 'logout'])->name('employee_logout');
 
 /* Forms Start*/
 Route::get('/Leave-Application', [Mycontroller::class, 'Application_form'])->name('Leave-Application');
+Route::get('/Leave-Application-user', [Mycontroller::class, 'Application_form_user'])->name('Leave_Application_user');
 Route::get('/registration-employee-form', [Mycontroller::class, 'registration_employee'])->name('registration-employee-form');
-Route::post('/employee-login', [Mycontroller::class, 'login3'])->name('employee_login');
+Route::post('/admin-login', [Mycontroller::class, 'admin_login'])->name('admin_login');
+Route::get('/admin-login',  [Mycontroller::class, 'admin_login_page'])->name('admin_login');
+Route::get('/admin-logout',  [Mycontroller::class, 'admin_logout'])->name('admin_logout');
+Route::post('/employee-login',  [Mycontroller::class, 'employee_login'])->name('employee_login');
+Route::get('/employee-login',  [Mycontroller::class, 'employee_login_page'])->name('employee_login');
+Route::get('/employee-logout',  [Mycontroller::class, 'emp_logout'])->name('employee_logout');
 Route::post('/check_exists', [Mycontroller::class, 'check_exists'])->name('check_exists');
 /* Forms End*/
 /* Forms Insertion Start*/
@@ -53,6 +61,7 @@ Route::get('/datatable-leaves', [Mycontroller::class, 'datatable_leaves'])->name
 Route::get('/datatable-leave-types', [Mycontroller::class, 'datatable_leave_types'])->name('datatable-leave_types');
 Route::get('/datatable-leaves', [Mycontroller::class, 'datatable_leaves'])->name('datatable-leaves');
 Route::get('/datatable-migrations', [Mycontroller::class, 'migrations'])->name('datatable-migrations');
+Route::get('/datatable-admins', [Mycontroller::class, 'migrations'])->name('datatable-admins');
 /* Tables and Datatables End*/
 /* Forms update Start*/
 Route::get('updating-employee-form', [Mycontroller::class, 'updating_employee'])->name('updating-employee-form-dst-dpt');

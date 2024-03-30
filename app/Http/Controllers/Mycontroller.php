@@ -26,6 +26,7 @@ use Illuminate\Support\Str;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use App\CPU\Helpers;
+use App\Models\Admin;
 
 class Mycontroller extends Controller
 {
@@ -131,11 +132,19 @@ class Mycontroller extends Controller
     {
         return view("pages.index");
     }
-    public function employee_login()
+    public function home()
+    {
+        return view("users.home");
+    }
+    public function employee_login_page()
     {
         return view('pages.employee-login');
     }
-    public function login3(Request $request)
+    public function admin_login_page()
+    {
+        return view('users.admin-login');
+    }
+    public function employee_login(Request $request)
     {
         $employee = Employee::where('email', $request->input('email'))->first();
 
@@ -146,7 +155,31 @@ class Mycontroller extends Controller
             if (Hash::check($pass, $hashedPassword)) {
                 // dd($hashedPassword,$pass);
                 // print_r('hiee');die();
-                Session::put('logged', true);
+                Session::put('emp_logged', true);
+                Session::put('email', $employee->email);
+
+                return redirect()->route('home');
+            } else {
+
+                return redirect()->back()->with('error', 'Incorrect email or password');
+            }
+        } else {
+
+            return redirect()->back()->with('error', 'User does not exist');
+        }
+    }
+    public function admin_login(Request $request)
+    {
+        $employee = Admin::where('email', $request->input('email'))->first();
+
+
+        if ($employee) {
+            $hashedPassword = $employee->password;
+            $pass = $request->input('password');
+            if (Hash::check($pass, $hashedPassword)) {
+                // dd($hashedPassword,$pass);
+                // print_r('hiee');die();
+                Session::put('admin_logged', true);
                 Session::put('email', $employee->email);
 
                 return redirect()->route('index');
@@ -159,11 +192,17 @@ class Mycontroller extends Controller
             return redirect()->back()->with('error', 'User does not exist');
         }
     }
-    public function logout()
+    public function emp_logout()
     {
         Session::flush();
         Auth::logout();
         return redirect()->route('employee_login');
+    }
+    public function admin_logout()
+    {
+        Session::flush();
+        Auth::logout();
+        return redirect()->route('admin_login');
     }
     public function view(Request $request, $id)
     {
@@ -201,7 +240,13 @@ class Mycontroller extends Controller
     {
         $Leave_types = Leave_types::all();
 
-        return view("pages.Application-form", compact('Leave_types'));
+        return view("users.Application-form", compact('Leave_types'));
+    }
+    public function application_form_user()
+    {
+        $Leave_types = Leave_types::all();
+
+        return view("users.Application-form", compact('Leave_types'));
     }
     public function updating_employee()
     {
