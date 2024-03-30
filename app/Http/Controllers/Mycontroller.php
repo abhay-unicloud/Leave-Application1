@@ -46,7 +46,7 @@ class Mycontroller extends Controller
         $employee->email = $email;
         $employee->delete1 = 0;
         $employee->status = 0;
-        $hashpassword = Str::random(10);
+        $hashpassword = Str::random(8);
         $employee->password = Hash::Make($hashpassword);
         $employee->save();
 
@@ -70,10 +70,11 @@ class Mycontroller extends Controller
         // } else {
         //     return redirect()->back()->with('error', 'already Exists');
         // }
-    }public function check_exists(Request $request)
+    }
+    public function check_exists(Request $request)
     {
         $dataExists = Employee::where('email', '=', $request->input('email'))->first();
-        
+
         if ($dataExists) {
             return response()->json(['exists' => true]);
         } else {

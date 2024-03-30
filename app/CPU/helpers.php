@@ -9,7 +9,7 @@ class Helpers {
     {
         
         $content = [
-            'subject' => 'This is the mail subject',
+            'subject' => 'VBPC Employee Id Password',
             'employee' => $employee ,
             'mail' => $mail ,
             'pass' => $pass ,
