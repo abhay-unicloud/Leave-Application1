@@ -138,15 +138,72 @@ class Mycontroller extends Controller
     }
     public function employee_login_page()
     {
-        return view('pages.employee-login');
+        return view('users.employee-login');
     }
     public function admin_login_page()
     {
-        return view('users.admin-login');
+        return view('pages.admin-login');
+    }
+    public function admin_lockscreen()
+    {
+        $admindata = Session::get('admin_data');
+
+        return view('pages.admin-lockscreen', compact('admindata'));
+    }
+    public function admin_unlock(Request $request)
+    {
+        $admindata = Session::get('admin_data');
+
+        $hashedPassword = $admindata->password;
+        $pass = $request->input('password');
+        if (Hash::check($pass, $hashedPassword)) {
+            // dd($hashedPassword,$pass);
+            // print_r('hiee');die();
+            // Session::put('admin_logged', true);
+            // Session::put('admin_data', $admindata);
+
+            return redirect()->route('index');
+        } else {
+
+            return redirect()->back()->with('error', 'Incorrect password');
+        }
+    }
+    public function emp_lockscreen()
+    {
+        $empdata = Session::get('emp_data');
+
+        return view('users.emp-lockscreen', compact('empdata'));
+    }
+    public function emp_account_set()
+    {
+        $empdata = Session::get('emp_data');
+
+        return view('users.emp-account-settings', compact('empdata'));
+    }
+    public function emp_unlock(Request $request)
+    {
+        $empdata = Session::get('emp_data');
+
+        $hashedPassword = $empdata->password;
+        $pass = $request->input('password');
+        if (Hash::check($pass, $hashedPassword)) {
+            // dd($hashedPassword,$pass);
+            // print_r('hiee');die();
+            // Session::put('emp_logged', true);
+            // Session::put('emp_data', $empdata);
+
+            return redirect()->route('home');
+        } else {
+
+            return redirect()->back()->with('error', 'Incorrect password');
+        }
     }
     public function employee_login(Request $request)
     {
-        $employee = Employee::where('email', $request->input('email'))->first();
+        $employee = Employee::where('email', $request->input('email'))
+        ->join('designations', 'employees.dst_id', '=', 'designations.id')
+        ->join('departments', 'employees.dpt_id', '=', 'departments.id')
+        ->first();
 
 
         if ($employee) {
@@ -156,7 +213,7 @@ class Mycontroller extends Controller
                 // dd($hashedPassword,$pass);
                 // print_r('hiee');die();
                 Session::put('emp_logged', true);
-                Session::put('email', $employee->email);
+                Session::put('emp_data', $employee);
 
                 return redirect()->route('home');
             } else {
@@ -170,7 +227,10 @@ class Mycontroller extends Controller
     }
     public function admin_login(Request $request)
     {
-        $employee = Admin::where('email', $request->input('email'))->first();
+        $employee = Admin::where('email', $request->input('email'))
+            ->join('designations', 'admins.dst_id', '=', 'designations.id')
+            ->join('departments', 'admins.dpt_id', '=', 'departments.id')
+            ->first();
 
 
         if ($employee) {
@@ -180,7 +240,7 @@ class Mycontroller extends Controller
                 // dd($hashedPassword,$pass);
                 // print_r('hiee');die();
                 Session::put('admin_logged', true);
-                Session::put('email', $employee->email);
+                Session::put('admin_data', $employee);
 
                 return redirect()->route('index');
             } else {
@@ -240,13 +300,13 @@ class Mycontroller extends Controller
     {
         $Leave_types = Leave_types::all();
 
-        return view("users.Application-form", compact('Leave_types'));
+        return view("pages.Application-form", compact('Leave_types'));
     }
-    public function application_form_user()
+    public function Application_form_user()
     {
         $Leave_types = Leave_types::all();
 
-        return view("users.Application-form", compact('Leave_types'));
+        return view("users.emp-application-form", compact('Leave_types'));
     }
     public function updating_employee()
     {

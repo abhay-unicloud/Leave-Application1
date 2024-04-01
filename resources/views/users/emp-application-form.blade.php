@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.user')
 @push('style')
     <style>
         .password-toggle-icon {

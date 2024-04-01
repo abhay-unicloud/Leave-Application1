@@ -298,8 +298,9 @@
                                  &#x1F44B;
                              </div>
                              <div class="media-body">
-                                 <h5>Shaun Park</h5>
-                                 <p>Project Leader</p>
+                                <input type="hidden" value="{{$empdata= Session::get('emp_data')}}">
+                                 <h5>{{$empdata->first_name}} {{$empdata->last_name}}</h5>
+                                 <p>{{$empdata->dst_name}}</p>
                              </div>
                          </div>
                      </div>
@@ -326,7 +327,7 @@
                          </a>
                      </div>
                      <div class="dropdown-item">
-                         <a href="auth-boxed-lockscreen.html">
+                         <a href="{{route('emp_lockscreen')}}">
                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                  stroke-linecap="round" stroke-linejoin="round" class="feather feather-lock">
@@ -337,7 +338,7 @@
                          </a>
                      </div>
                      <div class="dropdown-item">
-                         <a href="{{ route('employee_login') }}">
+                         <a href="{{ route('employee_logout') }}">
                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                  stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out">
@@ -358,7 +359,7 @@
 <script src="{{ url('assets/src/plugins/src/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
 <script src="{{ url('assets/src/plugins/src/mousetrap/mousetrap.min.js') }}"></script>
 <script src="{{ url('assets/src/plugins/src/waves/waves.min.js') }}"></script>
-<script src="{{ url('assets/layouts/modern-light-menu/app.js') }}"></script>
+{{-- <script src="{{ url('assets/layouts/modern-light-menu/app.js') }}"></script> --}}
 <script src="{{ url('assets/src/plugins/src/highlight/highlight.pack.js') }}"></script>
 <!-- END GLOBAL MANDATORY SCRIPTS -->
 

@@ -119,4 +119,18 @@
 <script src="{{ url('assets/src/assets/js/dashboard/dash_1.js') }}"></script>
 <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 <script src="{{ url('assets/src/assets/js/scrollspyNav.js') }}"></script>
+
+ <!--  BEGIN CUSTOM SCRIPTS FILE  -->
+ <script src="{{ url('assets/src/plugins/src/filepond/filepond.min.js') }}"></script>
+ <script src="{{ url('assets/src/plugins/src/filepond/FilePondPluginFileValidateType.min.js') }}"></script>
+ <script src="{{ url('assets/src/plugins/src/filepond/FilePondPluginImageExifOrientation.min.js') }}"></script>
+ <script src="{{ url('assets/src/plugins/src/filepond/FilePondPluginImagePreview.min.js') }}"></script>
+ <script src="{{ url('assets/src/plugins/src/filepond/FilePondPluginImageCrop.min.js') }}"></script>
+ <script src="{{ url('assets/src/plugins/src/filepond/FilePondPluginImageResize.min.js') }}"></script>
+ <script src="{{ url('assets/src/plugins/src/filepond/FilePondPluginImageTransform.min.js') }}"></script>
+ <script src="{{ url('assets/src/plugins/src/filepond/filepondPluginFileValidateSize.min.js') }}"></script>
+ <script src="{{ url('assets/src/plugins/src/notification/snackbar/snackbar.min.js') }}"></script>
+ <script src="{{ url('assets/src/plugins/src/sweetalerts2/sweetalerts2.min.js') }}"></script>
+ <script src="{{ url('assets/src/assets/js/users/account-settings.js') }}"></script>
+ <!--  END CUSTOM SCRIPTS FILE  -->
 @stack('script');

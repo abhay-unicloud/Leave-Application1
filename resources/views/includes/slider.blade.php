@@ -18,7 +18,7 @@
                           </a>
                       </div>
                       <div class="nav-item theme-text">
-                          <a href="{{ route('index') }}" class="nav-link"> CORK </a>
+                          <a href="{{ route('index') }}" class="nav-link "> VBPC </a>
                       </div>
                   </div>
                   <div class="nav-item sidebar-toggle">
@@ -39,8 +39,9 @@
                          <a href="{{route('admin_logout')}}"> <img src="{{ asset('assets/src/assets/img/profile-30.png') }}" alt="avatar"></a>
                       </div>
                       <div class="profile-content">
-                          <h6 class="">Shaun Park</h6>
-                          <p class="">Project Leader</p>
+                        <input type="hidden" value="{{$admindata= Session::get('admin_data')}}">
+                          <h6 class="">{{$admindata->admin_name}}</h6>
+                          <p class="">{{$admindata->dst_name}}</p>
                       </div>
                   </div>
               </div>
@@ -169,7 +170,7 @@
                       </a>
                       <ul class="collapse submenu list-unstyled" id="forms" data-bs-parent="#accordionExample">
                           <li>
-                              <a href="{{ route('Leave-Application') }}"> Leave-Application-From </a>
+                              <a href="{{ route('Leave_Application') }}"> Leave-Application-From </a>
                           </li>
                           <li>
                               <a href="{{ route('registration-employee-form') }}"> Registration-employee-form </a>

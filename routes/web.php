@@ -15,11 +15,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth.dashboard')->group(function () {
-    Route::get('/', [Mycontroller::class, 'index'])->name('index');
+Route::get('/admin-lockscreen', [Mycontroller::class, 'admin_lockscreen'])->name('admin_lockscreen');
+Route::get('/', [Mycontroller::class, 'index'])->name('index');
+
     // Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 });
 Route::middleware('auth.check')->group(function () {
     Route::get('/home', [Mycontroller::class, 'home'])->name('home');
+Route::get('/emp-lockscreen', [Mycontroller::class, 'emp_lockscreen'])->name('emp_lockscreen');
     // Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 });
 
@@ -31,15 +34,20 @@ Route::get('/index2', function () {
 // })->name('Leave-Application');
 
 /* Forms Start*/
-Route::get('/Leave-Application', [Mycontroller::class, 'Application_form'])->name('Leave-Application');
+Route::get('/Leave-Application', [Mycontroller::class, 'Application_form'])->name('Leave_Application');
 Route::get('/Leave-Application-user', [Mycontroller::class, 'Application_form_user'])->name('Leave_Application_user');
 Route::get('/registration-employee-form', [Mycontroller::class, 'registration_employee'])->name('registration-employee-form');
+Route::get('/admin-unlock', [Mycontroller::class, 'admin_unlock'])->name('admin_unlock');
+Route::get('/emp-unlock', [Mycontroller::class, 'emp_unlock'])->name('emp_unlock');
+
+Route::post('/admin-login', [Mycontroller::class, 'admin_login'])->name('admin_login');
 Route::post('/admin-login', [Mycontroller::class, 'admin_login'])->name('admin_login');
 Route::get('/admin-login',  [Mycontroller::class, 'admin_login_page'])->name('admin_login');
 Route::get('/admin-logout',  [Mycontroller::class, 'admin_logout'])->name('admin_logout');
 Route::post('/employee-login',  [Mycontroller::class, 'employee_login'])->name('employee_login');
 Route::get('/employee-login',  [Mycontroller::class, 'employee_login_page'])->name('employee_login');
 Route::get('/employee-logout',  [Mycontroller::class, 'emp_logout'])->name('employee_logout');
+Route::get('/employee-account-settings',  [Mycontroller::class, 'emp_account_set'])->name('emp_account_set');
 Route::post('/check_exists', [Mycontroller::class, 'check_exists'])->name('check_exists');
 /* Forms End*/
 /* Forms Insertion Start*/

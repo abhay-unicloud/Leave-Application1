@@ -39,8 +39,9 @@
                          <a href="{{route('employee_logout')}}"> <img src="{{ asset('assets/src/assets/img/profile-30.png') }}" alt="avatar"></a>
                       </div>
                       <div class="profile-content">
-                          <h6 class="">Shaun Park</h6>
-                          <p class="">Project Leader</p>
+                        <input type="hidden" value="{{$empdata= Session::get('emp_data')}}">
+                        <h6>{{$empdata->first_name}} {{$empdata->last_name}}</h6>
+                        <p>{{$empdata->dst_name}}</p>
                       </div>
                   </div>
               </div>
