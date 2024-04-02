@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    @include('includes.head')
+    @include('includes-user.head')
 </head>
 
 <body class="layout-boxed">

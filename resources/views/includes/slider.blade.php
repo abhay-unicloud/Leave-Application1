@@ -36,12 +36,12 @@
               <div class="profile-info">
                   <div class="user-info">
                       <div class="profile-img">
-                         <a href="{{route('admin_logout')}}"> <img src="{{ asset('assets/src/assets/img/profile-30.png') }}" alt="avatar"></a>
+                          <input type="hidden" value="{{$admindata= Session::get('admin_data')}}">
+                         <a href="{{route('admin_logout')}}"> <img src="{{ asset($admindata->image) }}" alt="avatar"></a>
                       </div>
                       <div class="profile-content">
-                        <input type="hidden" value="{{$admindata= Session::get('admin_data')}}">
-                          <h6 class="">{{$admindata->admin_name}}</h6>
-                          <p class="">{{$admindata->dst_name}}</p>
+                        <h6>{{$admindata->first_name}} {{$admindata->last_name}}</h6>
+                        <p>{{$admindata->dst_name}}</p>
                       </div>
                   </div>
               </div>

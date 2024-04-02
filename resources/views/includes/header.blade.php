@@ -285,7 +285,8 @@
                      data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                      <div class="avatar-container">
                          <div class="avatar avatar-sm avatar-indicators avatar-online">
-                             <img alt="avatar" src="{{ asset('assets/src/assets/img/profile-30.png') }}"
+                             <input type="hidden" value="{{$admindata= Session::get('admin_data')}}">
+                             <img alt="avatar" src="{{ asset($admindata->image) }}"
                                  class="rounded-circle">
                          </div>
                      </div>
@@ -298,10 +299,8 @@
                                  &#x1F44B;
                              </div>
                              <div class="media-body">
-                                <input type="hidden" value="{{$admindata= Session::get('admin_data')}}">
-                                
-                                 <h5>{{$admindata->admin_name}}</h5>
-                                 <p>{{$admindata->dst_name}}</p>
+                                <h5>{{$admindata->first_name}} {{$admindata->last_name}}</h5>
+                                <p>{{$admindata->dst_name}}</p>
                              </div>
                          </div>
                      </div>

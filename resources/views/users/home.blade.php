@@ -1,4 +1,13 @@
 @extends('layouts.user')
+@push('style')
+<style>
+    .user-profile .widget-content-area .user-info-list ul.contacts-block li a:not(.btn){
+        font-weight: 600;
+    font-size: 14px;
+    color: #009688;
+    }
+</style>
+@endpush
 @section('content')
     <!--  BEGIN CONTENT AREA  -->
     <div id="content" class="main-content">
@@ -35,7 +44,7 @@
                                         </svg></a>
                                 </div>
                                 <div class="text-center user-info">
-                                    <img src="{{ url('assets/src/assets/img/profile-3.jpeg') }}" alt="avatar">
+                                    <img src="{{ url($empdata->image) }}" alt="avatar">
                                     <p class="">{{ $empdata->first_name }} {{ $empdata->last_name }}</p>
                                 </div>
                                 <div class="user-info-list">

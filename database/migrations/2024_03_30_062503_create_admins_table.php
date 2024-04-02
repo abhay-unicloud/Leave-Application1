@@ -18,10 +18,14 @@ return new class extends Migration
             $table->string('admin_name');
             $table->integer('dpt_id');
             $table->integer('dst_id');
+            $table->date('dob');
+            $table->string('image');
             $table->string('email');
             $table->string('moblie_no');
             $table->string('password');
             $table->timestamps();
+            $table->integer('delete3');
+
         });
     }
 

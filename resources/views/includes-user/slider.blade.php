@@ -36,10 +36,10 @@
               <div class="profile-info">
                   <div class="user-info">
                       <div class="profile-img">
-                         <a href="{{route('employee_logout')}}"> <img src="{{ asset('assets/src/assets/img/profile-30.png') }}" alt="avatar"></a>
+                          <input type="hidden" value="{{$empdata= Session::get('emp_data')}}">
+                         <a href=""> <img src="{{ asset($empdata->image) }}" alt="avatar"></a>
                       </div>
                       <div class="profile-content">
-                        <input type="hidden" value="{{$empdata= Session::get('emp_data')}}">
                         <h6>{{$empdata->first_name}} {{$empdata->last_name}}</h6>
                         <p>{{$empdata->dst_name}}</p>
                       </div>

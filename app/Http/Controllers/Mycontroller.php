@@ -34,40 +34,71 @@ class Mycontroller extends Controller
     {
         // $exist = Employee::where('email', $request->input('email'))->first();
         // if ($exist) {
+        $image = $request->file('image');
 
-        $employee = new Employee();
-        $employee->first_name = $request->input('first_name');
-        $employee->last_name = $request->input('last_name');
-        $employee->gender = $request->input('gender');
-        $employee->dpt_id = $request->input('department');
-        $employee->dst_id = $request->input('designation');
-        $employee->mobile_no = $request->input('mobile_no');
-        $employee->addresses = $request->input('address');
-        $email = $request->input('email');
-        $employee->email = $email;
-        $employee->delete1 = 0;
-        $employee->status = 0;
-        $hashpassword = Str::random(8);
-        $employee->password = Hash::Make($hashpassword);
-        $employee->save();
+        if (isset($image)) {
 
-        $staff = new Staff();
-        $staff->emp_id = $employee->id;
-        $staff->first_name = $request->input('first_name');
-        $staff->last_name = $request->input('last_name');
-        $staff->gender = $request->input('gender');
-        $staff->dpt_id = $request->input('department');
-        $staff->dst_id = $request->input('designation');
-        $staff->mobile_no = $request->input('mobile_no');
-        $staff->delete2 = 0;
-        $staff->status = 0;
-        $staff->duty = 0;
+            $filename = time() . '_' . $image->getClientOriginalName();
 
-        $staff->save();
-        set_time_limit(0);
-        $sendmail = Helpers::sendEmail($employee->id, $email, $hashpassword);
+            // image upload location
+            $location = 'image';
 
-        return redirect()->back()->with('success', 'data stored successfully');
+            // Upload image
+            $image->move($location, $filename);
+            $imagePath = 'image/' . $filename;
+            $employee = new Employee();
+            $employee->first_name = $request->input('first_name');
+            $employee->last_name = $request->input('last_name');
+            $employee->gender = $request->input('gender');
+            $employee->dpt_id = $request->input('department');
+            $employee->dst_id = $request->input('designation');
+            $employee->mobile_no = $request->input('mobile_no');
+            $employee->addresses = $request->input('address');
+            $employee->dob = $request->input('dob');
+            $employee->image = $imagePath;
+            $email = $request->input('email');
+            $employee->email = $email;
+            $employee->delete1 = 0;
+            $employee->status = 0;
+            $hashpassword = Str::random(8);
+            $employee->password = Hash::Make($hashpassword);
+            $employee->save();
+
+            $staff = new Staff();
+            $staff->emp_id = $employee->id;
+            $staff->first_name = $request->input('first_name');
+            $staff->last_name = $request->input('last_name');
+            $staff->gender = $request->input('gender');
+            $staff->dpt_id = $request->input('department');
+            $staff->dst_id = $request->input('designation');
+            $staff->mobile_no = $request->input('mobile_no');
+            $staff->dob = $request->input('dob');
+            $staff->image = $imagePath;
+            $staff->delete2 = 0;
+            $staff->status = 0;
+            $staff->duty = 0;
+            $staff->save();
+
+            if (5 == $request->input('designation')) {
+                $admin = new Admin();
+                $admin->first_name = $request->input('first_name');
+                $admin->last_name = $request->input('last_name');
+                $admin->dpt_id = $request->input('department');
+                $admin->dst_id = $request->input('designation');
+                $admin->mobile_no = $request->input('mobile_no'); 
+                $admin->dob = $request->input('dob');
+                $admin->image = $imagePath;
+                $admin->email = $email;
+                $admin->delete3 = 0;
+                // $admin->status = 0;
+                $admin->password = Hash::Make($hashpassword);
+                $admin->save();
+            }
+            set_time_limit(0);
+            $sendmail = Helpers::sendEmail($employee->id, $email, $hashpassword);
+
+            return redirect()->back()->with('success', 'data stored successfully');
+        }
         // } else {
         //     return redirect()->back()->with('error', 'already Exists');
         // }
@@ -201,9 +232,9 @@ class Mycontroller extends Controller
     public function employee_login(Request $request)
     {
         $employee = Employee::where('email', $request->input('email'))
-        ->join('designations', 'employees.dst_id', '=', 'designations.id')
-        ->join('departments', 'employees.dpt_id', '=', 'departments.id')
-        ->first();
+            ->join('designations', 'employees.dst_id', '=', 'designations.id')
+            ->join('departments', 'employees.dpt_id', '=', 'departments.id')
+            ->first();
 
 
         if ($employee) {
@@ -233,6 +264,8 @@ class Mycontroller extends Controller
             ->first();
 
 
+        // dd($employee);
+        // die();
         if ($employee) {
             $hashedPassword = $employee->password;
             $pass = $request->input('password');

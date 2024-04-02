@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('dst_id');
             $table->date('dob');
             $table->string('mobile_no');
+            $table->string('image');
             $table->integer('gender')->nullable();
             $table->string('addresses')->nullable();
             $table->string('email');

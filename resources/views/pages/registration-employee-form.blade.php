@@ -84,7 +84,7 @@
                                             </svg></button><strong>{{ session()->get('error') }}</strong>
                                     </div>
                                 @endif
-                                <form action="{{ route('insert') }}" method="POST">
+                                <form action="{{ route('insert') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <!-- <div class="row mb-4">
                                                 <div class="col-sm-12">
@@ -157,15 +157,18 @@
                                             {{-- <span class="password-toggle-icon"><i class="fas fa-eye"></i></span> --}}
                                             <input type="email" id="email" class="form-control" name="email"
                                                 required>
+                                                <div id="result"></div>
                                         </div>
-                                        {{-- <div class="col-md-4">
-                                        <label class="form-check-label" for="password">Password:</label>
-                                        <span class="password-toggle-icon"><i class="fas fa-eye"></i></span>
-                                        <input type="password" id="password" class="form-control" name="password" required>
-                                    </div> --}}
+                                        <div class="col-md-4">
+                                        <label class="form-check-label" for="date">Date of birth:</label>
+                                        <input type="date" id="password" class="form-control" name="dob" required>
+                                    </div>
+                                        <div class="col-md-4">
+                                        <label class="form-check-label" for="file">Upload Photo:</label>
+                                        <input type="file" id="password" class="form-control" name="image" required>
+                                    </div>
 
 
-                                        <div id="result"></div>
                                     </div>
                                     <div class="row mt-4">
                                         <div class="col-8">

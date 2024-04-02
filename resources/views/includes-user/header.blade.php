@@ -285,7 +285,8 @@
                      data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                      <div class="avatar-container">
                          <div class="avatar avatar-sm avatar-indicators avatar-online">
-                             <img alt="avatar" src="{{ asset('assets/src/assets/img/profile-30.png') }}"
+                             <input type="hidden" value="{{$empdata= Session::get('emp_data')}}">
+                             <img alt="avatar" src="{{ asset($empdata->image) }}"
                                  class="rounded-circle">
                          </div>
                      </div>
@@ -298,7 +299,6 @@
                                  &#x1F44B;
                              </div>
                              <div class="media-body">
-                                <input type="hidden" value="{{$empdata= Session::get('emp_data')}}">
                                  <h5>{{$empdata->first_name}} {{$empdata->last_name}}</h5>
                                  <p>{{$empdata->dst_name}}</p>
                              </div>
