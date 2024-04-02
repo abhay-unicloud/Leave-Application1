@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('admins', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('emp_id');
             $table->string('admin_name');
             $table->integer('dpt_id');
             $table->integer('dst_id');

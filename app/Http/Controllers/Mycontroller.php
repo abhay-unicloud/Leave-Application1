@@ -81,11 +81,12 @@ class Mycontroller extends Controller
 
             if (5 == $request->input('designation')) {
                 $admin = new Admin();
+                $admin->emp_id = $employee->id;
                 $admin->first_name = $request->input('first_name');
                 $admin->last_name = $request->input('last_name');
                 $admin->dpt_id = $request->input('department');
                 $admin->dst_id = $request->input('designation');
-                $admin->mobile_no = $request->input('mobile_no'); 
+                $admin->mobile_no = $request->input('mobile_no');
                 $admin->dob = $request->input('dob');
                 $admin->image = $imagePath;
                 $admin->email = $email;
