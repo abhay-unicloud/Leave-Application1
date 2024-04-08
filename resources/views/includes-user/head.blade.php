@@ -2,7 +2,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
     <title>VBPC</title>
-    <link rel="icon" type="image/x-icon" href="{{ asset('assets/src/assets/img/favicon.ico') }}"/>
+    {{-- <link rel="icon" type="image/x-icon" href="{{ asset('assets\src\assets\img\favicon.ico') }}"/> --}}
+    {{-- public\assets\src\assets\img\vbpc logo.png --}}
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets\src\assets\img\vbpc logo.png') }}"/>
     <link href="{{ asset('assets/layouts/modern-light-menu/css/light/loader.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/layouts/modern-light-menu/css/dark/loader.css') }}" rel="stylesheet" type="text/css" />
     <script src="{{  asset('assets/layouts/modern-light-menu/loader.js') }}"></script>

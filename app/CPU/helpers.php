@@ -19,4 +19,18 @@ class Helpers {
         
         return "Email has been sent.";
     }
+    public static function reset_password($employee ,$mail, $pass)
+    {
+        
+        $content = [
+            'subject' => 'Reset Your Employee id Password',
+            'employee' => $employee ,
+            'mail' => $mail ,
+            'pass' => $pass ,
+        ];
+        
+        Mail::to($mail)->send(new SampleMail($content));
+        
+        return "Email has been sent.";
+    }
 }

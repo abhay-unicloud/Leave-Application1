@@ -109,48 +109,51 @@
                                                                     <div class="row">
                                                                         <div class="col-md-6">
                                                                             <div class="form-group">
-                                                                                <label for="fullName">Full Name</label>
+                                                                                <label for="first_name">First Name</label>
                                                                                 <input type="text"
                                                                                     class="form-control mb-3"
-                                                                                    id="fullName" placeholder="Full Name"
-                                                                                    value="Jimmy Turner">
+                                                                                    id="first_name" placeholder="Full Name"
+                                                                                    value="{{ $empdata->first_name }}">
                                                                             </div>
                                                                         </div>
 
                                                                         <div class="col-md-6">
                                                                             <div class="form-group">
-                                                                                <label for="profession">Profession</label>
+                                                                                <label for="last_name">Last Name</label>
                                                                                 <input type="text"
                                                                                     class="form-control mb-3"
-                                                                                    id="profession" placeholder="Designer"
-                                                                                    value="Web Developer">
+                                                                                    id="last_name" placeholder="Designer"
+                                                                                    value="{{ $empdata->last_name }}">
                                                                             </div>
                                                                         </div>
 
                                                                         <div class="col-md-6">
                                                                             <div class="form-group">
-                                                                                <label for="country">Country</label>
-                                                                                <select class="form-select mb-3"
-                                                                                    id="country">
-                                                                                    <option>All Countries</option>
-                                                                                    <option selected>United States</option>
-                                                                                    <option>India</option>
-                                                                                    <option>Japan</option>
-                                                                                    <option>China</option>
-                                                                                    <option>Brazil</option>
-                                                                                    <option>Norway</option>
-                                                                                    <option>Canada</option>
-                                                                                </select>
+                                                                                <label for="country">Designation</label>
+                                                                                <input type="text"
+                                                                                class="form-control mb-3"
+                                                                                id="last_name" placeholder="Designer"
+                                                                                value="{{ $empdata->dst_name }}" readonly>
                                                                             </div>
                                                                         </div>
 
                                                                         <div class="col-md-6">
                                                                             <div class="form-group">
-                                                                                <label for="address">Address</label>
+                                                                                <label for="department">Department</label>
                                                                                 <input type="text"
                                                                                     class="form-control mb-3"
-                                                                                    id="address" placeholder="Address"
-                                                                                    value="New York">
+                                                                                    id="department" placeholder="department"
+                                                                                    value="{{ $empdata->dpt_name }}" readonly>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="phone">Phone</label>
+                                                                                <input type="text"
+                                                                                class="form-control mb-3"
+                                                                                id="phone"
+                                                                                placeholder="Write your phone number here"
+                                                                                value="{{ $empdata->mobile_no }}">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-6">
@@ -158,17 +161,7 @@
                                                                                 <label for="location">Location</label>
                                                                                 <input type="text"
                                                                                     class="form-control mb-3"
-                                                                                    id="location" placeholder="Location">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                            <div class="form-group">
-                                                                                <label for="phone">Phone</label>
-                                                                                <input type="text"
-                                                                                    class="form-control mb-3"
-                                                                                    id="phone"
-                                                                                    placeholder="Write your phone number here"
-                                                                                    value="+1 (530) 555-12121">
+                                                                                    id="location" placeholder="{{ $empdata->addresses }}">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-6">
@@ -178,29 +171,31 @@
                                                                                     class="form-control mb-3"
                                                                                     id="email"
                                                                                     placeholder="Write your email here"
-                                                                                    value="Jimmy@gmail.com">
+                                                                                    value="{{ $empdata->email }}">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-6">
                                                                             <div class="form-group">
-                                                                                <label for="website1">Website</label>
+                                                                                {{-- <label for="website1">Website</label>
                                                                                 <input type="text"
                                                                                     class="form-control mb-3"
                                                                                     id="website1"
-                                                                                    placeholder="Enter URL">
+                                                                                    placeholder="Enter URL"> --}}
+                                                                                </div>
                                                                             </div>
-                                                                        </div>
-
-                                                                        <div class="col-md-12 mt-1">
-                                                                            <div class="form-check">
-                                                                                <input class="form-check-input"
+                                                                            
+                                                                            <div class="col-md-12 mt-1">
+                                                                                <div class="form-check">
+                                                                                    <a href="">Reset Password </a>
+                                                                                    <br>
+                                                                                    {{-- <input class="form-check-input"
                                                                                     type="checkbox" value=""
                                                                                     id="customCheck1">
-                                                                                <label class="form-check-label"
+                                                                                    <label class="form-check-label"
                                                                                     for="customCheck1">Make this my default
-                                                                                    address</label>
+                                                                                    address</label> --}}
+                                                                                </div>
                                                                             </div>
-                                                                        </div>
 
                                                                         <div class="col-md-12 mt-1">
                                                                             <div class="form-group text-end">

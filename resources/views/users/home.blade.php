@@ -3,7 +3,7 @@
 <style>
     .user-profile .widget-content-area .user-info-list ul.contacts-block li a:not(.btn){
         font-weight: 600;
-    font-size: 14px;
+    font-size: 11px;
     color: #009688;
     }
 </style>
@@ -44,13 +44,13 @@
                                         </svg></a>
                                 </div>
                                 <div class="text-center user-info">
-                                    <img src="{{ url($empdata->image) }}" alt="avatar">
+                                    <img src="{{ url($empdata->image) }}" style="width: 100px" alt="avatar">
                                     <p class="">{{ $empdata->first_name }} {{ $empdata->last_name }}</p>
                                 </div>
                                 <div class="user-info-list">
 
                                     <div class="">
-                                        <ul class="contacts-block list-unstyled">
+                                        <ul class="contacts-block list-unstyled col-8">
                                             <li class="contacts-block__item">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"

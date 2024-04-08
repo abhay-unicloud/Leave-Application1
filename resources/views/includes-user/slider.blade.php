@@ -13,12 +13,12 @@
                   <div class="nav-logo">
                       <div class="nav-item theme-logo">
                           <a href="{{ route('home') }}">
-                              <img src="{{ asset('assets/src/assets/img/logo.svg') }}" class="navbar-logo"
+                              <img src="{{ asset('assets\src\assets\img\vbpc logo.png') }}" class="--navbar-logo"
                                   alt="logo">
                           </a>
                       </div>
                       <div class="nav-item theme-text">
-                          <a href="{{ route('home') }}" class="nav-link"> CORK </a>
+                          <a href="{{ route('home') }}" class="nav-link"> VBPC </a>
                       </div>
                   </div>
                   <div class="nav-item sidebar-toggle">
