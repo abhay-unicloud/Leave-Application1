@@ -35,7 +35,7 @@
 
          <ul class="navbar-item flex-row ms-lg-auto ms-0">
 
-             <li class="nav-item dropdown language-dropdown">
+             <li class="d-none nav-item dropdown language-dropdown">
                  <a href="javascript:void(0);" class="nav-link dropdown-toggle" id="language-dropdown"
                      data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                      <img src="{{ asset('assets/src/assets/img/1x1/us.svg') }}" class="flag-width" alt="flag">

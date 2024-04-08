@@ -198,8 +198,8 @@
                         if (response.success) {
                             $('#first_name').text(response.employee.first_name);
                             $('#last_name').text(response.employee.last_name);
-                            $('#dpt_id').text(response.employee.dpt_id);
-                            $('#dst_id').text(response.employee.dst_id);
+                            $('#dpt_id').text(response.employee.dpt_name);
+                            $('#dst_id').text(response.employee.dst_name);
                             $('#mobile_no').text(response.employee.mobile_no);
                             $('#gender').text(response.employee.gender);
                             $('#email').text(response.employee.email);

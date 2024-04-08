@@ -87,48 +87,60 @@
                             @endif
                                 <form action="{{ route('request') }}" method="POST">
                                     @csrf
+                                    <input type="hidden" value="{{ $empdata = Session::get('emp_data') }}">
                                     
                                     <div class="row">
                                         <div class="col-md-4">
                                             <label class="form-check-label" for="firstName">Employee-Id:</label>
-                                            <input type="text" id="emp_id" class="form-control" name="emp_id">
+                                            <input type="text" id="emp_id" value="{{ $empdata->emp_id }}"
+                                                class="form-control" name="emp_id" readonly>
                                         </div>
-                                        
+
                                         <div class="col-md-4">
                                             <label class="form-check-label" for="firstName">First Name:</label>
-                                            <strong><p id="first_name"></p></strong>   
+                                            <input type="text" id="emp_id" value="{{ $empdata->first_name }}"
+                                                class="form-control" name="emp_id" readonly>
                                         </div>
 
 
                                         <div class="col-md-4">
                                             <label class="form-check-label" for="LastName">Last Name:</label>
-                                            <strong><p id="last_name"></p></strong> 
+                                            <input type="text" id="emp_id" value="{{ $empdata->last_name }}"
+                                                class="form-control" name="emp_id" readonly>
                                         </div>
                                         <div class="col-md-4">
                                             <label class="form-check-label " for="MobileNo">Mobile No:</label>
-                                            <strong><p id="mobile_no"></p></strong>
+                                            <input type="text" id="emp_id" value="{{ $empdata->mobile_no }}"
+                                                class="form-control" name="emp_id" readonly>
                                         </div>
                                         <div class="col-md-4">
                                             <label class="form-check-label" for="designation">Designation:</label>
-                                           <strong><p id="dst_id"></p></strong> 
+                                            <input type="text" id="emp_id" value="{{ $empdata->dst_name }}"
+                                                class="form-control" name="emp_id" readonly>
                                         </div>
                                         <div class="col-md-4">
                                             <label class="form-label" for="department">Department:</label>
-                                            <strong><p id="dpt_id"></p></strong>
+                                            <input type="text" id="emp_id" value="{{ $empdata->dpt_name }}"
+                                                class="form-control" name="emp_id" readonly>
                                         </div>
 
                                         <div class="col-md-4">
                                             <label class="form-check-label" for="">Gender:</label>
-                                            <strong><p id="gender"></p></strong>
+                                            <input type="text" id="emp_id"
+                                                value="@if ($empdata->gender == 1)Male
+                                            @elseif($empdata->gender == 2)Female
+                                            @elseif($empdata->gender == 3)Other
+                                            @else Undefined @endif "
+                                                class="form-control" name="emp_id" readonly>
                                         </div>
 
                                         <div class="col-md-4">
                                             <label class="form-check-label" for="">Email:</label>
-                                            <strong><p id="email"></p></strong>
+                                            <input type="text" id="emp_id" value="{{ $empdata->email }}"
+                                                class="form-control" name="emp_id" readonly>
                                         </div>
 
                                     </div>
-
 
                                     <!-- </div> -->
                                     <div class="row mt-3">

@@ -46,40 +46,40 @@
                             <div class="widget-content widget-content-area m-1 p-2">
 
                                 @if (session()->has('success'))
-                                {{-- <p>
+                                    {{-- <p>
                                 {{ session()->get('success') }}
                             </p> --}}
-                                <div class="alert alert-light-success alert-dismissible fade show border-0 mb-4"
-                                    role="alert"> <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                        aria-label="Close"> <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                            class="feather feather-x close" data-bs-dismiss="alert">
-                                            <line x1="18" y1="6" x2="6" y2="18">
-                                            </line>
-                                            <line x1="6" y1="6" x2="18" y2="18">
-                                            </line>
-                                        </svg></button><strong>{{ session()->get('success') }}</strong>
-                                </div>
-                            @elseif (session()->has('error'))
-                                {{-- <ul>
+                                    <div class="alert alert-light-success alert-dismissible fade show border-0 mb-4"
+                                        role="alert"> <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"> <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                class="feather feather-x close" data-bs-dismiss="alert">
+                                                <line x1="18" y1="6" x2="6" y2="18">
+                                                </line>
+                                                <line x1="6" y1="6" x2="18" y2="18">
+                                                </line>
+                                            </svg></button><strong>{{ session()->get('success') }}</strong>
+                                    </div>
+                                @elseif (session()->has('error'))
+                                    {{-- <ul>
                                 @foreach ($errors->all() as $error)
                                     <li>{{ $error }}</li>
                                 @endforeach
                             </ul> --}}
-                                <div class="alert alert-light-danger alert-dismissible fade show border-0 mb-4"
-                                    role="alert"> <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                        aria-label="Close"> <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                            class="feather feather-x close" data-bs-dismiss="alert">
-                                            <line x1="18" y1="6" x2="6" y2="18">
-                                            </line>
-                                            <line x1="6" y1="6" x2="18" y2="18">
-                                            </line>
-                                        </svg></button><strong>{{ session()->get('error') }}</strong>
-                                </div>
-                            @endif
+                                    <div class="alert alert-light-danger alert-dismissible fade show border-0 mb-4"
+                                        role="alert"> <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"> <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                class="feather feather-x close" data-bs-dismiss="alert">
+                                                <line x1="18" y1="6" x2="6" y2="18">
+                                                </line>
+                                                <line x1="6" y1="6" x2="18" y2="18">
+                                                </line>
+                                            </svg></button><strong>{{ session()->get('error') }}</strong>
+                                    </div>
+                                @endif
                                 <form action="{{ route('updating-leaves-form-update', [$leaves->leave_id]) }}"
                                     method="POST">
                                     @csrf
@@ -122,7 +122,11 @@
 
                                         <div class="col-md-4">
                                             <label class="form-check-label" for="">Gender:</label>
-                                            <input type="text" id="emp_id" value="{{ $leaves->gender }}"
+                                            <input type="text" id="emp_id"
+                                                value="@if ($leaves->gender == 1)Male
+                                            @elseif($leaves->gender == 2)Female
+                                            @elseif($leaves->gender == 3)Other
+                                            @else Undefined @endif "
                                                 class="form-control" name="emp_id" readonly>
                                         </div>
 
@@ -150,7 +154,7 @@
                                         <div class="col-md-4">
                                             <label class="form-check-label" for="email">TO</label>
                                             <input type="text" id="emp_id" value="{{ $leaves->end_date }}"
-                                                class="form-control" name="emp_id" readonly>
+                                                class="form-control" name="end_date" readonly>
                                         </div>
 
 

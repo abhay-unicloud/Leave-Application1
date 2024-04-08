@@ -19,14 +19,23 @@ class Helpers {
         
         return "Email has been sent.";
     }
-    public static function reset_password($employee ,$mail, $pass)
-    {
+    public static function leave_mail($employee ,$mail, $approval,$comment)
+    {   if($approval==1)
+        {
+            $approval='Approved';
+        }elseif($approval==2){
+            $approval='Decline';
+        }else{
+            $approval='Pending';
+
+        }
         
         $content = [
-            'subject' => 'Reset Your Employee id Password',
+            'subject' => 'Leave Notification Mail',
             'employee' => $employee ,
             'mail' => $mail ,
-            'pass' => $pass ,
+            'approval' => $approval ,
+            'comment' => $comment ,
         ];
         
         Mail::to($mail)->send(new SampleMail($content));

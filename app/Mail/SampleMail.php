@@ -20,8 +20,13 @@ class SampleMail extends Mailable
     }
 
     public function build()
-    {
+    {   if($this->content['subject']==='VBPC Employee Id Password'){
         return $this->subject($this->content['subject'])
-            ->view('pages.test-mail', ['content' => $this->content]);
+        ->view('pages.test-mail', ['content' => $this->content]);
+        
+            }else{
+                return $this->subject($this->content['subject'])
+                ->view('pages.leave-mail', ['content' => $this->content]);
+            }
     }
 }
