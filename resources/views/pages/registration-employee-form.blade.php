@@ -109,6 +109,8 @@
                                             <label class="form-check-label " for="MobileNo">Mobile No:</label>
                                             <input type="text" class="form-control" id="mobile_no" name="mobile_no"
                                                 required>
+                                                <div id="result_mobile_no"></div>
+
                                         </div>
                                     </div>
 
@@ -157,7 +159,7 @@
                                             {{-- <span class="password-toggle-icon"><i class="fas fa-eye"></i></span> --}}
                                             <input type="email" id="email" class="form-control" name="email"
                                                 required>
-                                                <div id="result"></div>
+                                                <div id="result_email"></div>
                                         </div>
                                         <div class="col-md-4">
                                         <label class="form-check-label" for="date">Date of birth:</label>
@@ -192,7 +194,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    {{-- </div> --}}
 @endsection
 @push('script')
     <script>
@@ -217,7 +219,7 @@
                     },
                     success: function(response) {
                         if (response.exists) {
-                    $('#result').text('Data exists.');
+                    $('#result_email').text('Email is already exists.');
                     // Disable the submit button
                     $('#submitBtn').prop('disabled', true);
                 }  else {
@@ -228,7 +230,43 @@
                     },
                     error: function(xhr, status, error) {
                         console.error(error);
-                        alert('An error occurred while processing your request.');
+                        // alert('An error occurred while processing your request.');
+                    }
+                })
+
+            });
+            $("#mobile_no").on('change',function() {
+
+                // var mobile_no = document.getElementById('mobile_no').val();
+                var mobile_no = $(this).val();
+             
+                var route = "{{ route('check_exists') }}";
+
+             
+                $.ajax({
+                    type: 'POST',
+                    url: "{{ route('check_exists') }}",
+                    data: {
+                        // emp_mobile_no: mobile_no,
+                      
+                        '_token': '{{ csrf_token() }}',
+                        'mobile_no': mobile_no
+                     
+                    },
+                    success: function(response) {
+                        if (response.exists) {
+                    $('#result_mobile_no').text('Mobile Number is already exists.');
+                    // Disable the submit button
+                    $('#submitBtn').prop('disabled', true);
+                }  else {
+                    // $('#result').text('Data does not exist.');
+                    // Enable the submit button
+                    $('#submitBtn').prop('disabled', false);
+                }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
+                        // alert('An error occurred while processing your request.');
                     }
                 })
 

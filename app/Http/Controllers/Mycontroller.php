@@ -29,7 +29,7 @@ use App\CPU\Helpers;
 use App\Models\Admin;
 
 class Mycontroller extends Controller
-{ private $totalleave =20;
+{ public $totalleave =20;
     public function insert(Request $request)
     {
         // $exist = Employee::where('email', $request->input('email'))->first();
@@ -105,8 +105,16 @@ class Mycontroller extends Controller
         // }
     }
     public function check_exists(Request $request)
-    {
-        $dataExists = Employee::where('email', '=', $request->input('email'))->first();
+    {  
+        $check_email=Employee::where('email', '=', $request->input('email'))->first();;
+        $check_mobile_no=Employee::where('mobile_no', '=', $request->input('mobile_no'))->first();;
+         if(isset($check_email)){
+
+        $dataExists = $check_email;
+    }elseif(isset($check_mobile_no)){
+        $dataExists = $check_mobile_no;
+        
+    }
 
         if ($dataExists) {
             return response()->json(['exists' => true]);
@@ -130,7 +138,7 @@ class Mycontroller extends Controller
             $leave->status = 0;
             $leave->approval = 0;
             $leave->save();
-            $sendmail = Helpers::leave_mail($leave->emp_id, $employee->email, $leave->approval,$leave->comment);
+            // $sendmail = Helpers::leave_mail($leave->emp_id, $employee->email, $leave->approval,$leave->comment);
 
             return redirect()->back()->with('success', 'Request Send successfully');
         } else {
@@ -403,7 +411,8 @@ class Mycontroller extends Controller
         $department = Department::all();
         $designation = Designation::all();
         $employee = Employee::find($id);
-        return view("pages.updating-employee-form", compact('designation', 'department', 'employee'));
+        $leaveperyear = $this->totalleave ;
+        return view("pages.updating-employee-form", compact('designation', 'department', 'employee','leaveperyear'));
     }
     public function edit_department($id)
     {
@@ -475,7 +484,9 @@ class Mycontroller extends Controller
     {
         $leaves = Leave::find($request->input('id'));
         $employee = Employee::where('employees.id','=', $request->input('emp_id'))->first();
-        $employee->leave_taken=$request->input('end_date');
+        if(($request->input('approval'))==1){
+             $employee->leave_taken +=$request->input('end_date');
+        }
         $leaves->approval = $request->input('approval');
         $leaves->comment = $request->input('comment');
         $leaves->save();
@@ -484,7 +495,7 @@ class Mycontroller extends Controller
         // print_r($signup->toArray());
         // echo "</pre>";
         // die;
-        $sendmail = Helpers::leave_mail($request->input('id'), $employee->email, $leaves->approval,$leaves->comment);
+        // $sendmail = Helpers::leave_mail($request->input('id'), $employee->email, $leaves->approval,$leaves->comment);
 
         return redirect()->route('datatable-leaves')->with('success', 'updated successfully');
     }

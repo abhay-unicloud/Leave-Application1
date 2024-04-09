@@ -98,7 +98,7 @@
                                                             </span></td>
                                                         <td class="text-center">
                                                             <ul class="table-controls">
-                                                                @if ($row->approval == 0)
+                                                                @if (!$row->approval == 0)
                                                                 <li><a href="{{ route('updating-leaves-form-edit', [$row->leave_id]) }}"
                                                                         class="bs-tooltip" data-bs-toggle="tooltip"
                                                                         data-bs-placement="top" title="Edit"

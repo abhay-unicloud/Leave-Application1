@@ -171,6 +171,22 @@
                                             <textarea name="address" id="" class="form-control" cols="20" rows="5"
                                                 placeholder="Write Employee Address here (Optional)">{{ $employee->addresses }}</textarea>
                                         </div>
+                                        <div class="col-4">
+                                            <label class="form-check-label" for="">leaves remaining:</label>
+                                            {{-- <textarea name="address" id="" class="form-control" cols="20" rows="5"
+                                             placeholder="Write Employee Address here (Optional)">{{ $employee->addresses }}</textarea> --}}
+                                             @if($employee->leave_taken<20)
+                                             
+                                             <p>
+                                             {{  $leaveperyear - $employee->leave_taken  }}
+                                            </p>
+                                            @else
+                                            <p>
+
+                                                Currently you dosn't have reamaining leaves
+                                            </p>
+                                        @endif
+                                            </div>
                                     </div>
 
                                     <div class="row mb-4">

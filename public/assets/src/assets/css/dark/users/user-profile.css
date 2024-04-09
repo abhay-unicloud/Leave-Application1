@@ -102,7 +102,7 @@ body.dark .user-profile .widget-content-area .user-info-list ul.contacts-block l
 }
 body.dark .user-profile .widget-content-area .user-info-list ul.contacts-block li a:not(.btn) {
   font-weight: 600;
-  font-size: 15px;
+  font-size: 11px;
   color: #009688;
 }
 body.dark .user-profile .widget-content-area .user-info-list ul.contacts-block a:not(.btn) svg {
