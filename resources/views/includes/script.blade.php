@@ -9,7 +9,7 @@
 
 <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 <script src="{{ url('assets/src/plugins/src/apex/apexcharts.min.js') }}"></script>
-{{-- <script src="{{ url('assets/src/assets/js/dashboard/dash_1.js') }}"></script> --}}
+<script src="{{ url('assets/src/assets/js/dashboard/dash_1.js') }}"></script>
 <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 <script src="{{ url('assets/src/assets/js/custom.js') }}"></script>
 <script src="{{ url('assets/src/plugins/src/global/vendors.min.js') }}"></script>

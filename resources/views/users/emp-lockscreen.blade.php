@@ -16,7 +16,7 @@
                                     <div class="media mb-4">
 
                                         <div class="avatar avatar-lg me-3">
-                                            <img alt="avatar" src="../src/assets/img/profile-7.jpeg"
+                                            <img alt="avatar" src="{{$empdata->image}}"
                                                 class="rounded-circle">
                                         </div>
 

@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('password');
             $table->integer('status')->nullable();
-            
+            $table->integer('leave_taken');
             $table->timestamps();
             $table->integer('delete1');
         });

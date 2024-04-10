@@ -87,3 +87,6 @@ SELECT * FROM `leaves` `l` INNER JOIN `leave_types` `lt` ON l.lt_id=lt.id WHERE 
         $subject =  $request->input('subject');
         $message =  $request->input('message');
         
+
+
+        INSERT INTO `admins` (`id`, `emp_id`, `first_name`, `last_name`, `dpt_id`, `dst_id`, `dob`, `image`, `email`, `mobile_no`, `password`, `created_at`, `updated_at`, `delete3`) VALUES ('2', '2', 'rahul', 'raghu', '2', '1', '2024-04-08', 'image/1712573705_img3.jpg', 'rahul@unicloudtech.com', '1234567890', '$2y$10$WZVl99N0hR0cf9f8tboBRehxSP.aEt5tlVymQjyBMpdj.fClqdE.O', NULL, NULL, '0'), ('3', '3', 'Kanishka', 'Purohit', '2', '2', '2004-11-01', 'image/1712654759_img3.jpg', 'abhay2004panwar@gmail.com', '9079128741', '$2y$10$Pty4M9KD63hsilqjyW/plOPLfrDWEPGO9KK8dqUXTJxPrFfk43AQO', NULL, NULL, '0');

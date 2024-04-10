@@ -16,13 +16,13 @@
                                     <div class="media mb-4">
 
                                         <div class="avatar avatar-lg me-3">
-                                            <img alt="avatar" src="../src/assets/img/profile-7.jpeg"
+                                            <img alt="avatar" src="{{$admindata->image}}"
                                                 class="rounded-circle">
                                         </div>
 
                                         <div class="media-body align-self-center">
 
-                                            <h3 class="mb-0">{{$admindata->admin_name}}</h3>
+                                            <h3 class="mb-0">{{$admindata->first_name}} {{$admindata->last_name}}</h3>
                                             <p class="mb-0">Enter your password to unlock your ID</p>
 
                                         </div>

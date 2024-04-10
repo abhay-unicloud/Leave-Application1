@@ -43,7 +43,13 @@
                                                         <th>How long</th>
                                                         <th>Reason</th>
                                                         <th>Location</th>
-                                                        <th>Approval</th>
+                                                        @if (Session::has('pcp_admin'))
+                                                            <th>Approval As Principal</th>
+                                                        @elseif (Session::has('hod_admin'))
+                                                            <th>Approval As HOD</th>
+                                                        @elseif (Session::has('vc_admin'))
+                                                            <th>Approval As Vice President</th>
+                                                        @endif
                                                         <th>Comment</th>
                                                         <th class="text-center">Status</th>
                                                         <th class="text-center dt-no-sorting">Action</th>
@@ -51,43 +57,73 @@
                                                 </thead>
                                                 <tbody>
                                                     @foreach ($leaves as $row)
-                                                        <td class="checkbox-column text-center"> {{ $row->emp_id }} </td>
+                                                        <td class="checkbox-column text-center"> {{ $row->leave_id }} </td>
                                                         <!-- <td class="text-center">
-                                                                <span><img src="../src/assets/img/profile-17.jpeg" class="profile-img" alt="avatar"></span>
-                                                            </td> -->
+                                                                        <span><img src="../src/assets/img/profile-17.jpeg" class="profile-img" alt="avatar"></span>
+                                                                    </td> -->
 
                                                         <td> {{ $row->lt_name }} </td>
                                                         <td> {{ $row->start_date }} </td>
                                                         <td> {{ $row->end_date }} </td>
                                                         <td> {{ $row->reason }} </td>
                                                         <td> {{ $row->location }} </td>
-                                   
-                                                        <td class="text-center"><span id="approval"
-                                                                class="shadow-none badge  @if ($row->approval == 0)
-                                                                badge-light-primary
-                                                            @elseif($row->approval == 1)
-                                                            badge-light-success
-                                                            @else
-                                                            badge-light-danger
-                                                            @endif">
-                                                                @if ($row->approval == 0)
-                                                                    Pending
-                                                                @elseif($row->approval == 1)
-                                                                    Approved
-                                                                @else
-                                                                    Decline
-                                                                @endif
-                                                              
-                                                            </span></td>
+                                                        @if (Session::has('pcp_admin'))
+                                                            <td class="text-center"><span id="approval"
+                                                                    class="shadow-none badge  @if ($row->approval_pcp == 0) badge-light-primary
+                                                        @elseif($row->approval_pcp == 1)
+                                                        badge-light-success
+                                                        @else
+                                                        badge-light-danger @endif">
+                                                                    @if ($row->approval_pcp == 0)
+                                                                        Pending
+                                                                    @elseif($row->approval_pcp == 1)
+                                                                        Approved
+                                                                    @else
+                                                                        Decline
+                                                                    @endif
+
+                                                                </span></td>
+                                                        @elseif (Session::has('hod_admin'))
+                                                            <td class="text-center"><span id="approval"
+                                                                    class="shadow-none badge  @if ($row->approval_hod == 0) badge-light-primary
+                                                        @elseif($row->approval_hod == 1)
+                                                        badge-light-success
+                                                        @else
+                                                        badge-light-danger @endif">
+                                                                    @if ($row->approval_hod == 0)
+                                                                        Pending
+                                                                    @elseif($row->approval_hod == 1)
+                                                                        Approved
+                                                                    @else
+                                                                        Decline
+                                                                    @endif
+
+                                                                </span></td>
+                                                        @elseif (Session::has('vc_admin'))
+                                                            <td class="text-center"><span id="approval"
+                                                                    class="shadow-none badge  @if ($row->approval_vc == 0) badge-light-primary
+                                                    @elseif($row->approval_vc == 1)
+                                                    badge-light-success
+                                                    @else
+                                                    badge-light-danger @endif">
+                                                                    @if ($row->approval_vc == 0)
+                                                                        Pending
+                                                                    @elseif($row->approval_vc == 1)
+                                                                        Approved
+                                                                    @else
+                                                                        Decline
+                                                                    @endif
+
+                                                                </span></td>
+                                                        @endif
+
                                                         <td> {{ $row->comment }} </td>
-                                                        <td  id="approvalStatus" class="text-center"><span 
-                                                                class="shadow-none badge   @if ($row->leave_status == 0)
-                                                                badge-light-primary
+                                                        <td id="approvalStatus" class="text-center"><span
+                                                                class="shadow-none badge   @if ($row->leave_status == 0) badge-light-primary
                                                             @elseif($row->leave_status == 1)
                                                             badge-light-success
                                                             @else
-                                                            badge-light-danger
-                                                            @endif" >
+                                                            badge-light-danger @endif">
                                                                 @if ($row->leave_status == 0)
                                                                     Pending
                                                                 @elseif($row->leave_status == 1)
@@ -98,7 +134,8 @@
                                                             </span></td>
                                                         <td class="text-center">
                                                             <ul class="table-controls">
-                                                                @if (!$row->approval == 0)
+                                                                @if (Session::has('pcp_admin'))
+                                                                @if ($row->approval_pcp == 0)
                                                                 <li><a href="{{ route('updating-leaves-form-edit', [$row->leave_id]) }}"
                                                                         class="bs-tooltip" data-bs-toggle="tooltip"
                                                                         data-bs-placement="top" title="Edit"
@@ -107,13 +144,52 @@
                                                                             width="24" height="24"
                                                                             viewBox="0 0 24 24" fill="none"
                                                                             stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round" stroke-linejoin="round"
+                                                                            stroke-linecap="round"
+                                                                            stroke-linejoin="round"
                                                                             class="feather feather-edit-2 p-1 br-8 mb-1">
                                                                             <path
                                                                                 d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z">
                                                                             </path>
                                                                         </svg></a></li>
-                                                                @endif
+                                                            @endif
+                                                        @elseif (Session::has('hod_admin'))
+                                                        @if ($row->approval_hod == 0)
+                                                        <li><a href="{{ route('updating-leaves-form-edit', [$row->leave_id]) }}"
+                                                                class="bs-tooltip" data-bs-toggle="tooltip"
+                                                                data-bs-placement="top" title="Edit"
+                                                                data-original-title="Edit"><svg
+                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                    width="24" height="24"
+                                                                    viewBox="0 0 24 24" fill="none"
+                                                                    stroke="currentColor" stroke-width="2"
+                                                                    stroke-linecap="round"
+                                                                    stroke-linejoin="round"
+                                                                    class="feather feather-edit-2 p-1 br-8 mb-1">
+                                                                    <path
+                                                                        d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z">
+                                                                    </path>
+                                                                </svg></a></li>
+                                                    @endif
+                                                        @elseif (Session::has('vc_admin'))
+                                                        @if ($row->approval_vc == 0)
+                                                        <li><a href="{{ route('updating-leaves-form-edit', [$row->leave_id]) }}"
+                                                                class="bs-tooltip" data-bs-toggle="tooltip"
+                                                                data-bs-placement="top" title="Edit"
+                                                                data-original-title="Edit"><svg
+                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                    width="24" height="24"
+                                                                    viewBox="0 0 24 24" fill="none"
+                                                                    stroke="currentColor" stroke-width="2"
+                                                                    stroke-linecap="round"
+                                                                    stroke-linejoin="round"
+                                                                    class="feather feather-edit-2 p-1 br-8 mb-1">
+                                                                    <path
+                                                                        d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z">
+                                                                    </path>
+                                                                </svg></a></li>
+                                                    @endif
+                                                        @endif
+                                                                
 
                                                                 <li><a onclick="return confirm('Are you sure you want to delete this item?');"
                                                                         href="{{ route('updating-employee-form-delete', [$row->leave_id]) }}"
@@ -147,23 +223,26 @@
                 </div>
             </div>
         </div>
-    {{-- </div> --}}
-@endsection
-@push('script')
-<script>
-    $(document).ready(function(){
-        function changeClass(approvalStatus) {
-            var approvalSpan = $('#approvalStatus');
-            if (approvalStatus == 0) {
-                approvalSpan.removeClass('badge-primary').addClass('badge-warning'); // Example class to change to for Pending status
-            } else if (approvalStatus == 1) {
-                approvalSpan.removeClass('badge-primary').addClass('badge-success'); // Example class to change to for Approved status
-            } else {
-                approvalSpan.removeClass('badge-primary').addClass('badge-danger'); // Example class to change to for Declined status
-            }
-        }
-        var newApprovalValue = 1; // Example value, replace this with your dynamic value
-        changeClass(newApprovalValue);
-});
-</script>
-@endpush
+        {{-- </div> --}}
+    @endsection
+    @push('script')
+        <script>
+            $(document).ready(function() {
+                function changeClass(approvalStatus) {
+                    var approvalSpan = $('#approvalStatus');
+                    if (approvalStatus == 0) {
+                        approvalSpan.removeClass('badge-primary').addClass(
+                            'badge-warning'); // Example class to change to for Pending status
+                    } else if (approvalStatus == 1) {
+                        approvalSpan.removeClass('badge-primary').addClass(
+                            'badge-success'); // Example class to change to for Approved status
+                    } else {
+                        approvalSpan.removeClass('badge-primary').addClass(
+                            'badge-danger'); // Example class to change to for Declined status
+                    }
+                }
+                var newApprovalValue = 1; // Example value, replace this with your dynamic value
+                changeClass(newApprovalValue);
+            });
+        </script>
+    @endpush

@@ -629,8 +629,8 @@
             </div>
 
         </div>
-    </div>
+    {{-- </div> --}}
     <!--  END CONTENT AREA  -->
     <!-- END MAIN CONTAINER -->
-</div>
-@stop
+{{-- </div> --}}
+@endsection

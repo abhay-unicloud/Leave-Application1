@@ -52,59 +52,61 @@
                             <div class="widget-content widget-content-area m-1 p-2">
 
                                 @if (session()->has('success'))
-                                {{-- <p>
+                                    {{-- <p>
                                 {{ session()->get('success') }}
                             </p> --}}
-                                <div class="alert alert-light-success alert-dismissible fade show border-0 mb-4"
-                                    role="alert"> <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                        aria-label="Close"> <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                            class="feather feather-x close" data-bs-dismiss="alert">
-                                            <line x1="18" y1="6" x2="6" y2="18">
-                                            </line>
-                                            <line x1="6" y1="6" x2="18" y2="18">
-                                            </line>
-                                        </svg></button><strong>{{ session()->get('success') }}</strong>
-                                </div>
-                            @elseif (session()->has('error'))
-                                {{-- <ul>
+                                    <div class="alert alert-light-success alert-dismissible fade show border-0 mb-4"
+                                        role="alert"> <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"> <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                class="feather feather-x close" data-bs-dismiss="alert">
+                                                <line x1="18" y1="6" x2="6" y2="18">
+                                                </line>
+                                                <line x1="6" y1="6" x2="18" y2="18">
+                                                </line>
+                                            </svg></button><strong>{{ session()->get('success') }}</strong>
+                                    </div>
+                                @elseif (session()->has('error'))
+                                    {{-- <ul>
                                 @foreach ($errors->all() as $error)
                                     <li>{{ $error }}</li>
                                 @endforeach
                             </ul> --}}
-                                <div class="alert alert-light-danger alert-dismissible fade show border-0 mb-4"
-                                    role="alert"> <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                        aria-label="Close"> <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                            class="feather feather-x close" data-bs-dismiss="alert">
-                                            <line x1="18" y1="6" x2="6" y2="18">
-                                            </line>
-                                            <line x1="6" y1="6" x2="18" y2="18">
-                                            </line>
-                                        </svg></button><strong>{{ session()->get('error') }}</strong>
-                                </div>
-                            @endif
+                                    <div class="alert alert-light-danger alert-dismissible fade show border-0 mb-4"
+                                        role="alert"> <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"> <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                class="feather feather-x close" data-bs-dismiss="alert">
+                                                <line x1="18" y1="6" x2="6" y2="18">
+                                                </line>
+                                                <line x1="6" y1="6" x2="18" y2="18">
+                                                </line>
+                                            </svg></button><strong>{{ session()->get('error') }}</strong>
+                                    </div>
+                                @endif
                                 <form action="{{ route('updating-employee-form-update', [$employee->id]) }}" method="POST">
                                     @csrf
-                                   
+
                                     <input type="hidden" name="id" value="{{ $employee->id }}">
                                     <div class="row">
                                         <div class="col-md-4">
                                             <label class="form-check-label" for="firstName">First Name:</label>
                                             <input type="text" id="firstName" value="{{ $employee->first_name }}"
-                                                class="form-control" name="first_name">
+                                                class="form-control" name="first_name" readonly>
                                         </div>
 
                                         <!-- <div class="row-4"> -->
                                         <div class="col-md-4">
                                             <label class="form-check-label" for="LastName">Last Name:</label>
-                                            <input type="text" class="form-control" value="{{ $employee->last_name }}" name="last_name">
+                                            <input type="text" class="form-control" value="{{ $employee->last_name }}"
+                                                name="last_name" readonly>
                                         </div>
                                         <div class="col-md-4">
                                             <label class="form-check-label " for="MobileNo">Mobile No:</label>
-                                            <input type="text" class="form-control"value="{{ $employee->mobile_no }}" name="mobile_no">
+                                            <input type="text" class="form-control"value="{{ $employee->mobile_no }}"
+                                                name="mobile_no" readonly>
                                         </div>
                                     </div>
 
@@ -113,88 +115,95 @@
                                     <div class="row mt-4">
 
                                         <!-- <div class="col-md-4">
-                                                <label class="form-check-label" for="designation">Designation:</label>
-                                                <input type="text" class="form-control" name="designation">
-                                            </div> -->
+                                                    <label class="form-check-label" for="designation">Designation:</label>
+                                                    <input type="text" class="form-control" name="designation">
+                                                </div> -->
 
                                         <div class="col-md-4">
                                             <label class="form-check-label" for="">Gender:</label>
-                                            <select class="form-select" name="gender" id="inlineFormSelectPref">
-                                                <option value="0"{{ $employee->gender === 0 ? 'selected' : '' }}>Select your gender</option>
+                                            <input type="text" class="form-control"value="{{ $employee->mobile_no }}"
+                                                name="mobile_no" readonly>
+                                            {{-- <select class="form-select" name="gender" id="inlineFormSelectPref">
+                                                <option value="0"{{ $employee->gender === 0 ? 'selected' : '' }}>
+                                                    Select your gender</option>
                                                 <option value="1"{{ $employee->gender === 1 ? 'selected' : '' }}>Male
                                                 </option>
-                                                <option value="2"{{ $employee->gender === 2 ? 'selected' : '' }}>Female
+                                                <option value="2"{{ $employee->gender === 2 ? 'selected' : '' }}>
+                                                    Female
                                                 </option>
-                                                <option value="3"{{ $employee->gender === 3 ? 'selected' : '' }}>Other
+                                                <option value="3"{{ $employee->gender === 3 ? 'selected' : '' }}>
+                                                    Other
                                                 </option>
-                                            </select>
+                                            </select> --}}
                                         </div>
                                         <div class="col-md-4">
                                             <label class="form-check-label" for="department">Department:</label>
-                                            <select class="form-select" name="department" id="inlineFormSelectPref">
+                                            <input type="text" class="form-control"value="{{ $employee->dpt_name }}"
+                                            name="mobile_no" readonly>
+                                            {{-- <select class="form-select" name="department" id="inlineFormSelectPref">
                                                 <option value="0">Select your Department</option>
-
-
-                                                @foreach ($department as $name)
+                                                 @foreach ($department as $name)
                                                     <option value="{{ $name->id }}"
                                                         {{ $name->id == $employee->dpt_id ? 'selected' : '' }}>
                                                         {{ $name->dpt_name }}</option>
                                                 @endforeach
-                                            </select>
+                                            </select> --}}
                                         </div>
                                         <div class="col-md-4">
                                             <label class="form-check-label" for="designation">Designation:</label>
-                                            <select class="form-select" name="designation" id="inlineFormSelectPref">
+                                            <input type="text" class="form-control"value="{{ $employee->dst_name }}"
+                                                name="mobile_no" readonly>
+                                            {{-- <select class="form-select" name="designation" id="inlineFormSelectPref">
                                                 <option value="0">Select your Designation</option>
                                                 @foreach ($designation as $name)
                                                     <option value="{{ $name->id }}"
                                                         {{ $name->id == $employee->dst_id ? 'selected' : '' }}>
                                                         {{ $name->dst_name }}</option>
                                                 @endforeach
-                                            </select>
+                                            </select> --}}
                                         </div>
                                     </div>
                                     <div class="row mt-4">
                                         <!--
-                                        <div class="col-md-4">
-                                            <label class="form-check-label" for="password">Password:</label>
-                                            <span class="password-toggle-icon"><i class="fas fa-eye"></i></span>
-                                            <input type="password" id="password" class="form-control" name="password">
-                                        </div> -->
+                                            <div class="col-md-4">
+                                                <label class="form-check-label" for="password">Password:</label>
+                                                <span class="password-toggle-icon"><i class="fas fa-eye"></i></span>
+                                                <input type="password" id="password" class="form-control" name="password">
+                                            </div> -->
 
 
 
                                     </div>
                                     <div class="row mt-4">
-                                        <div class="col-8">
+                                        <div class="col-6">
                                             <label class="form-check-label" for="">Address:</label>
-                                            <textarea name="address" id="" class="form-control" cols="20" rows="5"
-                                                placeholder="Write Employee Address here (Optional)">{{ $employee->addresses }}</textarea>
+                                            <textarea name="address" id="" class="form-control" cols="10" rows="5"
+                                                placeholder="Write Employee Address here (Optional)" readonly>{{ $employee->addresses }}</textarea>
                                         </div>
                                         <div class="col-4">
-                                            <label class="form-check-label" for="">leaves remaining:</label>
-                                            {{-- <textarea name="address" id="" class="form-control" cols="20" rows="5"
-                                             placeholder="Write Employee Address here (Optional)">{{ $employee->addresses }}</textarea> --}}
-                                             @if($employee->leave_taken<20)
-                                             
-                                             <p>
-                                             {{  $leaveperyear - $employee->leave_taken  }}
-                                            </p>
-                                            @else
-                                            <p>
 
-                                                Currently you dosn't have reamaining leaves
-                                            </p>
-                                        @endif
-                                            </div>
+                                            @if ($employee->leave_taken < 20)
+                                                <label for="">Available Leaves</label>
+                                                <input type="text" class="form-control" name="" id=""
+                                                    aria-describedby="helpId"
+                                                    value="{{ $leaveperyear - $employee->leave_taken }}" placeholder=""
+                                                    readonly>
+                                                {{-- <small id="helpId" class="form-text text-muted">Help text</small> --}}
+                                            @else
+                                                <p>
+
+                                                    Currently you dosn't have reamaining leaves
+                                                </p>
+                                            @endif
+                                        </div>
                                     </div>
 
-                                    <div class="row mb-4">
+                                    {{-- <div class="row mb-4">
                                         <div class="col-sm-12">
                                             <br>
                                             <button class="btn btn-primary" type="submit">Update</button>
                                         </div>
-                                    </div>
+                                    </div> --}}
 
                                 </form>
                             </div>
@@ -203,7 +212,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    {{-- </div> --}}
 @endsection
 @push('script')
     <script>

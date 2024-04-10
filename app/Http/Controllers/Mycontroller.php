@@ -29,7 +29,8 @@ use App\CPU\Helpers;
 use App\Models\Admin;
 
 class Mycontroller extends Controller
-{ public $totalleave =20;
+{
+    public $totalleave = 20;
     public function insert(Request $request)
     {
         // $exist = Employee::where('email', $request->input('email'))->first();
@@ -60,6 +61,7 @@ class Mycontroller extends Controller
             $employee->email = $email;
             $employee->delete1 = 0;
             $employee->status = 0;
+            $employee->leave_taken = 0;
             $hashpassword = Str::random(8);
             $employee->password = Hash::Make($hashpassword);
             $employee->save();
@@ -79,7 +81,7 @@ class Mycontroller extends Controller
             $staff->duty = 0;
             $staff->save();
 
-            if (5 == $request->input('designation')) {
+            if (5 == $request->input('designation') || 6 == $request->input('designation') || 1 == $request->input('designation') || 2 == $request->input('designation')) {
                 $admin = new Admin();
                 $admin->emp_id = $employee->id;
                 $admin->first_name = $request->input('first_name');
@@ -105,16 +107,15 @@ class Mycontroller extends Controller
         // }
     }
     public function check_exists(Request $request)
-    {  
-        $check_email=Employee::where('email', '=', $request->input('email'))->first();;
-        $check_mobile_no=Employee::where('mobile_no', '=', $request->input('mobile_no'))->first();;
-         if(isset($check_email)){
+    {
+        $check_email = Employee::where('email', '=', $request->input('email'))->first();;
+        $check_mobile_no = Employee::where('mobile_no', '=', $request->input('mobile_no'))->first();;
+        if (isset($check_email)) {
 
-        $dataExists = $check_email;
-    }elseif(isset($check_mobile_no)){
-        $dataExists = $check_mobile_no;
-        
-    }
+            $dataExists = $check_email;
+        } elseif (isset($check_mobile_no)) {
+            $dataExists = $check_mobile_no;
+        }
 
         if ($dataExists) {
             return response()->json(['exists' => true]);
@@ -125,10 +126,10 @@ class Mycontroller extends Controller
     public function request(Request $request)
     {
         if (($request->input('end_date')) > 0) {
-            
+
             $leave = new Leave();
             $leave->emp_id = $request->input('emp_id');
-            $employee = Employee::where('employees.id','=', $request->input('emp_id'))->first();
+            $employee = Employee::where('employees.id', '=', $request->input('emp_id'))->first();
             $leave->lt_id = $request->input('lt_id');
             $leave->start_date = $request->input('start_date');
             $leave->end_date = $request->input('end_date');
@@ -136,9 +137,11 @@ class Mycontroller extends Controller
             $leave->location = $request->input('location');
             $leave->delete1 = 0;
             $leave->status = 0;
-            $leave->approval = 0;
+            $leave->approval_pcp = 0;
+            $leave->approval_hod = 0;
+            $leave->approval_vc = 0;
             $leave->save();
-            // $sendmail = Helpers::leave_mail($leave->emp_id, $employee->email, $leave->approval,$leave->comment);
+            $sendmail = Helpers::leave_mail($leave->emp_id, $employee->email, $leave->approval, $leave->comment);
 
             return redirect()->back()->with('success', 'Request Send successfully');
         } else {
@@ -284,6 +287,15 @@ class Mycontroller extends Controller
             if (Hash::check($pass, $hashedPassword)) {
                 // dd($hashedPassword,$pass);
                 // print_r('hiee');die();
+                if ($employee->dst_id == 1) {
+                    Session::put('pcp_admin', $employee);
+                } elseif ($employee->dst_id == 2) {
+                    Session::put('hod_admin', $employee);
+                } elseif ($employee->dst_id == 5) {
+                    Session::put('super_admin', $employee);
+                } elseif ($employee->dst_id == 6) {
+                    Session::put('vc_admin', $employee);
+                }
                 Session::put('admin_logged', true);
                 Session::put('admin_data', $employee);
 
@@ -312,10 +324,10 @@ class Mycontroller extends Controller
     public function view(Request $request, $id)
     {
         $empId =  $request->input('emp_id');
-        $employee = Employee::where('employees.id','=', $empId) 
-        ->join('designations', 'employees.dst_id', '=', 'designations.id')
-        ->join('departments', 'employees.dpt_id', '=', 'departments.id')
-        ->first();
+        $employee = Employee::where('employees.id', '=', $empId)
+            ->join('designations', 'employees.dst_id', '=', 'designations.id')
+            ->join('departments', 'employees.dpt_id', '=', 'departments.id')
+            ->first();
 
         if ($employee) {
             // If employee data found, return it as JSON response
@@ -382,7 +394,7 @@ class Mycontroller extends Controller
         // $leaves = Leave::all();
         $leaves = DB::table('leaves')
             ->join('leave_types', 'leave_types.id', '=', 'leaves.lt_id')
-            ->select('leaves.id as leave_id', 'emp_id', 'lt_name', 'start_date', 'end_date', 'reason', 'location', 'approval', 'comment', 'leaves.status as leave_status')
+            ->select('leaves.id as leave_id', 'emp_id', 'lt_name', 'start_date', 'end_date', 'reason', 'location', 'approval_pcp', 'approval_hod', 'approval_vc', 'comment', 'leaves.status as leave_status')
             ->get();
         return view("pages.datatable-leaves", compact('leaves'));
     }
@@ -410,9 +422,12 @@ class Mycontroller extends Controller
     {
         $department = Department::all();
         $designation = Designation::all();
-        $employee = Employee::find($id);
-        $leaveperyear = $this->totalleave ;
-        return view("pages.updating-employee-form", compact('designation', 'department', 'employee','leaveperyear'));
+        $employee = Employee::where('employees.id', $id)
+            ->join('designations', 'employees.dst_id', '=', 'designations.id')
+            ->join('departments', 'employees.dpt_id', '=', 'departments.id')
+            ->first();
+        $leaveperyear = $this->totalleave;
+        return view("pages.updating-employee-form", compact('employee', 'leaveperyear'));
     }
     public function edit_department($id)
     {
@@ -429,7 +444,7 @@ class Mycontroller extends Controller
     public function edit_leaves($id)
     {
 
-        $leaves = Leave::select('leaves.id as leave_id', 'leave_types.id as leave_type_id', 'employees.id as emp_id', 'lt_name', 'start_date', 'end_date', 'reason', 'location', 'approval', 'comment', 'first_name', 'last_name', 'dpt_name', 'dst_name', 'mobile_no', 'gender', 'addresses', 'email')
+        $leaves = Leave::select('leaves.id as leave_id', 'leave_types.id as leave_type_id', 'employees.id as emp_id', 'lt_name', 'start_date', 'end_date', 'reason', 'location', 'approval_pcp', 'approval_hod', 'approval_vc', 'comment', 'first_name', 'last_name', 'dpt_name', 'dst_name', 'mobile_no', 'gender', 'addresses', 'email')
             ->join('leave_types', 'leaves.lt_id', '=', 'leave_types.id')
             ->join('employees', 'leaves.emp_id', '=', 'employees.id')
             ->join('designations', 'employees.dst_id', '=', 'designations.id')
@@ -483,19 +498,41 @@ class Mycontroller extends Controller
     public function update_leaves(Request $request)
     {
         $leaves = Leave::find($request->input('id'));
-        $employee = Employee::where('employees.id','=', $request->input('emp_id'))->first();
-        if(($request->input('approval'))==1){
-             $employee->leave_taken +=$request->input('end_date');
+        // 'approval_pcp','approval_hod','approval_vc',
+
+        if (Session::has('pcp_admin')) {
+            $leaves->approval_pcp = $request->input('approval');
+        } elseif (Session::has('hod_admin')) {
+            $leaves->approval_hod = $request->input('approval');
+        } elseif (Session::has('vc_admin')) {
+            $leaves->approval_vc = $request->input('approval');
         }
-        $leaves->approval = $request->input('approval');
         $leaves->comment = $request->input('comment');
         $leaves->save();
-        $employee->save();
         //     echo "<pre>";
         // print_r($signup->toArray());
         // echo "</pre>";
         // die;
-        // $sendmail = Helpers::leave_mail($request->input('id'), $employee->email, $leaves->approval,$leaves->comment);
+        $employee = Employee::where('employees.id', '=', $request->input('emp_id'))->first();
+
+        $leavesdata = Leave::find($request->input('id'));
+
+        if ($leaves->approval_pcp == 1 && $leaves->approval_hod == 1 || $leaves->approval_pcp == 1 && $leaves->approval_vc == 1 || $leaves->approval_hod == 1 && $leaves->approval_vc == 1) {
+
+            // if($leavesdata->approval_pcp == 1 && $leavesdata->approval_hod == 1){
+            if (($request->input('approval')) == 1) {
+                $employee->leave_taken += $request->input('end_date');
+            }
+            $approval = 1;
+
+            $sendmail = Helpers::leave_mail($request->input('id'), $employee->email, $approval, $leaves->comment);
+        } elseif ($leaves->approval_pcp == 2 && $leaves->approval_hod == 2 || $leaves->approval_pcp == 2 && $leaves->approval_vc == 2 || $leaves->approval_hod == 2 && $leaves->approval_vc == 2) {
+
+            $approval = 2;
+
+            $sendmail = Helpers::leave_mail($request->input('id'), $employee->email, $approval, $leaves->comment);
+        }
+        $employee->save();
 
         return redirect()->route('datatable-leaves')->with('success', 'updated successfully');
     }

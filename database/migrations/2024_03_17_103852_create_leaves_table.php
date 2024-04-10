@@ -21,7 +21,9 @@ return new class extends Migration
             $table->integer('end_date');
             $table->string('reason');
             $table->string('location');
-            $table->integer('approval')->nullable();
+            $table->integer('approval_pcp')->nullable();
+            $table->integer('approval_hod')->nullable();
+            $table->integer('approval_vc')->nullable();
             $table->string('comment')->nullable();
             $table->integer('status');
             $table->timestamps();

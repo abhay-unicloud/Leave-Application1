@@ -152,7 +152,7 @@
                                                 class="form-control" name="emp_id" readonly>
                                         </div>
                                         <div class="col-md-4">
-                                            <label class="form-check-label" for="email">TO</label>
+                                            <label class="form-check-label" for="email">How Much</label>
                                             <input type="text" id="emp_id" value="{{ $leaves->end_date }}"
                                                 class="form-control" name="end_date" readonly>
                                         </div>

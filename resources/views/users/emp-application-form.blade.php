@@ -92,52 +92,52 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <label class="form-check-label" for="firstName">Employee-Id:</label>
-                                            <input type="text" id="emp_id" value="{{ $empdata->emp_id }}"
+                                            <input type="text" id="emp_id" value="{{ $empdata->id }}"
                                                 class="form-control" name="emp_id" readonly>
                                         </div>
 
                                         <div class="col-md-4">
                                             <label class="form-check-label" for="firstName">First Name:</label>
                                             <input type="text" id="emp_id" value="{{ $empdata->first_name }}"
-                                                class="form-control" name="emp_id" readonly>
+                                                class="form-control" name="nice" readonly>
                                         </div>
 
 
                                         <div class="col-md-4">
                                             <label class="form-check-label" for="LastName">Last Name:</label>
-                                            <input type="text" id="emp_id" value="{{ $empdata->last_name }}"
-                                                class="form-control" name="emp_id" readonly>
+                                            <input type="text" id="nice" value="{{ $empdata->last_name }}"
+                                                class="form-control" name="nice" readonly>
                                         </div>
                                         <div class="col-md-4">
                                             <label class="form-check-label " for="MobileNo">Mobile No:</label>
-                                            <input type="text" id="emp_id" value="{{ $empdata->mobile_no }}"
-                                                class="form-control" name="emp_id" readonly>
+                                            <input type="text" id="nice" value="{{ $empdata->mobile_no }}"
+                                                class="form-control" name="nice" readonly>
                                         </div>
                                         <div class="col-md-4">
                                             <label class="form-check-label" for="designation">Designation:</label>
-                                            <input type="text" id="emp_id" value="{{ $empdata->dst_name }}"
-                                                class="form-control" name="emp_id" readonly>
+                                            <input type="text" id="nice" value="{{ $empdata->dst_name }}"
+                                                class="form-control" name="nice" readonly>
                                         </div>
                                         <div class="col-md-4">
                                             <label class="form-label" for="department">Department:</label>
-                                            <input type="text" id="emp_id" value="{{ $empdata->dpt_name }}"
-                                                class="form-control" name="emp_id" readonly>
+                                            <input type="text" id="nice" value="{{ $empdata->dpt_name }}"
+                                                class="form-control" name="nice" readonly>
                                         </div>
 
                                         <div class="col-md-4">
                                             <label class="form-check-label" for="">Gender:</label>
-                                            <input type="text" id="emp_id"
+                                            <input type="text" id="nice"
                                                 value="@if ($empdata->gender == 1)Male
                                             @elseif($empdata->gender == 2)Female
                                             @elseif($empdata->gender == 3)Other
                                             @else Undefined @endif "
-                                                class="form-control" name="emp_id" readonly>
+                                                class="form-control" name="nice" readonly>
                                         </div>
 
                                         <div class="col-md-4">
                                             <label class="form-check-label" for="">Email:</label>
-                                            <input type="text" id="emp_id" value="{{ $empdata->email }}"
-                                                class="form-control" name="emp_id" readonly>
+                                            <input type="text" id="nice" value="{{ $empdata->email }}"
+                                                class="form-control" name="nice" readonly>
                                         </div>
 
                                     </div>
