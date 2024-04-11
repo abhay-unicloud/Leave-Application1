@@ -40,7 +40,7 @@ Route::get('/registration-employee-form', [Mycontroller::class, 'registration_em
 Route::get('/admin-unlock', [Mycontroller::class, 'admin_unlock'])->name('admin_unlock');
 Route::get('/emp-unlock', [Mycontroller::class, 'emp_unlock'])->name('emp_unlock');
 
-Route::post('/admin-login', [Mycontroller::class, 'admin_login'])->name('admin_login');
+// Route::post('/admin-login', [Mycontroller::class, 'admin_login'])->name('admin_login');
 Route::post('/admin-login', [Mycontroller::class, 'admin_login'])->name('admin_login');
 Route::get('/admin-login',  [Mycontroller::class, 'admin_login_page'])->name('admin_login');
 Route::get('/admin-logout',  [Mycontroller::class, 'admin_logout'])->name('admin_logout');

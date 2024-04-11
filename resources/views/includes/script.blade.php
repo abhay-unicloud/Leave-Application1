@@ -119,4 +119,6 @@
 </script>
 <!-- END PAGE LEVEL SCRIPTS -->
 <script src="{{ url('assets/src/assets/js/scrollspyNav.js') }}"></script>
+<script src="{{ url('assets/src/assets/js/apps/invoice-preview.js') }}"></script>
+
 @stack('script');

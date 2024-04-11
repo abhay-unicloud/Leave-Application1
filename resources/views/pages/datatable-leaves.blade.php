@@ -27,31 +27,35 @@
                                     </div>
                                 </div>
                             </div>
-
+                            <div class="col-xl-12 col-md-3 col-sm-6">
+                                <a href="javascript:void(0);" class="btn btn-secondary btn-print  action-print">Print</a>
+                            </div>
 
                             <div class="row layout-spacing">
                                 <div class="col-lg-12">
                                     <div class="statbox widget box box-shadow">
-                                        <div class="widget-content widget-content-area m-1 p-2">
+                                        
+                                        <div id="printarea" class="widget-content widget-content-area m-1 p-2">
                                             <table id="style-3" class="table style-3 dt-table-hover">
                                                 <thead>
                                                     <tr>
-                                                        <th class="checkbox-column text-center"> Employee Id </th>
+                                                        <th class="checkbox-column text-center"> Leave Id </th>
                                                         <!-- <th class="text-center">Image</th> -->
+                                                        <th>Employee Id</th>
                                                         <th>Leave Type</th>
                                                         <th>Start Date</th>
                                                         <th>How long</th>
                                                         <th>Reason</th>
                                                         <th>Location</th>
-                                                        @if (Session::has('pcp_admin'))
+                                                        @if (Session::has('pcp_admin') )
                                                             <th>Approval As Principal</th>
-                                                        @elseif (Session::has('hod_admin'))
+                                                        @elseif (Session::has('hod_admin') )
                                                             <th>Approval As HOD</th>
-                                                        @elseif (Session::has('vc_admin'))
+                                                        @elseif (Session::has('vc_admin') )
                                                             <th>Approval As Vice President</th>
                                                         @endif
                                                         <th>Comment</th>
-                                                        <th class="text-center">Status</th>
+                                                        {{-- <th class="text-center">Status</th> --}}
                                                         <th class="text-center dt-no-sorting">Action</th>
                                                     </tr>
                                                 </thead>
@@ -62,12 +66,13 @@
                                                                         <span><img src="../src/assets/img/profile-17.jpeg" class="profile-img" alt="avatar"></span>
                                                                     </td> -->
 
+                                                        <td> {{ $row->emp_id }} </td>
                                                         <td> {{ $row->lt_name }} </td>
                                                         <td> {{ $row->start_date }} </td>
                                                         <td> {{ $row->end_date }} </td>
                                                         <td> {{ $row->reason }} </td>
                                                         <td> {{ $row->location }} </td>
-                                                        @if (Session::has('pcp_admin'))
+                                                        @if (Session::has('pcp_admin') )
                                                             <td class="text-center"><span id="approval"
                                                                     class="shadow-none badge  @if ($row->approval_pcp == 0) badge-light-primary
                                                         @elseif($row->approval_pcp == 1)
@@ -83,7 +88,7 @@
                                                                     @endif
 
                                                                 </span></td>
-                                                        @elseif (Session::has('hod_admin'))
+                                                        @elseif (Session::has('hod_admin') )
                                                             <td class="text-center"><span id="approval"
                                                                     class="shadow-none badge  @if ($row->approval_hod == 0) badge-light-primary
                                                         @elseif($row->approval_hod == 1)
@@ -99,7 +104,7 @@
                                                                     @endif
 
                                                                 </span></td>
-                                                        @elseif (Session::has('vc_admin'))
+                                                        @elseif (Session::has('vc_admin') )
                                                             <td class="text-center"><span id="approval"
                                                                     class="shadow-none badge  @if ($row->approval_vc == 0) badge-light-primary
                                                     @elseif($row->approval_vc == 1)
@@ -118,7 +123,7 @@
                                                         @endif
 
                                                         <td> {{ $row->comment }} </td>
-                                                        <td id="approvalStatus" class="text-center"><span
+                                                        {{-- <td id="approvalStatus" class="text-center"><span
                                                                 class="shadow-none badge   @if ($row->leave_status == 0) badge-light-primary
                                                             @elseif($row->leave_status == 1)
                                                             badge-light-success
@@ -131,10 +136,10 @@
                                                                 @else
                                                                     Decline
                                                                 @endif
-                                                            </span></td>
+                                                            </span></td> --}}
                                                         <td class="text-center">
                                                             <ul class="table-controls">
-                                                                @if (Session::has('pcp_admin'))
+                                                                @if (Session::has('pcp_admin') )
                                                                 @if ($row->approval_pcp == 0)
                                                                 <li><a href="{{ route('updating-leaves-form-edit', [$row->leave_id]) }}"
                                                                         class="bs-tooltip" data-bs-toggle="tooltip"
@@ -152,7 +157,7 @@
                                                                             </path>
                                                                         </svg></a></li>
                                                             @endif
-                                                        @elseif (Session::has('hod_admin'))
+                                                        @elseif (Session::has('hod_admin') )
                                                         @if ($row->approval_hod == 0)
                                                         <li><a href="{{ route('updating-leaves-form-edit', [$row->leave_id]) }}"
                                                                 class="bs-tooltip" data-bs-toggle="tooltip"
@@ -170,7 +175,7 @@
                                                                     </path>
                                                                 </svg></a></li>
                                                     @endif
-                                                        @elseif (Session::has('vc_admin'))
+                                                        @elseif (Session::has('vc_admin') )
                                                         @if ($row->approval_vc == 0)
                                                         <li><a href="{{ route('updating-leaves-form-edit', [$row->leave_id]) }}"
                                                                 class="bs-tooltip" data-bs-toggle="tooltip"

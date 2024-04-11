@@ -179,8 +179,13 @@ class Mycontroller extends Controller
         return view("pages.index");
     }
     public function home()
-    {
-        return view("users.home");
+    {    $employee = Session::get('emp_data');
+        $leaves =Leave::where('emp_id', $employee->id)
+        ->join('leave_types', 'leave_types.id', '=', 'leaves.lt_id')
+        ->select('leaves.id as leave_id', 'emp_id', 'lt_name', 'start_date', 'end_date', 'reason', 'location', 'approval_pcp', 'approval_hod', 'approval_vc','final_approval', 'comment', 'leaves.status as leave_status')
+        ->orderBy('leave_id', 'DESC')
+        ->get();
+        return view("users.home",compact('leaves'));
     }
     public function employee_login_page()
     {
@@ -249,8 +254,13 @@ class Mycontroller extends Controller
         $employee = Employee::where('email', $request->input('email'))
             ->join('designations', 'employees.dst_id', '=', 'designations.id')
             ->join('departments', 'employees.dpt_id', '=', 'departments.id')
+            // ->join('leaves', 'employees.id', '=', 'leaves.emp_id')
             ->first();
-
+            // $leaves =Leave::where('emp_id', $employee->id)
+            // ->join('leave_types', 'leave_types.id', '=', 'leaves.lt_id')
+            // ->select('leaves.id as leave_id', 'emp_id', 'lt_name', 'start_date', 'end_date', 'reason', 'location', 'approval_pcp', 'approval_hod', 'approval_vc', 'comment', 'leaves.status as leave_status')
+            // ->orderBy('leave_id', 'DESC')
+            // ->first();
 
         if ($employee) {
             $hashedPassword = $employee->password;
@@ -260,6 +270,7 @@ class Mycontroller extends Controller
                 // print_r('hiee');die();
                 Session::put('emp_logged', true);
                 Session::put('emp_data', $employee);
+                // Session::put('leave_emp_data', $leaves);
 
                 return redirect()->route('home');
             } else {
@@ -311,13 +322,13 @@ class Mycontroller extends Controller
     }
     public function emp_logout()
     {
-        Session::flush();
+        Session::forget('emp_logged');
         Auth::logout();
         return redirect()->route('employee_login');
     }
     public function admin_logout()
     {
-        Session::flush();
+        Session::forget('admin_logged');
         Auth::logout();
         return redirect()->route('admin_login');
     }
@@ -395,6 +406,7 @@ class Mycontroller extends Controller
         $leaves = DB::table('leaves')
             ->join('leave_types', 'leave_types.id', '=', 'leaves.lt_id')
             ->select('leaves.id as leave_id', 'emp_id', 'lt_name', 'start_date', 'end_date', 'reason', 'location', 'approval_pcp', 'approval_hod', 'approval_vc', 'comment', 'leaves.status as leave_status')
+            ->orderBy('leave_id', 'DESC')
             ->get();
         return view("pages.datatable-leaves", compact('leaves'));
     }
@@ -522,15 +534,16 @@ class Mycontroller extends Controller
             // if($leavesdata->approval_pcp == 1 && $leavesdata->approval_hod == 1){
             if (($request->input('approval')) == 1) {
                 $employee->leave_taken += $request->input('end_date');
+                // $leavesdata->final_approval += $request->input('approval');
             }
-            $approval = 1;
+            $leavesdata->final_approval = 1;
 
-            $sendmail = Helpers::leave_mail($request->input('id'), $employee->email, $approval, $leaves->comment);
+            $sendmail = Helpers::leave_mail($request->input('id'), $employee->email,  $leavesdata->final_approval, $leaves->comment);
         } elseif ($leaves->approval_pcp == 2 && $leaves->approval_hod == 2 || $leaves->approval_pcp == 2 && $leaves->approval_vc == 2 || $leaves->approval_hod == 2 && $leaves->approval_vc == 2) {
 
-            $approval = 2;
+            $leavesdata->final_approval = 2;
 
-            $sendmail = Helpers::leave_mail($request->input('id'), $employee->email, $approval, $leaves->comment);
+            $sendmail = Helpers::leave_mail($request->input('id'), $employee->email,  $leavesdata->final_approval, $leaves->comment);
         }
         $employee->save();
 

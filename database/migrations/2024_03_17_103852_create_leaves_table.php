@@ -24,6 +24,7 @@ return new class extends Migration
             $table->integer('approval_pcp')->nullable();
             $table->integer('approval_hod')->nullable();
             $table->integer('approval_vc')->nullable();
+            $table->integer('final_approval')->nullable();
             $table->string('comment')->nullable();
             $table->integer('status');
             $table->timestamps();
