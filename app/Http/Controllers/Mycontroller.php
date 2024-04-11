@@ -129,7 +129,9 @@ class Mycontroller extends Controller
 
             $leave = new Leave();
             $leave->emp_id = $request->input('emp_id');
-            $employee = Employee::where('employees.id', '=', $request->input('emp_id'))->first();
+            $employee = Employee::where('employees.id',  $request->input('emp_id'))->first();
+            // dd($employee);
+            // die();
             $leave->lt_id = $request->input('lt_id');
             $leave->start_date = $request->input('start_date');
             $leave->end_date = $request->input('end_date');
@@ -140,8 +142,8 @@ class Mycontroller extends Controller
             $leave->approval_pcp = 0;
             $leave->approval_hod = 0;
             $leave->approval_vc = 0;
-            $leave->save();
             $sendmail = Helpers::leave_mail($leave->emp_id, $employee->email, $leave->approval, $leave->comment);
+            $leave->save();
 
             return redirect()->back()->with('success', 'Request Send successfully');
         } else {
@@ -179,13 +181,15 @@ class Mycontroller extends Controller
         return view("pages.index");
     }
     public function home()
-    {    $employee = Session::get('emp_data');
-        $leaves =Leave::where('emp_id', $employee->id)
-        ->join('leave_types', 'leave_types.id', '=', 'leaves.lt_id')
-        ->select('leaves.id as leave_id', 'emp_id', 'lt_name', 'start_date', 'end_date', 'reason', 'location', 'approval_pcp', 'approval_hod', 'approval_vc','final_approval', 'comment', 'leaves.status as leave_status')
-        ->orderBy('leave_id', 'DESC')
-        ->get();
-        return view("users.home",compact('leaves'));
+    {
+        $employee = Session::get('emp_data');
+        $leaves = Leave::where('emp_id', $employee->emp_id)
+            
+            ->join('leave_types', 'leave_types.id', '=', 'leaves.lt_id')
+            ->select('leaves.id as leave_id', 'emp_id', 'lt_name', 'start_date', 'end_date', 'reason', 'location', 'approval_pcp', 'approval_hod', 'approval_vc', 'final_approval', 'comment', 'leaves.status as leave_status')
+            ->orderBy('leave_id', 'DESC')
+            ->get();
+        return view("users.home", compact('leaves'));
     }
     public function employee_login_page()
     {
@@ -255,12 +259,13 @@ class Mycontroller extends Controller
             ->join('designations', 'employees.dst_id', '=', 'designations.id')
             ->join('departments', 'employees.dpt_id', '=', 'departments.id')
             // ->join('leaves', 'employees.id', '=', 'leaves.emp_id')
+        ->select('employees.id as emp_id',  'first_name', 'last_name', 'mobile_no', 'dst_name', 'dpt_name', 'gender', 'email','image','addresses','employees.status as emp_status','leave_taken','password')
             ->first();
-            // $leaves =Leave::where('emp_id', $employee->id)
-            // ->join('leave_types', 'leave_types.id', '=', 'leaves.lt_id')
-            // ->select('leaves.id as leave_id', 'emp_id', 'lt_name', 'start_date', 'end_date', 'reason', 'location', 'approval_pcp', 'approval_hod', 'approval_vc', 'comment', 'leaves.status as leave_status')
-            // ->orderBy('leave_id', 'DESC')
-            // ->first();
+        // $leaves =Leave::where('emp_id', $employee->id)
+        // ->join('leave_types', 'leave_types.id', '=', 'leaves.lt_id')
+        // ->select('leaves.id as leave_id', 'emp_id', 'lt_name', 'start_date', 'end_date', 'reason', 'location', 'approval_pcp', 'approval_hod', 'approval_vc', 'comment', 'leaves.status as leave_status')
+        // ->orderBy('leave_id', 'DESC')
+        // ->first();
 
         if ($employee) {
             $hashedPassword = $employee->password;
@@ -327,7 +332,16 @@ class Mycontroller extends Controller
         return redirect()->route('employee_login');
     }
     public function admin_logout()
-    {
+    {   
+        if (Session::has('pcp_admin')) {
+            Session::forget('pcp_admin');
+        } elseif (Session::has('hod_admin')) {
+            Session::forget('hod_admin');
+        } elseif (Session::has('super_admin')) {
+            Session::forget('super_admin');
+        } elseif (Session::has('vc_admin')) {
+            Session::forget('vc_admin');
+        }
         Session::forget('admin_logged');
         Auth::logout();
         return redirect()->route('admin_login');
@@ -546,6 +560,7 @@ class Mycontroller extends Controller
             $sendmail = Helpers::leave_mail($request->input('id'), $employee->email,  $leavesdata->final_approval, $leaves->comment);
         }
         $employee->save();
+        $leavesdata->save();
 
         return redirect()->route('datatable-leaves')->with('success', 'updated successfully');
     }

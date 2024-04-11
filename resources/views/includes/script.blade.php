@@ -121,4 +121,10 @@
 <script src="{{ url('assets/src/assets/js/scrollspyNav.js') }}"></script>
 <script src="{{ url('assets/src/assets/js/apps/invoice-preview.js') }}"></script>
 
+
+
+<script src="{{ url('assets/src/plugins/src/filepond/filepondPluginFileValidateSize.min.js') }}"></script>
+<script src="{{ url('assets/src/plugins/src/flatpickr/flatpickr.js') }}"></script>
+<script src="{{ url('assets/src/assets/js/apps/invoice-edit.js') }}"></script>
+
 @stack('script');

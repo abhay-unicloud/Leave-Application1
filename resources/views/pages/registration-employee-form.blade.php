@@ -164,6 +164,7 @@
                                         <div class="col-md-4">
                                         <label class="form-check-label" for="date">Date of birth:</label>
                                         <input type="date" id="password" class="form-control" name="dob" required>
+                                        {{-- <input type="text" class="form-control form-control-sm flatpickr-input active" id="date" name="dob" placeholder="Add date picker" readonly="readonly"> --}}
                                     </div>
                                         <div class="col-md-4">
                                         <label class="form-check-label" for="file">Upload Photo:</label>

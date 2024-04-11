@@ -92,7 +92,7 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <label class="form-check-label" for="firstName">Employee-Id:</label>
-                                            <input type="text" id="emp_id" value="{{ $empdata->id }}"
+                                            <input type="text" id="emp_id" value="{{ $empdata->emp_id }}"
                                                 class="form-control" name="emp_id" readonly>
                                         </div>
 
