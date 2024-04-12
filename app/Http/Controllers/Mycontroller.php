@@ -142,7 +142,7 @@ class Mycontroller extends Controller
             $leave->approval_pcp = 0;
             $leave->approval_hod = 0;
             $leave->approval_vc = 0;
-            $sendmail = Helpers::leave_mail($leave->emp_id, $employee->email, $leave->approval, $leave->comment);
+            // $sendmail = Helpers::leave_mail($leave->emp_id, $employee->email, $leave->approval, $leave->comment);
             $leave->save();
 
             return redirect()->back()->with('success', 'Request Send successfully');

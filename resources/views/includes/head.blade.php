@@ -17,6 +17,10 @@
     
     <link rel="stylesheet" type="text/css" href="{{url('assets/src/plugins/css/dark/table/datatable/dt-global_style.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url('assets/src/plugins/css/dark/table/datatable/custom_dt_custom.css')}}">
+
+    <link rel="stylesheet" type="text/css" href="{{url('assets/src/plugins/css/light/table/datatable/custom_dt_miscellaneous.css')}}">
+    
+    <link rel="stylesheet" type="text/css" href="{{url('assets/src/plugins/css/dark/table/datatable/custom_dt_miscellaneous.css')}}">
     
     <link rel="stylesheet" type="text/css" href="{{url('assets/src/assets/css/dark/authentication/auth-boxed.css')}}">
     <!-- END PAGE LEVEL CUSTOM STYLES -->
