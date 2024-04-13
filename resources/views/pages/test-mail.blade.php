@@ -16,12 +16,16 @@
                        Employee id : {{$content['employee']}}
                     </div>
                     <div class="card-header">
-                       User Name : {{$content['mail']}}
+                       Email : {{$content['mail']}}
                     </div>
                     <div class="card-header">
                         Password : {{$content['pass']}}
                      </div>
-                     <p>You have to login with <strong>Employee id  Password</strong></p>
+                    <div class="card-header">
+                        <a href="http://127.0.0.1:8000/employee-login"> Login here </a>
+                       
+                     </div>
+                     <p>You have to login with <strong>Employee Email Password</strong></p>
                 </div>
             </div>
         </div>

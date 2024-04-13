@@ -3,7 +3,7 @@ const example2 = new autoComplete({
     placeHolder: "Ask a question",
     data: {
         src: [
-            "How to install Cork Admin",
+            "How to install vbpc Admin",
             "File Structure",
             "How to use Gulp",
             "How to run Browser Sync",
@@ -12,7 +12,7 @@ const example2 = new autoComplete({
             "Creative Photography",
             "Trending Style",
             "Changelog",
-            "What's new in Cork",
+            "What's new in vbpc",
             "Latest Tweet",
             "Latest Update",
             "Compilation Issue",

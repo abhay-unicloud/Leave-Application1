@@ -58,6 +58,8 @@ Route::get('/add_depart', [Mycontroller::class, 'add_depart_form'])->name('add_d
 Route::post('/add_depart', [Mycontroller::class, 'add_depart'])->name('add_depart');
 Route::post('/request', [Mycontroller::class, 'request'])->name('request');
 Route::post('/emp_data/{id}', [Mycontroller::class, 'view'])->name('emp_data');
+
+Route::post('/password_reset', [Mycontroller::class, 'password_reset'])->name('password_reset');
 Route::post('/reset_password/{id}', [Mycontroller::class, 'reset_password'])->name('reset_password');
 /* Forms Insertion End*/
 /* Tables and Datatables Start*/

@@ -184,7 +184,7 @@ class Mycontroller extends Controller
     {
         $employee = Session::get('emp_data');
         $leaves = Leave::where('emp_id', $employee->emp_id)
-            
+
             ->join('leave_types', 'leave_types.id', '=', 'leaves.lt_id')
             ->select('leaves.id as leave_id', 'emp_id', 'lt_name', 'start_date', 'end_date', 'reason', 'location', 'approval_pcp', 'approval_hod', 'approval_vc', 'final_approval', 'comment', 'leaves.status as leave_status')
             ->orderBy('leave_id', 'DESC')
@@ -258,15 +258,8 @@ class Mycontroller extends Controller
         $employee = Employee::where('email', $request->input('email'))
             ->join('designations', 'employees.dst_id', '=', 'designations.id')
             ->join('departments', 'employees.dpt_id', '=', 'departments.id')
-            // ->join('leaves', 'employees.id', '=', 'leaves.emp_id')
-        ->select('employees.id as emp_id',  'first_name', 'last_name', 'mobile_no', 'dst_name', 'dpt_name', 'gender', 'email','image','addresses','employees.status as emp_status','leave_taken','password')
+            ->select('employees.id as emp_id',  'first_name', 'last_name', 'mobile_no', 'dst_name', 'dpt_name', 'gender', 'email', 'image', 'addresses', 'employees.status as emp_status', 'leave_taken', 'password')
             ->first();
-        // $leaves =Leave::where('emp_id', $employee->id)
-        // ->join('leave_types', 'leave_types.id', '=', 'leaves.lt_id')
-        // ->select('leaves.id as leave_id', 'emp_id', 'lt_name', 'start_date', 'end_date', 'reason', 'location', 'approval_pcp', 'approval_hod', 'approval_vc', 'comment', 'leaves.status as leave_status')
-        // ->orderBy('leave_id', 'DESC')
-        // ->first();
-
         if ($employee) {
             $hashedPassword = $employee->password;
             $pass = $request->input('password');
@@ -286,6 +279,27 @@ class Mycontroller extends Controller
 
             return redirect()->back()->with('error', 'User does not exist');
         }
+    }
+    public function password_reset(Request $request)
+    {
+        $employee = Employee::where('email', $request->input('email'))
+            ->first();
+        if ($employee) {
+         Session::put('reset_data', $employee);
+        $data= $employee;
+            return redirect()->route('reset_password',compact('data'));
+            } else {
+
+                return redirect()->back()->with('error', 'Incorrect email or password');
+            }
+       
+    }
+    public function reset_password(Request $request,$data)
+    {
+        $employee =  Employee::find($data)->first();
+        $employee->password = Hash::Make($request->input('password'));
+        $employee->save(); 
+       
     }
     public function admin_login(Request $request)
     {
@@ -332,7 +346,7 @@ class Mycontroller extends Controller
         return redirect()->route('employee_login');
     }
     public function admin_logout()
-    {   
+    {
         if (Session::has('pcp_admin')) {
             Session::forget('pcp_admin');
         } elseif (Session::has('hod_admin')) {

@@ -7,12 +7,15 @@ class Helpers {
 
     public static function sendEmail($employee ,$mail, $pass)
     {
+        $url="http://127.0.0.1:8000/employee-login";
         
         $content = [
             'subject' => 'VBPC Employee Id Password',
             'employee' => $employee ,
             'mail' => $mail ,
             'pass' => $pass ,
+            'url' => $url ,
+
         ];
         
         Mail::to($mail)->send(new SampleMail($content));
@@ -29,7 +32,6 @@ class Helpers {
             $approval='Pending';
 
         }
-        
         $content = [
             'subject' => 'Leave Notification Mail',
             'employee' => $employee ,

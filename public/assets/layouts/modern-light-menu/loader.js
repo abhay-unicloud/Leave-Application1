@@ -7,7 +7,7 @@ window.addEventListener("load", function(){
     var layoutName = 'Modern Light Menu';
 
     var settingsObject = {
-        admin: 'Cork Admin Template',
+        admin: 'vbpc Admin Template',
         settings: {
             layout: {
                 name: layoutName,
@@ -29,41 +29,41 @@ window.addEventListener("load", function(){
     }
 
     if (localStorage.length === 0) {
-        corkThemeObject = settingsObject;
+        vbpcThemeObject = settingsObject;
     } else {
 
-        getcorkThemeObject = localStorage.getItem("theme");
-        getParseObject = JSON.parse(getcorkThemeObject)
+        getvbpcThemeObject = localStorage.getItem("theme");
+        getParseObject = JSON.parse(getvbpcThemeObject)
         ParsedObject = getParseObject;
 
-        if (getcorkThemeObject !== null) {
+        if (getvbpcThemeObject !== null) {
                
-            if (ParsedObject.admin === 'Cork Admin Template') {
+            if (ParsedObject.admin === 'vbpc Admin Template') {
 
                 if (ParsedObject.settings.layout.name === layoutName) {
 
-                    corkThemeObject = ParsedObject;
+                    vbpcThemeObject = ParsedObject;
                 } else {
-                    corkThemeObject = settingsObject;
+                    vbpcThemeObject = settingsObject;
                 }
                 
             } else {
                 if (ParsedObject.admin === undefined) {
-                    corkThemeObject = settingsObject;
+                    vbpcThemeObject = settingsObject;
                 }
             }
 
         }  else {
-            corkThemeObject = settingsObject;
+            vbpcThemeObject = settingsObject;
         }
     }
 
     // Get Dark Mode Information i.e darkMode: true or false
     
-    if (corkThemeObject.settings.layout.darkMode) {
-        localStorage.setItem("theme", JSON.stringify(corkThemeObject));
-        getcorkThemeObject = localStorage.getItem("theme");
-        getParseObject = JSON.parse(getcorkThemeObject)
+    if (vbpcThemeObject.settings.layout.darkMode) {
+        localStorage.setItem("theme", JSON.stringify(vbpcThemeObject));
+        getvbpcThemeObject = localStorage.getItem("theme");
+        getParseObject = JSON.parse(getvbpcThemeObject)
     
         if (getParseObject.settings.layout.darkMode) {
             ifStarterKit = document.body.getAttribute('page') === 'starter-pack' ? true : false;
@@ -79,9 +79,9 @@ window.addEventListener("load", function(){
             }
         }
     } else {
-        localStorage.setItem("theme", JSON.stringify(corkThemeObject));
-        getcorkThemeObject = localStorage.getItem("theme");
-        getParseObject = JSON.parse(getcorkThemeObject)
+        localStorage.setItem("theme", JSON.stringify(vbpcThemeObject));
+        getvbpcThemeObject = localStorage.getItem("theme");
+        getParseObject = JSON.parse(getvbpcThemeObject)
 
         if (!getParseObject.settings.layout.darkMode) {
             ifStarterKit = document.body.getAttribute('page') === 'starter-pack' ? true : false;
@@ -101,11 +101,11 @@ window.addEventListener("load", function(){
 
     // Get Layout Information i.e boxed: true or false
 
-    if (corkThemeObject.settings.layout.boxed) {
+    if (vbpcThemeObject.settings.layout.boxed) {
     
-        localStorage.setItem("theme", JSON.stringify(corkThemeObject));
-        getcorkThemeObject = localStorage.getItem("theme");
-        getParseObject = JSON.parse(getcorkThemeObject)
+        localStorage.setItem("theme", JSON.stringify(vbpcThemeObject));
+        getvbpcThemeObject = localStorage.getItem("theme");
+        getParseObject = JSON.parse(getvbpcThemeObject)
     
         if (getParseObject.settings.layout.boxed) {
             
@@ -131,9 +131,9 @@ window.addEventListener("load", function(){
         
     } else {
         
-        localStorage.setItem("theme", JSON.stringify(corkThemeObject));
-        getcorkThemeObject = localStorage.getItem("theme");
-        getParseObject = JSON.parse(getcorkThemeObject)
+        localStorage.setItem("theme", JSON.stringify(vbpcThemeObject));
+        getvbpcThemeObject = localStorage.getItem("theme");
+        getParseObject = JSON.parse(getvbpcThemeObject)
         
         if (!getParseObject.settings.layout.boxed) {
 

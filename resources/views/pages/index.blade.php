@@ -116,7 +116,7 @@
                                     <div class="info-box">
                                         <div class="icon">
                                             <span>
-                                                <img src="../src/assets/img/money-bag.png" alt="money-bag">
+                                                <img src="{{url('assets/src/assets/img/money-bag.png')}}" alt="money-bag">
                                             </span>
                                         </div>
 
@@ -210,7 +210,7 @@
                                             </div>
                                             <div class="t-content">
                                                 <div class="t-uppercontent">
-                                                    <h5>New project created : <a href="javscript:void(0);"><span>[Cork Admin]</span></a></h5>
+                                                    <h5>New project created : <a href="javscript:void(0);"><span>[vbpc Admin]</span></a></h5>
                                                 </div>
                                                 <p>07 May, 2022</p>
                                             </div>

@@ -1,8 +1,8 @@
 window.addEventListener("load", function(){
   try {
 
-    getcorkThemeObject = localStorage.getItem("theme");
-    getParseObject = JSON.parse(getcorkThemeObject)
+    getvbpcThemeObject = localStorage.getItem("theme");
+    getParseObject = JSON.parse(getvbpcThemeObject)
     ParsedObject = getParseObject;
 
     if (ParsedObject.settings.layout.darkMode) {
@@ -1065,8 +1065,8 @@ window.addEventListener("load", function(){
 
     document.querySelector('.theme-toggle').addEventListener('click', function() {
 
-      getcorkThemeObject = localStorage.getItem("theme");
-      getParseObject = JSON.parse(getcorkThemeObject)
+      getvbpcThemeObject = localStorage.getItem("theme");
+      getParseObject = JSON.parse(getvbpcThemeObject)
       ParsedObject = getParseObject;
 
       // console.log(ParsedObject.settings.layout.darkMode)
