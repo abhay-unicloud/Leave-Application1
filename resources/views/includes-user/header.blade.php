@@ -59,7 +59,7 @@
                  </div>
              </li>
 
-             <li class="nav-item theme-toggle-item">
+             <li class="d-none nav-item theme-toggle-item">
                  <a href="javascript:void(0);" class="nav-link theme-toggle">
                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
