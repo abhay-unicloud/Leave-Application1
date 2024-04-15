@@ -40,6 +40,7 @@ Route::get('/password_reset_view', function () {
 Route::get('/Leave-Application', [Mycontroller::class, 'Application_form'])->name('Leave_Application');
 Route::get('/Leave-Application-user', [Mycontroller::class, 'Application_form_user'])->name('Leave_Application_user');
 Route::get('/registration-employee-form', [Mycontroller::class, 'registration_employee'])->name('registration-employee-form');
+Route::get('/ADMISSION-FORM-FOR-SESSION', [Mycontroller::class, 'student_admission'])->name('student_admission');
 Route::get('/admin-unlock', [Mycontroller::class, 'admin_unlock'])->name('admin_unlock');
 Route::get('/emp-unlock', [Mycontroller::class, 'emp_unlock'])->name('emp_unlock');
 
@@ -64,7 +65,7 @@ Route::post('/emp_data/{id}', [Mycontroller::class, 'view'])->name('emp_data');
 
 // Route::get('/password_reset', [Mycontroller::class, 'password_reset_view'])->name('password_reset_view');
 Route::post('/password_reset', [Mycontroller::class, 'password_reset'])->name('password_reset');
-Route::post('/reset_password/{id}', [Mycontroller::class, 'reset_password'])->name('reset_password');
+Route::post('/reset_password', [Mycontroller::class, 'reset_password'])->name('reset_password');
 /* Forms Insertion End*/
 /* Tables and Datatables Start*/
 Route::get('/tables', [Mycontroller::class, 'tables'])->name('tables');

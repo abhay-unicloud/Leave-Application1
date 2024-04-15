@@ -308,18 +308,21 @@ class Mycontroller extends Controller
             }
        
     }
-    public function reset_password(Request $request,$data)
-    {   if(($request->input('password')) === ($request->input('confirm_password'))){
-
-        $employee =  Employee::find($data)->first();
+    public function reset_password(Request $request)
+    {  
+        $data =  Session::get('reset_data');
+        // dd($data);
+        // die();
+        $employee =  Employee::where('email', $data->email)->first();
+         if(($request->input('password')) === ($request->input('confirm_password'))){
         $employee->password = Hash::Make($request->input('confirm_password'));
-        $employee->save(); 
-        $Admin =  Admin::find($data)->first();
+        $Admin =  Admin::where('email', $data->email)->first();
         if(isset($Admin)){
-
+            
             $Admin->password = Hash::Make($request->input('confirm_password'));
             $Admin->save(); 
         }
+        $employee->save(); 
         Session::forget('reset_data');
         return redirect()->route('home')->with('success', 'Password Change');
     }else {
@@ -421,6 +424,13 @@ class Mycontroller extends Controller
         $department = Department::all()->where('status', '=', 1);
         $designation = Designation::all()->where('status', '=', 1);
         return view("pages.registration-employee-form", compact('designation'), compact('department'));
+    }
+    public function student_admission()
+    {
+
+        $department = Department::all()->where('status', '=', 1);
+        $designation = Designation::all()->where('status', '=', 1);
+        return view("pages.student-admission", compact('designation'), compact('department'));
     }
     public function Application_form()
     {
@@ -632,14 +642,14 @@ class Mycontroller extends Controller
         return redirect()->route('datatable-designations')->with('success', 'updated successfully');
     }
     public function sendEmail()
-    {
-
+    {   $sending_mail = Session::get('emp_data');
+         $mail= $sending_mail->email;
         $content = [
-            'subject' => 'This is the mail subject',
-            'body' => 'This is the email body of how to send email from laravel 10 with mailtrap.'
+            'subject' => 'Password reset',
+            'body' => 'IF you want to reset Your Password',
         ];
 
-        Mail::to('rahul@unicloudtech.com')->send(new SampleMail($content));
+        Mail::to($mail)->send(new SampleMail($content));
 
         return "Email has been sent.";
     }

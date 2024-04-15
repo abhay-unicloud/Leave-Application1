@@ -22,6 +22,7 @@
 
                                         <div class="media-body align-self-center">
 
+                                            <h4 class="mb-0">{{$data->id}} {{$data->email}}</h4>
                                             <h3 class="mb-0">{{$data->first_name}} {{$data->last_name}}</h3>
                                             <p class="mb-0">Enter your password to unlock your ID</p>
 
@@ -64,8 +65,9 @@
                                     </div>
 
                                 </div>
-                                <form action="{{ route('reset_password',[$data->id]) }}" method="POST">
+                                <form action="{{ route('reset_password') }}" method="POST">
                                     @csrf
+                                    <input type="hidden" name="email" value="{{$data->email}}">
                                     <div class="col-12">
                                         <div class="mb-4">
                                             <label class="form-label">Password</label>

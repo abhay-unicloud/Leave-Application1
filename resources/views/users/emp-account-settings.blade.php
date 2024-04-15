@@ -186,7 +186,7 @@
                                                                             
                                                                             <div class="col-md-12 mt-1">
                                                                                 <div class="form-check">
-                                                                                    <a href="">Reset Password </a>
+                                                                                    <a href="{{route('send_email')}}">Reset Password </a>
                                                                                     <br>
                                                                                     {{-- <input class="form-check-input"
                                                                                     type="checkbox" value=""

@@ -24,9 +24,13 @@ class SampleMail extends Mailable
         return $this->subject($this->content['subject'])
         ->view('pages.test-mail', ['content' => $this->content]);
         
-            }else{
+            }elseif($this->content['subject']==='Leave Notification Mail'){
                 return $this->subject($this->content['subject'])
                 ->view('pages.leave-mail', ['content' => $this->content]);
+            }
+            elseif($this->content['subject']==='Password reset'){
+                return $this->subject($this->content['subject'])
+                ->view('pages.password-mail', ['content' => $this->content]);
             }
     }
 }
