@@ -29,9 +29,12 @@ Route::get('/emp-lockscreen', [Mycontroller::class, 'emp_lockscreen'])->name('em
 Route::get('/index2', function () {
     return view('pages.index2');
 })->name('index2');
-// Route::get('/Leave-Application', function () {
-//     return view('pages.Application-form');
-// })->name('Leave-Application');
+Route::get('/email-verification', function () {
+    return view('users.emp-email-verify');
+})->name('email_verification');
+Route::get('/password_reset_view', function () {
+    return view('users.emp-password-reset');
+})->name('password_reset_view');
 
 /* Forms Start*/
 Route::get('/Leave-Application', [Mycontroller::class, 'Application_form'])->name('Leave_Application');
@@ -59,6 +62,7 @@ Route::post('/add_depart', [Mycontroller::class, 'add_depart'])->name('add_depar
 Route::post('/request', [Mycontroller::class, 'request'])->name('request');
 Route::post('/emp_data/{id}', [Mycontroller::class, 'view'])->name('emp_data');
 
+// Route::get('/password_reset', [Mycontroller::class, 'password_reset_view'])->name('password_reset_view');
 Route::post('/password_reset', [Mycontroller::class, 'password_reset'])->name('password_reset');
 Route::post('/reset_password/{id}', [Mycontroller::class, 'reset_password'])->name('reset_password');
 /* Forms Insertion End*/

@@ -280,14 +280,28 @@ class Mycontroller extends Controller
             return redirect()->back()->with('error', 'User does not exist');
         }
     }
+    public function password_reset_view()
+    {
+            // return view('users.emp-password-reset');
+        return view('users.employee-lockscreen');
+
+            
+    }
+    public function reset_view(){
+
+        $sending_mail = Session::has('emp_data');
+
+    }
     public function password_reset(Request $request)
     {
         $employee = Employee::where('email', $request->input('email'))
-            ->first();
+        ->first();
+        // dd($employee);
+        // die();
         if ($employee) {
          Session::put('reset_data', $employee);
         $data= $employee;
-            return redirect()->route('reset_password',compact('data'));
+            return redirect()->route('password_reset_view',compact('data'));
             } else {
 
                 return redirect()->back()->with('error', 'Incorrect email or password');
@@ -295,10 +309,23 @@ class Mycontroller extends Controller
        
     }
     public function reset_password(Request $request,$data)
-    {
+    {   if(($request->input('password')) === ($request->input('confirm_password'))){
+
         $employee =  Employee::find($data)->first();
-        $employee->password = Hash::Make($request->input('password'));
+        $employee->password = Hash::Make($request->input('confirm_password'));
         $employee->save(); 
+        $Admin =  Admin::find($data)->first();
+        if(isset($Admin)){
+
+            $Admin->password = Hash::Make($request->input('confirm_password'));
+            $Admin->save(); 
+        }
+        Session::forget('reset_data');
+        return redirect()->route('home')->with('success', 'Password Change');
+    }else {
+
+        return redirect()->back()->with('error', 'password not matched');
+    }
        
     }
     public function admin_login(Request $request)

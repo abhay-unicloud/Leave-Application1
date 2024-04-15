@@ -49,11 +49,11 @@
                                                         <th>How long</th>
                                                         <th>Reason</th>
                                                         <th>Location</th>
-                                                        @if (Session::has('pcp_admin'))
+                                                        @if (Session::has('pcp_admin') || Session::has('super_admin'))
                                                             <th>Approval As Principal</th>
-                                                        @elseif (Session::has('hod_admin'))
+                                                        @elseif (Session::has('hod_admin') || Session::has('super_admin'))
                                                             <th>Approval As HOD</th>
-                                                        @elseif (Session::has('vc_admin'))
+                                                        @elseif (Session::has('vc_admin') || Session::has('super_admin'))
                                                             <th>Approval As Vice President</th>
                                                         @endif
                                                         <th>Comment</th>
@@ -74,7 +74,7 @@
                                                         <td> {{ $row->end_date }} </td>
                                                         <td> {{ $row->reason }} </td>
                                                         <td> {{ $row->location }} </td>
-                                                        @if (Session::has('pcp_admin'))
+                                                        @if (Session::has('pcp_admin') || Session::has('super_admin'))
                                                             <td class="text-center"><span id="approval"
                                                                     class="shadow-none badge  @if ($row->approval_pcp == 0) badge-light-primary
                                                         @elseif($row->approval_pcp == 1)
@@ -90,7 +90,7 @@
                                                                     @endif
 
                                                                 </span></td>
-                                                        @elseif (Session::has('hod_admin'))
+                                                        @elseif (Session::has('hod_admin') || Session::has('super_admin'))
                                                             <td class="text-center"><span id="approval"
                                                                     class="shadow-none badge  @if ($row->approval_hod == 0) badge-light-primary
                                                         @elseif($row->approval_hod == 1)
@@ -106,7 +106,7 @@
                                                                     @endif
 
                                                                 </span></td>
-                                                        @elseif (Session::has('vc_admin'))
+                                                        @elseif (Session::has('vc_admin') || Session::has('super_admin'))
                                                             <td class="text-center"><span id="approval"
                                                                     class="shadow-none badge  @if ($row->approval_vc == 0) badge-light-primary
                                                     @elseif($row->approval_vc == 1)
@@ -141,7 +141,7 @@
                                                             </span></td> 
                                                         <td class="text-center">
                                                             <ul class="table-controls">
-                                                                @if (Session::has('pcp_admin'))
+                                                                @if (Session::has('pcp_admin') || Session::has('super_admin'))
                                                                     @if ($row->approval_pcp == 0)
                                                                         <li><a href="{{ route('updating-leaves-form-edit', [$row->leave_id]) }}"
                                                                                 class="bs-tooltip"
@@ -160,7 +160,7 @@
                                                                                     </path>
                                                                                 </svg></a></li>
                                                                     @endif
-                                                                @elseif (Session::has('hod_admin'))
+                                                                @elseif (Session::has('hod_admin') || Session::has('super_admin'))
                                                                     @if ($row->approval_hod == 0)
                                                                         <li><a href="{{ route('updating-leaves-form-edit', [$row->leave_id]) }}"
                                                                                 class="bs-tooltip"
@@ -179,7 +179,7 @@
                                                                                     </path>
                                                                                 </svg></a></li>
                                                                     @endif
-                                                                @elseif (Session::has('vc_admin'))
+                                                                @elseif (Session::has('vc_admin') || Session::has('super_admin'))
                                                                     @if ($row->approval_vc == 0)
                                                                         <li><a href="{{ route('updating-leaves-form-edit', [$row->leave_id]) }}"
                                                                                 class="bs-tooltip"
