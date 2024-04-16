@@ -87,11 +87,11 @@
                                 <form action="{{ route('insert') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <!-- <div class="row mb-4">
-                                                <div class="col-sm-12">
-                                                    <label class="form-check-label" for="emp_id">Employee-Id:</label>
-                                                    <input type="text" class="form-control" name="emp_id">
-                                                </div>
-                                            </div> -->
+                                                    <div class="col-sm-12">
+                                                        <label class="form-check-label" for="emp_id">Employee-Id:</label>
+                                                        <input type="text" class="form-control" name="emp_id">
+                                                    </div>
+                                                </div> -->
 
                                     <div class="row">
                                         <div class="col-md-4">
@@ -109,7 +109,7 @@
                                             <label class="form-check-label " for="MobileNo">Mobile No:</label>
                                             <input type="text" class="form-control" id="mobile_no" name="mobile_no"
                                                 required>
-                                                <div id="result_mobile_no"></div>
+                                            <div id="result_mobile_no"></div>
 
                                         </div>
                                     </div>
@@ -119,9 +119,9 @@
                                     <div class="row mt-4">
 
                                         <!-- <div class="col-md-4">
-                                                        <label class="form-check-label" for="designation">Designation:</label>
-                                                        <input type="text" class="form-control" name="designation">
-                                                    </div> -->
+                                                            <label class="form-check-label" for="designation">Designation:</label>
+                                                            <input type="text" class="form-control" name="designation">
+                                                        </div> -->
 
 
                                         <div class="col-md-4">
@@ -159,17 +159,19 @@
                                             {{-- <span class="password-toggle-icon"><i class="fas fa-eye"></i></span> --}}
                                             <input type="email" id="email" class="form-control" name="email"
                                                 required>
-                                                <div id="result_email"></div>
+                                            <div id="result_email"></div>
                                         </div>
                                         <div class="col-md-4">
-                                        <label class="form-check-label" for="date">Date of birth:</label>
-                                        <input type="date" id="password" class="form-control" name="dob" required>
-                                        {{-- <input type="text" class="form-control form-control-sm flatpickr-input active" id="date" name="dob" placeholder="Add date picker" readonly="readonly"> --}}
-                                    </div>
+                                            <label class="form-check-label" for="date">Date of birth:</label>
+                                            <input type="date" id="password" class="form-control" name="dob"
+                                                required>
+                                            {{-- <input type="text" class="form-control form-control-sm flatpickr-input active" id="date" name="dob" placeholder="Add date picker" readonly="readonly"> --}}
+                                        </div>
                                         <div class="col-md-4">
-                                        <label class="form-check-label" for="file">Upload Photo:</label>
-                                        <input type="file" id="password" class="form-control" name="image" required>
-                                    </div>
+                                            <label class="form-check-label" for="file">Upload Photo:</label>
+                                            <input type="file" id="password" class="form-control" name="image"
+                                                required>
+                                        </div>
 
 
                                     </div>
@@ -195,83 +197,106 @@
                 </div>
             </div>
         </div>
-    {{-- </div> --}}
-@endsection
-@push('script')
-    <script>
-      $(document).ready(function() {
-            $("#email").on('change',function() {
-
-                // var mobile_no = document.getElementById('mobile_no').val();
-                var email = $(this).val();
-             
-                var route = "{{ route('check_exists') }}";
-
-             
-                $.ajax({
-                    type: 'POST',
-                    url: "{{ route('check_exists') }}",
-                    data: {
-                        // emp_mobile_no: mobile_no,
-                      
-                        '_token': '{{ csrf_token() }}',
-                        'email': email
-                     
-                    },
-                    success: function(response) {
-                        if (response.exists) {
-                    $('#result_email').text('Email is already exists.');
-                    // Disable the submit button
-                    $('#submitBtn').prop('disabled', true);
-                }  else {
-                    // $('#result').text('Data does not exist.');
-                    // Enable the submit button
-                    $('#submitBtn').prop('disabled', false);
+        {{-- </div> --}}
+    @endsection
+    @push('script')
+        <script>
+            function myFunction() {
+                // Get the value of the input field with id="numb"
+                let x = document.getElementById("numb").value;
+                // If x is Not a Number or less than one or greater than 10
+                let text;
+                if (isNaN(x) || x < 1 || x > 10) {
+                    text = "Input not valid";
+                } else {
+                    text = "Input OK";
                 }
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(error);
-                        // alert('An error occurred while processing your request.');
+                document.getElementById("demo").innerHTML = text;
+            }
+            $(document).ready(function() {
+                $("#email").on('change', function() {
+
+                    // var mobile_no = document.getElementById('mobile_no').val();
+                    var email = $(this).val();
+
+                    var route = "{{ route('check_exists') }}";
+
+
+                    $.ajax({
+                        type: 'POST',
+                        url: "{{ route('check_exists') }}",
+                        data: {
+                            // emp_mobile_no: mobile_no,
+
+                            '_token': '{{ csrf_token() }}',
+                            'email': email
+
+                        },
+                        success: function(response) {
+                            if (response.exists) {
+                                $('#result_email').text('Email is already exists.');
+                                // Disable the submit button
+                                $('#submitBtn').prop('disabled', true);
+                            } else {
+                                // $('#result').text('Data does not exist.');
+                                // Enable the submit button
+                                $('#submitBtn').prop('disabled', false);
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(error);
+                            // alert('An error occurred while processing your request.');
+                        }
+                    })
+
+                });
+                $("#mobile_no").on('change', function() {
+
+                    // var mobile_no = document.getElementById('mobile_no').val();
+                    var mobile_no = $(this).val();
+
+                    var route = "{{ route('check_exists') }}";
+                    let text;
+                    var regex = /^(0|91)?[6-9][0-9]{9}$/;
+                    if ( regex.test($("#mobile_no").val())) {
+                        text = "Input OK";
+                        $('#submitBtn').prop('disabled', false);
+                        
+                    } else {
+                        text = "Input not valid";
+                        $('#submitBtn').prop('disabled', true);
+
                     }
-                })
+                    document.getElementById("result_mobile_no").innerHTML = text;
 
+                    $.ajax({
+                        type: 'POST',
+                        url: "{{ route('check_exists') }}",
+                        data: {
+                            // emp_mobile_no: mobile_no,
+
+                            '_token': '{{ csrf_token() }}',
+                            'mobile_no': mobile_no
+
+                        },
+                        success: function(response) {
+                            if (response.exists) {
+                                $('#result_mobile_no').text('Mobile Number is already exists.');
+                                // Disable the submit button
+                                $('#submitBtn').prop('disabled', true);
+                            } else {
+                                // $('#result').text('Data does not exist.');
+                                // Enable the submit button
+                                $('#submitBtn').prop('disabled', false);
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(error);
+                            // alert('An error occurred while processing your request.');
+                        }
+                    })
+
+                });
             });
-            $("#mobile_no").on('change',function() {
-
-                // var mobile_no = document.getElementById('mobile_no').val();
-                var mobile_no = $(this).val();
-             
-                var route = "{{ route('check_exists') }}";
-
-             
-                $.ajax({
-                    type: 'POST',
-                    url: "{{ route('check_exists') }}",
-                    data: {
-                        // emp_mobile_no: mobile_no,
-                      
-                        '_token': '{{ csrf_token() }}',
-                        'mobile_no': mobile_no
-                     
-                    },
-                    success: function(response) {
-                        if (response.exists) {
-                    $('#result_mobile_no').text('Mobile Number is already exists.');
-                    // Disable the submit button
-                    $('#submitBtn').prop('disabled', true);
-                }  else {
-                    // $('#result').text('Data does not exist.');
-                    // Enable the submit button
-                    $('#submitBtn').prop('disabled', false);
-                }
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(error);
-                        // alert('An error occurred while processing your request.');
-                    }
-                })
-
-            });
-        });
-    </script>
-@endpush
+        </script>
+    @endpush

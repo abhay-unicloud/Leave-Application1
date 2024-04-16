@@ -142,7 +142,7 @@ class Mycontroller extends Controller
             $leave->approval_pcp = 0;
             $leave->approval_hod = 0;
             $leave->approval_vc = 0;
-            // $sendmail = Helpers::leave_mail($leave->emp_id, $employee->email, $leave->approval, $leave->comment);
+            // $sendmail = Helpers::leave_mail_admins($leave->emp_id);
             $leave->save();
 
             return redirect()->back()->with('success', 'Request Send successfully');
@@ -180,6 +180,11 @@ class Mycontroller extends Controller
     {
         return view("pages.index");
     }
+    public function admin()
+    {   //hhh
+        return view("pages.index");
+    }
+
     public function home()
     {
         $employee = Session::get('emp_data');
@@ -469,9 +474,10 @@ class Mycontroller extends Controller
     {
         // $leaves = Leave::all();
         $leaves = DB::table('leaves')
+            ->select('leaves.id as leave_id', 'emp_id','first_name','last_name', 'lt_name', 'start_date', 'end_date', 'reason', 'location', 'approval_pcp', 'approval_hod', 'approval_vc' ,'final_approval', 'comment', 'leaves.status as leave_status')
             ->join('leave_types', 'leave_types.id', '=', 'leaves.lt_id')
-            ->select('leaves.id as leave_id', 'emp_id', 'lt_name', 'start_date', 'end_date', 'reason', 'location', 'approval_pcp', 'approval_hod', 'approval_vc', 'comment', 'leaves.status as leave_status')
-            ->orderBy('leave_id', 'DESC')
+            ->join('employees', 'employees.id', '=', 'leaves.emp_id')
+            // ->orderBy('leave_id', 'DESC')
             ->get();
         return view("pages.datatable-leaves", compact('leaves'));
     }
@@ -583,6 +589,8 @@ class Mycontroller extends Controller
             $leaves->approval_hod = $request->input('approval');
         } elseif (Session::has('vc_admin')) {
             $leaves->approval_vc = $request->input('approval');
+        } elseif (Session::has('super_admin')) {
+            $leaves->final_approval = $request->input('approval');
         }
         $leaves->comment = $request->input('comment');
         $leaves->save();
@@ -594,7 +602,7 @@ class Mycontroller extends Controller
 
         $leavesdata = Leave::find($request->input('id'));
 
-        if ($leaves->approval_pcp == 1 && $leaves->approval_hod == 1 || $leaves->approval_pcp == 1 && $leaves->approval_vc == 1 || $leaves->approval_hod == 1 && $leaves->approval_vc == 1) {
+        if ($leaves->approval_pcp == 1 && $leaves->approval_hod == 1 || $leaves->approval_pcp == 1 && $leaves->approval_vc == 1 || $leaves->approval_hod == 1 && $leaves->approval_vc == 1 || $leaves->final_approval== 1) {
 
             // if($leavesdata->approval_pcp == 1 && $leavesdata->approval_hod == 1){
             if (($request->input('approval')) == 1) {
@@ -604,7 +612,7 @@ class Mycontroller extends Controller
             $leavesdata->final_approval = 1;
 
             $sendmail = Helpers::leave_mail($request->input('id'), $employee->email,  $leavesdata->final_approval, $leaves->comment);
-        } elseif ($leaves->approval_pcp == 2 && $leaves->approval_hod == 2 || $leaves->approval_pcp == 2 && $leaves->approval_vc == 2 || $leaves->approval_hod == 2 && $leaves->approval_vc == 2) {
+        } elseif ($leaves->approval_pcp == 2 && $leaves->approval_hod == 2 || $leaves->approval_pcp == 2 && $leaves->approval_vc == 2 || $leaves->approval_hod == 2 && $leaves->approval_vc == 2 ||  $leaves->final_approval==2) {
 
             $leavesdata->final_approval = 2;
 

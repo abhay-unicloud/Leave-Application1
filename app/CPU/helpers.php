@@ -22,6 +22,28 @@ class Helpers {
         
         return "Email has been sent.";
     }
+    public static function leave_mail_admins($employee){
+    // $mail=df;
+        $recipients = [
+            'email1@example.com',
+            'email2@example.com',
+            // Add more email addresses as needed
+        ];
+        $url="http://127.0.0.1:8000/employee-login";
+        
+        $content = [
+            'subject' => 'VBPC Leave Request',
+            'body' => '',
+            'employee' => $employee ,
+            
+            'url' => $url ,
+
+        ];
+        
+        Mail::to($mail)->send(new SampleMail($content));
+        
+        return "Email has been sent.";
+    }
     public static function leave_mail($employee ,$mail, $approval,$comment)
     {   if($approval==1)
         {

@@ -57,7 +57,7 @@
                                                             <th>Approval As Vice President</th>
                                                         @endif
                                                         <th>Comment</th>
-                                                         <th class="text-center">Status</th> 
+                                                        {{-- <th class="text-center">Status</th>  --}}
                                                         <th class="text-center dt-no-sorting">Action</th>
                                                     </tr>
                                                 </thead>
@@ -65,10 +65,10 @@
                                                     @foreach ($leaves as $row)
                                                         <td class="checkbox-column text-center"> {{ $row->leave_id }} </td>
                                                         <!-- <td class="text-center">
-                                                                            <span><img src="../src/assets/img/profile-17.jpeg" class="profile-img" alt="avatar"></span>
-                                                                        </td> -->
+                                                                                <span><img src="../src/assets/img/profile-17.jpeg" class="profile-img" alt="avatar"></span>
+                                                                            </td> -->
 
-                                                        <td> {{ $row->emp_id }} </td>
+                                                        <td> {{ $row->first_name }} </td>
                                                         <td> {{ $row->lt_name }} </td>
                                                         <td> {{ $row->start_date }} </td>
                                                         <td> {{ $row->end_date }} </td>
@@ -79,12 +79,16 @@
                                                                     class="shadow-none badge  @if ($row->approval_pcp == 0) badge-light-primary
                                                         @elseif($row->approval_pcp == 1)
                                                         badge-light-success
+                                                        @elseif($row->final_approval == 1)
+                                                    badge-light-secondary 
                                                         @else
                                                         badge-light-danger @endif">
                                                                     @if ($row->approval_pcp == 0)
                                                                         Pending
                                                                     @elseif($row->approval_pcp == 1)
                                                                         Approved
+                                                                    @elseif($row->final_approval == 1)
+                                                                        SPL.Approved
                                                                     @else
                                                                         Decline
                                                                     @endif
@@ -95,12 +99,16 @@
                                                                     class="shadow-none badge  @if ($row->approval_hod == 0) badge-light-primary
                                                         @elseif($row->approval_hod == 1)
                                                         badge-light-success
+                                                        @elseif($row->final_approval == 1)
+                                                    badge-light-secondary 
                                                         @else
                                                         badge-light-danger @endif">
                                                                     @if ($row->approval_hod == 0)
                                                                         Pending
                                                                     @elseif($row->approval_hod == 1)
                                                                         Approved
+                                                                    @elseif($row->final_approval == 1)
+                                                                        SPL.Approved
                                                                     @else
                                                                         Decline
                                                                     @endif
@@ -111,12 +119,16 @@
                                                                     class="shadow-none badge  @if ($row->approval_vc == 0) badge-light-primary
                                                     @elseif($row->approval_vc == 1)
                                                     badge-light-success
+                                                    @elseif($row->final_approval == 1)
+                                                    badge-light-secondary 
                                                     @else
                                                     badge-light-danger @endif">
                                                                     @if ($row->approval_vc == 0)
                                                                         Pending
                                                                     @elseif($row->approval_vc == 1)
                                                                         Approved
+                                                                    @elseif($row->final_approval == 1)
+                                                                        SPL.Approved
                                                                     @else
                                                                         Decline
                                                                     @endif
@@ -125,7 +137,7 @@
                                                         @endif
 
                                                         <td> {{ $row->comment }} </td>
-                                                         <td id="approvalStatus" class="text-center"><span
+                                                        {{-- <td id="approvalStatus" class="text-center"><span
                                                                 class="shadow-none badge   @if ($row->leave_status == 0) badge-light-primary
                                                             @elseif($row->leave_status == 1)
                                                             badge-light-success
@@ -138,14 +150,13 @@
                                                                 @else
                                                                     Decline
                                                                 @endif
-                                                            </span></td> 
+                                                            </span></td>  --}}
                                                         <td class="text-center">
                                                             <ul class="table-controls">
                                                                 @if (Session::has('pcp_admin') || Session::has('super_admin'))
-                                                                    @if ($row->approval_pcp == 0)
+                                                                    @if ($row->approval_pcp == 0 || $row->final_approval == 0)
                                                                         <li><a href="{{ route('updating-leaves-form-edit', [$row->leave_id]) }}"
-                                                                                class="bs-tooltip"
-                                                                                data-bs-toggle="tooltip"
+                                                                                class="bs-tooltip" data-bs-toggle="tooltip"
                                                                                 data-bs-placement="top" title="Edit"
                                                                                 data-original-title="Edit"><svg
                                                                                     xmlns="http://www.w3.org/2000/svg"
@@ -161,10 +172,9 @@
                                                                                 </svg></a></li>
                                                                     @endif
                                                                 @elseif (Session::has('hod_admin') || Session::has('super_admin'))
-                                                                    @if ($row->approval_hod == 0)
+                                                                    @if ($row->approval_hod == 0 || $row->final_approval == 0)
                                                                         <li><a href="{{ route('updating-leaves-form-edit', [$row->leave_id]) }}"
-                                                                                class="bs-tooltip"
-                                                                                data-bs-toggle="tooltip"
+                                                                                class="bs-tooltip" data-bs-toggle="tooltip"
                                                                                 data-bs-placement="top" title="Edit"
                                                                                 data-original-title="Edit"><svg
                                                                                     xmlns="http://www.w3.org/2000/svg"
@@ -180,10 +190,9 @@
                                                                                 </svg></a></li>
                                                                     @endif
                                                                 @elseif (Session::has('vc_admin') || Session::has('super_admin'))
-                                                                    @if ($row->approval_vc == 0)
+                                                                    @if ($row->approval_vc == 0 || $row->final_approval == 0)
                                                                         <li><a href="{{ route('updating-leaves-form-edit', [$row->leave_id]) }}"
-                                                                                class="bs-tooltip"
-                                                                                data-bs-toggle="tooltip"
+                                                                                class="bs-tooltip" data-bs-toggle="tooltip"
                                                                                 data-bs-placement="top" title="Edit"
                                                                                 data-original-title="Edit"><svg
                                                                                     xmlns="http://www.w3.org/2000/svg"
@@ -227,9 +236,9 @@
                                         </div>
                                     </div>
                                 </div>
-            
+
                             </div>
-                            
+
                             {{-- <div class="row layout-spacing">
                                 <div class="col-lg-12">
                                     <div class="statbox widget box box-shadow">
