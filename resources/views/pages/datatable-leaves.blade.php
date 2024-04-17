@@ -41,12 +41,13 @@
                                             <table id="html5-extension" class="table dt-table-hover" style="width:100%">
                                                 <thead>
                                                     <tr>
-                                                        <th class="checkbox-column text-center"> Leave Id </th>
+                                                        <th class="checkbox-column text-center"> Sr No. </th>
                                                         <!-- <th class="text-center">Image</th> -->
+                                                        <th>Leave Id</th>
                                                         <th>Employee Id</th>
                                                         <th>Leave Type</th>
                                                         <th>Start Date</th>
-                                                        <th>How long</th>
+                                                        <th>End Date</th>
                                                         <th>Reason</th>
                                                         <th>Location</th>
                                                         @if (Session::has('pcp_admin') || Session::has('super_admin'))
@@ -62,13 +63,15 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                
                                                     @foreach ($leaves as $row)
-                                                        <td class="checkbox-column text-center"> {{ $row->leave_id }} </td>
+                                                        <td class="checkbox-column text-center"> {{ ++$i}} </td>
                                                         <!-- <td class="text-center">
                                                                                 <span><img src="../src/assets/img/profile-17.jpeg" class="profile-img" alt="avatar"></span>
                                                                             </td> -->
 
-                                                        <td> {{ $row->first_name }} </td>
+                                                        <td> {{ $row->leave_id }} </td>
+                                                        <td> {{ $row->first_name }} {{ $row->last_name }} </td>
                                                         <td> {{ $row->lt_name }} </td>
                                                         <td> {{ $row->start_date }} </td>
                                                         <td> {{ $row->end_date }} </td>

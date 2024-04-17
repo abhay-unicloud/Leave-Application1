@@ -22,25 +22,32 @@ class Helpers {
         
         return "Email has been sent.";
     }
-    public static function leave_mail_admins($employee){
-    // $mail=df;
+    public static function leave_mail_admins($employee,$leaveid,$empleave,$first,$last,$lt_name){
+        if($empleave < 20){
+            $leaves= 20 - $empleave;
+        }else{
+            $leaves='he/she not have available leaves';
+        }
+        $mail="abhay@unicloudtech.com";
         $recipients = [
-            'email1@example.com',
-            'email2@example.com',
+            'abhay2004panwar@gmail.com',
+            'singh121hitan@gmail.com',
             // Add more email addresses as needed
         ];
-        $url="http://127.0.0.1:8000/employee-login";
+        $url="http://127.0.0.1:8000/updating-leaves-form/edit/".$leaveid;
         
         $content = [
             'subject' => 'VBPC Leave Request',
-            'body' => '',
+            'body' => 'This employee have a Request take a Leave',
             'employee' => $employee ,
-            
+            'name'=> $first .' '. $last,
+            'lt_name'=> $lt_name,
+            'leaves'=> $leaves,
             'url' => $url ,
 
         ];
         
-        Mail::to($mail)->send(new SampleMail($content));
+        Mail::to($mail)->cc($recipients)->send(new SampleMail($content));
         
         return "Email has been sent.";
     }

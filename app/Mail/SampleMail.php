@@ -32,5 +32,9 @@ class SampleMail extends Mailable
                 return $this->subject($this->content['subject'])
                 ->view('pages.password-mail', ['content' => $this->content]);
             }
+            elseif($this->content['subject']==='VBPC Leave Request'){
+                return $this->subject($this->content['subject'])
+                ->view('pages.leave-request-mail', ['content' => $this->content]);
+            }
     }
 }

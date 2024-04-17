@@ -155,14 +155,21 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-2">
                                             <label class="form-check-label" for="start-date"> From:</label>
                                             <input type="date" id="start-date" class="form-control"
                                                 name="start_date">
+
                                         </div>
-                                        <div class="col-md-4">
+
+                                        <div class="col-md-2">
+                                            <label class="form-check-label" for="start-date"> To:</label>
+                                            <input type="date" id="start-date" class="form-control" name="end_date">
+
+                                        </div>
+                                        <div class="col-md-3">
                                             <label class="form-check-label" for="email">How long</label>
-                                            <input type="text" id="how_long" class="form-control" name="end_date">
+                                            <input type="number" id="how_long" class="form-control" name="how_long">
                                             <div id="result_how"></div>
                                         </div>
 

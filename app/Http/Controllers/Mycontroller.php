@@ -125,16 +125,17 @@ class Mycontroller extends Controller
     }
     public function request(Request $request)
     {
-        if (($request->input('end_date')) > 0) {
+        if (($request->input('end_date')) > $request->input('start_date')) {
 
             $leave = new Leave();
-            $leave->emp_id = $request->input('emp_id');
+           $data= $leave->emp_id = $request->input('emp_id');
             $employee = Employee::where('employees.id',  $request->input('emp_id'))->first();
             // dd($employee);
             // die();
             $leave->lt_id = $request->input('lt_id');
             $leave->start_date = $request->input('start_date');
             $leave->end_date = $request->input('end_date');
+            $leave->how_long = $request->input('how_long');
             $leave->reason = $request->input('reason');
             $leave->location = $request->input('location');
             $leave->delete1 = 0;
@@ -142,8 +143,15 @@ class Mycontroller extends Controller
             $leave->approval_pcp = 0;
             $leave->approval_hod = 0;
             $leave->approval_vc = 0;
-            // $sendmail = Helpers::leave_mail_admins($leave->emp_id);
             $leave->save();
+            $leaveid=Leave::where('leaves.emp_id',  $request->input('emp_id'))->orderBy('id', 'DESC')->first();
+            // dd($leaveid);
+            // die();
+            $lvid = $leaveid->id;
+            $employeeid = Employee::where('employees.id',  $request->input('emp_id'))->first();
+            $empleave=  $employeeid->leave_taken;
+            $leavetpye = Leave_types::where('id',  $request->input('lt_id'))->first();
+            $sendmail = Helpers::leave_mail_admins($data,$lvid,$empleave, $employeeid->first_name, $employeeid->last_name,$leavetpye->lt_name);
 
             return redirect()->back()->with('success', 'Request Send successfully');
         } else {
@@ -474,12 +482,16 @@ class Mycontroller extends Controller
     {
         // $leaves = Leave::all();
         $leaves = DB::table('leaves')
-            ->select('leaves.id as leave_id', 'emp_id','first_name','last_name', 'lt_name', 'start_date', 'end_date', 'reason', 'location', 'approval_pcp', 'approval_hod', 'approval_vc' ,'final_approval', 'comment', 'leaves.status as leave_status')
-            ->join('leave_types', 'leave_types.id', '=', 'leaves.lt_id')
-            ->join('employees', 'employees.id', '=', 'leaves.emp_id')
-            // ->orderBy('leave_id', 'DESC')
-            ->get();
-        return view("pages.datatable-leaves", compact('leaves'));
+            ->select('leaves.id as leave_id', 'emp_id','first_name','last_name', 'lt_name', 'start_date', 'end_date','how_long', 'reason', 'location', 'approval_pcp', 'approval_hod', 'approval_vc' ,'final_approval', 'comment', 'leaves.status as leave_status')
+            ->leftJoin('leave_types', 'leave_types.id', '=', 'leaves.lt_id')
+            ->leftJoin('employees', 'employees.id', '=', 'leaves.emp_id')
+            ->orderBy('leave_id', 'DESC')
+            
+            ->get() ;
+        //     dd($leaves);
+        // die();
+        $i=0;
+        return view("pages.datatable-leaves", compact('leaves','i'));
     }
     public function datatable_employee()
     {

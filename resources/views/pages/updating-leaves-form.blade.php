@@ -143,12 +143,12 @@
                                     <div class="row mt-3">
                                         <div class="col-md-4">
                                             <label class="form-check-label" for="email">Leave Type:</label>
-                                            <input type="text" id="emp_id" value="{{ $leaves->start_date }}"
+                                            <input type="text" id="emp_id" value="{{ $leaves->lt_name }}"
                                                 class="form-control" name="emp_id" readonly>
                                         </div>
                                         <div class="col-md-4">
                                             <label class="form-check-label" for="start-date"> Duration:</label>
-                                            <input type="text" id="emp_id" value="{{ $leaves->emp_id }}"
+                                            <input type="text" id="emp_id" value="{{ $leaves->start_date }}"
                                                 class="form-control" name="emp_id" readonly>
                                         </div>
                                         <div class="col-md-4">
