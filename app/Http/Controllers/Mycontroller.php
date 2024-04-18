@@ -351,7 +351,6 @@ class Mycontroller extends Controller
             ->join('departments', 'admins.dpt_id', '=', 'departments.id')
             ->first();
 
-
         // dd($employee);
         // die();
         if ($employee) {
@@ -663,7 +662,7 @@ class Mycontroller extends Controller
     }
     public function sendEmail()
     {   $sending_mail = Session::get('emp_data');
-         $mail= $sending_mail->email;
+        $mail= $sending_mail->email;
         $content = [
             'subject' => 'Password reset',
             'body' => 'IF you want to reset Your Password',
@@ -671,6 +670,6 @@ class Mycontroller extends Controller
 
         Mail::to($mail)->send(new SampleMail($content));
 
-        return "Email has been sent.";
+        return redirect()->route('emp_account_set')->with('success', "Email has been sent.");
     }
 }
