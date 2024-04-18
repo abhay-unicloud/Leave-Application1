@@ -38,18 +38,18 @@
                                 <div class="col-lg-12">
                                     <div class="statbox widget box box-shadow">
                                         <div id="printarea" class="widget-content widget-content-area m-1 p-2">
-                                            <table id="html5-extension" class="table dt-table-hover" style="width:100%">
+                                            <table id="html5-extension" class="table style-2 dt-table-hover" style="width:100%">
                                                 <thead>
                                                     <tr>
                                                         <th class="checkbox-column text-center"> Sr No. </th>
-                                                        <!-- <th class="text-center">Image</th> -->
                                                         <th>Leave Id</th>
+                                                        <th class="text-center">Image</th>
                                                         <th>Employee Id</th>
                                                         <th>Leave Type</th>
                                                         <th>Start Date</th>
                                                         <th>End Date</th>
-                                                        <th>Reason</th>
-                                                        <th>Location</th>
+                                                        {{-- <th>Reason</th>
+                                                        <th>Location</th> --}}
                                                         @if (Session::has('pcp_admin') || Session::has('super_admin'))
                                                             <th>Approval As Principal</th>
                                                         @elseif (Session::has('hod_admin') || Session::has('super_admin'))
@@ -66,17 +66,17 @@
                                                 
                                                     @foreach ($leaves as $row)
                                                         <td class="checkbox-column text-center"> {{ ++$i}} </td>
-                                                        <!-- <td class="text-center">
-                                                                                <span><img src="../src/assets/img/profile-17.jpeg" class="profile-img" alt="avatar"></span>
-                                                                            </td> -->
-
                                                         <td> {{ $row->leave_id }} </td>
+                                                      <td class="text-center">
+                                                                                <span><img src="{{ $row->image }}" class="profile-img rounded-circle" alt="avatar"></span>
+                                                                            </td> 
+
                                                         <td> {{ $row->first_name }} {{ $row->last_name }} </td>
                                                         <td> {{ $row->lt_name }} </td>
                                                         <td> {{ $row->start_date }} </td>
                                                         <td> {{ $row->end_date }} </td>
-                                                        <td> {{ $row->reason }} </td>
-                                                        <td> {{ $row->location }} </td>
+                                                        {{-- <td> {{ $row->reason }} </td>
+                                                        <td> {{ $row->location }} </td> --}}
                                                         @if (Session::has('pcp_admin') || Session::has('super_admin'))
                                                             <td class="text-center"><span id="approval"
                                                                     class="shadow-none badge  @if ($row->approval_pcp == 0) badge-light-primary

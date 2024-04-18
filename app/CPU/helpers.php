@@ -1,6 +1,8 @@
 <?php
 namespace App\CPU;
 use App\Mail\SampleMail;
+use App\Models\Notification;
+
 use Illuminate\Support\Facades\Mail;
 
 class Helpers {
@@ -72,5 +74,10 @@ class Helpers {
         Mail::to($mail)->send(new SampleMail($content));
         
         return "Email has been sent.";
+    }
+    public static function notification()
+    {
+        $Notification = Notification::select('*')->orderBy('id', 'DESC')->get();
+        return  $Notification;
     }
 }

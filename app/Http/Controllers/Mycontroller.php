@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\signup;
 use App\Models\Employee;
+use App\Models\Notification;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -125,7 +126,7 @@ class Mycontroller extends Controller
     }
     public function request(Request $request)
     {
-        if (($request->input('end_date')) > $request->input('start_date')) {
+        if (($request->input('end_date')) >= $request->input('start_date')) {
 
             $leave = new Leave();
            $data= $leave->emp_id = $request->input('emp_id');
@@ -152,7 +153,11 @@ class Mycontroller extends Controller
             $empleave=  $employeeid->leave_taken;
             $leavetpye = Leave_types::where('id',  $request->input('lt_id'))->first();
             $sendmail = Helpers::leave_mail_admins($data,$lvid,$empleave, $employeeid->first_name, $employeeid->last_name,$leavetpye->lt_name);
-
+            $notificaton = new Notification();
+            $notificaton->name = "New Leave Request";
+            $notificaton->path = 'http://127.0.0.1:8000/updating-leaves-form/edit/' . $lvid;
+            $notificaton->status = 0;
+            $notificaton->save();
             return redirect()->back()->with('success', 'Request Send successfully');
         } else {
             return redirect()->back()->with('error', 'Request Send Unsuccessfull');
@@ -477,11 +482,16 @@ class Mycontroller extends Controller
         $leave_types = Leave_types::all();
         return view("pages.datatable-leave_types", compact('leave_types'));
     }
+    public function notification()
+    {
+        $Notification = Notification::all();
+        return view("includes.header", compact('Notification'));
+    }
     public function datatable_leaves()
     {
         // $leaves = Leave::all();
         $leaves = DB::table('leaves')
-            ->select('leaves.id as leave_id', 'emp_id','first_name','last_name', 'lt_name', 'start_date', 'end_date','how_long', 'reason', 'location', 'approval_pcp', 'approval_hod', 'approval_vc' ,'final_approval', 'comment', 'leaves.status as leave_status')
+            ->select('leaves.id as leave_id', 'emp_id','first_name','last_name','image', 'lt_name', 'start_date', 'end_date','how_long', 'reason', 'location', 'approval_pcp', 'approval_hod', 'approval_vc' ,'final_approval', 'comment', 'leaves.status as leave_status')
             ->leftJoin('leave_types', 'leave_types.id', '=', 'leaves.lt_id')
             ->leftJoin('employees', 'employees.id', '=', 'leaves.emp_id')
             ->orderBy('leave_id', 'DESC')
@@ -538,7 +548,7 @@ class Mycontroller extends Controller
     public function edit_leaves($id)
     {
 
-        $leaves = Leave::select('leaves.id as leave_id', 'leave_types.id as leave_type_id', 'employees.id as emp_id', 'lt_name', 'start_date', 'end_date', 'reason', 'location', 'approval_pcp', 'approval_hod', 'approval_vc', 'comment', 'first_name', 'last_name', 'dpt_name', 'dst_name', 'mobile_no', 'gender', 'addresses', 'email')
+        $leaves = Leave::select('leaves.id as leave_id', 'leave_types.id as leave_type_id', 'employees.id as emp_id','how_long', 'lt_name', 'start_date', 'end_date', 'reason', 'location', 'approval_pcp', 'approval_hod', 'approval_vc', 'comment', 'first_name', 'last_name', 'dpt_name', 'dst_name', 'mobile_no', 'gender', 'addresses', 'email')
             ->join('leave_types', 'leaves.lt_id', '=', 'leave_types.id')
             ->join('employees', 'leaves.emp_id', '=', 'employees.id')
             ->join('designations', 'employees.dst_id', '=', 'designations.id')
@@ -612,7 +622,8 @@ class Mycontroller extends Controller
         $employee = Employee::where('employees.id', '=', $request->input('emp_id'))->first();
 
         $leavesdata = Leave::find($request->input('id'));
-
+    // dd($employee);
+    //     die();
         if ($leaves->approval_pcp == 1 && $leaves->approval_hod == 1 || $leaves->approval_pcp == 1 && $leaves->approval_vc == 1 || $leaves->approval_hod == 1 && $leaves->approval_vc == 1 || $leaves->final_approval== 1) {
 
             // if($leavesdata->approval_pcp == 1 && $leavesdata->approval_hod == 1){
@@ -631,6 +642,11 @@ class Mycontroller extends Controller
         }
         $employee->save();
         $leavesdata->save();
+        $notificaton = new Notification();
+        $notificaton->name = "New Leave Request";
+        $notificaton->path = 'http://127.0.0.1:8000/updating-leaves-form/edit/' . $leavesdata->id;
+        $notificaton->status = 0;
+        $notificaton->save();
 
         return redirect()->route('datatable-leaves')->with('success', 'updated successfully');
     }

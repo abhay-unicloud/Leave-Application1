@@ -26,7 +26,7 @@
                     <nav class="breadcrumb-style-one" aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#">Form</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Updating-Employee</li>
+                            <li class="breadcrumb-item active" aria-current="page">Updating-leaves</li>
                         </ol>
                     </nav>
                 </div>
@@ -39,7 +39,7 @@
                             <div class="widget-header">
                                 <div class="row">
                                     <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                        <h4>Updating-Employee</h4>
+                                        <h4>Updating-leaves</h4>
                                     </div>
                                 </div>
                             </div>
@@ -86,54 +86,59 @@
 
                                     <input type="hidden" name="id" value="{{ $leaves->leave_id }}">
                                     <div class="row">
-                                        <div class="col-md-4">
+                                        <div class="col-md-2">
                                             <label class="form-check-label" for="firstName">Employee-Id:</label>
                                             <input type="text" id="emp_id" value="{{ $leaves->emp_id }}"
-                                                class="form-control" name="emp_id" readonly>
+                                            class="form-control" name="emp_id" readonly>
                                         </div>
-
-                                        <div class="col-md-4">
+                                    </div>
+                                    <div class="row mt-2">
+                                        
+                                        <div class="col-md-3">
                                             <label class="form-check-label" for="firstName">First Name:</label>
                                             <input type="text" id="emp_id" value="{{ $leaves->first_name }}"
-                                                class="form-control" name="emp_id" readonly>
+                                            class="form-control" name="#" readonly>
                                         </div>
 
 
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <label class="form-check-label" for="LastName">Last Name:</label>
-                                            <input type="text" id="emp_id" value="{{ $leaves->last_name }}"
-                                                class="form-control" name="emp_id" readonly>
+                                            <input type="text" id="#" value="{{ $leaves->last_name }}"
+                                                class="form-control" name="#" readonly>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <label class="form-check-label " for="MobileNo">Mobile No:</label>
-                                            <input type="text" id="emp_id" value="{{ $leaves->mobile_no }}"
-                                                class="form-control" name="emp_id" readonly>
+                                            <input type="text" id="#" value="{{ $leaves->mobile_no }}"
+                                                class="form-control" name="#" readonly>
                                         </div>
-                                        <div class="col-md-4">
-                                            <label class="form-check-label" for="designation">Designation:</label>
-                                            <input type="text" id="emp_id" value="{{ $leaves->dst_name }}"
-                                                class="form-control" name="emp_id" readonly>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label class="form-label" for="department">Department:</label>
-                                            <input type="text" id="emp_id" value="{{ $leaves->dpt_name }}"
-                                                class="form-control" name="emp_id" readonly>
-                                        </div>
-
-                                        <div class="col-md-4">
+                                        <div class="col-md-2">
                                             <label class="form-check-label" for="">Gender:</label>
-                                            <input type="text" id="emp_id"
+                                            <input type="text" id="#"
                                                 value="@if ($leaves->gender == 1)Male
                                             @elseif($leaves->gender == 2)Female
                                             @elseif($leaves->gender == 3)Other
                                             @else Undefined @endif "
-                                                class="form-control" name="emp_id" readonly>
+                                                class="form-control" name="#" readonly>
                                         </div>
+                                        </div>
+                                        <div class="row mt-2">
+                                        <div class="col-md-3">
+                                            <label class="form-check-label" for="designation">Designation:</label>
+                                            <input type="text" id="#" value="{{ $leaves->dst_name }}"
+                                                class="form-control" name="#" readonly>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label class="form-label" for="department">Department:</label>
+                                            <input type="text" id="#" value="{{ $leaves->dpt_name }}"
+                                                class="form-control" name="#" readonly>
+                                        </div>
+
+                                        
 
                                         <div class="col-md-4">
                                             <label class="form-check-label" for="">Email:</label>
-                                            <input type="text" id="emp_id" value="{{ $leaves->email }}"
-                                                class="form-control" name="emp_id" readonly>
+                                            <input type="text" id="#" value="{{ $leaves->email }}"
+                                                class="form-control" name="#" readonly>
                                         </div>
 
                                     </div>
@@ -143,17 +148,22 @@
                                     <div class="row mt-3">
                                         <div class="col-md-4">
                                             <label class="form-check-label" for="email">Leave Type:</label>
-                                            <input type="text" id="emp_id" value="{{ $leaves->lt_name }}"
-                                                class="form-control" name="emp_id" readonly>
+                                            <input type="text" id="#" value="{{ $leaves->lt_name }}"
+                                                class="form-control" name="#" readonly>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-2">
                                             <label class="form-check-label" for="start-date"> Duration:</label>
-                                            <input type="text" id="emp_id" value="{{ $leaves->start_date }}"
-                                                class="form-control" name="emp_id" readonly>
+                                            <input type="text" id="#" value="{{ $leaves->start_date }}"
+                                                class="form-control" name="#" readonly>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-2">
+                                            <label class="form-check-label" for="email">To:</label>
+                                            <input type="text" id="#" value="{{ $leaves->end_date }}"
+                                                class="form-control" name="end_date" readonly>
+                                        </div>
+                                        <div class="col-md-2">
                                             <label class="form-check-label" for="email">How Much</label>
-                                            <input type="text" id="emp_id" value="{{ $leaves->end_date }}"
+                                            <input type="text" id="emp_id" value="{{ $leaves->how_long }}"
                                                 class="form-control" name="end_date" readonly>
                                         </div>
 

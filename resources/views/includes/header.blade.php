@@ -94,125 +94,58 @@
                  </a>
 
                  <div class="dropdown-menu position-absolute" aria-labelledby="notificationDropdown">
-                     <div class="drodpown-title message">
-                         <h6 class="d-flex justify-content-between"><span class="align-self-center">Messages</span>
-                             <span class="badge badge-primary">9 Unread</span></h6>
-                     </div>
+
                      <div class="notification-scroll">
-                         <div class="dropdown-item">
-                             <div class="media server-log">
-                                 <img src="{{ asset('assets/src/assets/img/profile-16.jpeg') }}"
-                                     class="img-fluid me-2" alt="avatar">
-                                 <div class="media-body">
-                                     <div class="data-info">
-                                         <h6 class="">Kara Young</h6>
-                                         <p class="">1 hr ago</p>
-                                     </div>
+                         @php($notifyList = App\CPU\helpers::Notification())
 
-                                     <div class="icon-status">
-                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                             viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                             class="feather feather-x">
-                                             <line x1="18" y1="6" x2="6" y2="18">
-                                             </line>
-                                             <line x1="6" y1="6" x2="18" y2="18">
-                                             </line>
-                                         </svg>
-                                     </div>
-                                 </div>
-                             </div>
-                         </div>
 
-                         <div class="dropdown-item">
-                             <div class="media ">
-                                 <img src="{{ asset('assets/src/assets/img/profile-15.jpeg') }}"
-                                     class="img-fluid me-2" alt="avatar">
-                                 <div class="media-body">
-                                     <div class="data-info">
-                                         <h6 class="">Daisy Anderson</h6>
-                                         <p class="">8 hrs ago</p>
-                                     </div>
-
-                                     <div class="icon-status">
-                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                             viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                             class="feather feather-x">
-                                             <line x1="18" y1="6" x2="6" y2="18">
-                                             </line>
-                                             <line x1="6" y1="6" x2="18" y2="18">
-                                             </line>
-                                         </svg>
-                                     </div>
-                                 </div>
-                             </div>
-                         </div>
-
-                         <div class="dropdown-item">
-                             <div class="media file-upload">
-                                 <img src="../src/assets/img/profile-21.jpeg" class="img-fluid me-2" alt="avatar">
-                                 <div class="media-body">
-                                     <div class="data-info">
-                                         <h6 class="">Oscar Garner</h6>
-                                         <p class="">14 hrs ago</p>
-                                     </div>
-
-                                     <div class="icon-status">
-                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                             viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                             class="feather feather-x">
-                                             <line x1="18" y1="6" x2="6" y2="18">
-                                             </line>
-                                             <line x1="6" y1="6" x2="18" y2="18">
-                                             </line>
-                                         </svg>
-                                     </div>
-                                 </div>
-                             </div>
-                         </div>
 
                          <div class="drodpown-title notification mt-2">
                              <h6 class="d-flex justify-content-between"><span
                                      class="align-self-center">Notifications</span> <span
                                      class="badge badge-secondary">16 New</span></h6>
                          </div>
+                         @foreach ($notifyList as $row)
+                             <div class="dropdown-item">
+                                 <div class="media server-log">
+                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                         stroke-linecap="round" stroke-linejoin="round"
+                                         class="feather feather-server">
+                                         <rect x="2" y="2" width="20" height="8" rx="2"
+                                             ry="2">
+                                         </rect>
+                                         <rect x="2" y="14" width="20" height="8" rx="2"
+                                             ry="2">
+                                         </rect>
+                                         <line x1="6" y1="6" x2="6" y2="6"></line>
+                                         <line x1="6" y1="18" x2="6" y2="18"></line>
+                                     </svg>
+                                     <div class="media-body">
+                                         <div class="data-info"><a href="{{ $row->path }}">
+                                                 <h6 class="">{{ $row->name }}</h6>
+                                                 <p class="">{{ $row->updated_at }}</p>
+                                             </a>
 
-                         <div class="dropdown-item">
-                             <div class="media server-log">
-                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                     stroke-linecap="round" stroke-linejoin="round" class="feather feather-server">
-                                     <rect x="2" y="2" width="20" height="8" rx="2" ry="2">
-                                     </rect>
-                                     <rect x="2" y="14" width="20" height="8" rx="2" ry="2">
-                                     </rect>
-                                     <line x1="6" y1="6" x2="6" y2="6"></line>
-                                     <line x1="6" y1="18" x2="6" y2="18"></line>
-                                 </svg>
-                                 <div class="media-body">
-                                     <div class="data-info">
-                                         <h6 class="">Server Rebooted</h6>
-                                         <p class="">45 min ago</p>
-                                     </div>
-
-                                     <div class="icon-status">
-                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                             viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                             class="feather feather-x">
-                                             <line x1="18" y1="6" x2="6" y2="18">
-                                             </line>
-                                             <line x1="6" y1="6" x2="18" y2="18">
-                                             </line>
-                                         </svg>
+                                             <div class="icon-status">
+                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                     height="24" viewBox="0 0 24 24" fill="none"
+                                                     stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                     stroke-linejoin="round" class="feather feather-x">
+                                                     <line x1="18" y1="6" x2="6"
+                                                         y2="18">
+                                                     </line>
+                                                     <line x1="6" y1="6" x2="18"
+                                                         y2="18">
+                                                     </line>
+                                                 </svg>
+                                             </div>
+                                         </div>
                                      </div>
                                  </div>
                              </div>
-                         </div>
-
-                         <div class="dropdown-item">
+                         @endforeach
+                         {{-- <div class="dropdown-item">
                              <div class="media file-upload">
                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -273,7 +206,7 @@
                                      </div>
                                  </div>
                              </div>
-                         </div>
+                         </div> --}}
 
                      </div>
                  </div>
@@ -285,9 +218,8 @@
                      data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                      <div class="avatar-container">
                          <div class="avatar avatar-sm avatar-indicators avatar-online">
-                             <input type="hidden" value="{{$admindata= Session::get('admin_data')}}">
-                             <img alt="avatar" src="{{ asset($admindata->image) }}"
-                                 class="rounded-circle">
+                             <input type="hidden" value="{{ $admindata = Session::get('admin_data') }}">
+                             <img alt="avatar" src="{{ asset($admindata->image) }}" class="rounded-circle">
                          </div>
                      </div>
                  </a>
@@ -299,8 +231,8 @@
                                  &#x1F44B;
                              </div>
                              <div class="media-body">
-                                <h5>{{$admindata->first_name}} {{$admindata->last_name}}</h5>
-                                <p>{{$admindata->dst_name}}</p>
+                                 <h5>{{ $admindata->first_name }} {{ $admindata->last_name }}</h5>
+                                 <p>{{ $admindata->dst_name }}</p>
                              </div>
                          </div>
                      </div>
@@ -327,7 +259,7 @@
                          </a>
                      </div>
                      <div class="dropdown-item">
-                         <a href="{{route('admin_lockscreen')}}">
+                         <a href="{{ route('admin_lockscreen') }}">
                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                  stroke-linecap="round" stroke-linejoin="round" class="feather feather-lock">
@@ -355,15 +287,15 @@
      </header>
  </div>
  <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
-{{-- <script src="{{ url('assets/src/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+ {{-- <script src="{{ url('assets/src/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ url('assets/src/plugins/src/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
 <script src="{{ url('assets/src/plugins/src/mousetrap/mousetrap.min.js') }}"></script>
 <script src="{{ url('assets/src/plugins/src/waves/waves.min.js') }}"></script>
 <script src="{{ url('assets/layouts/modern-light-menu/app.js') }}"></script>
 <script src="{{ url('assets/src/plugins/src/highlight/highlight.pack.js') }}"></script> --}}
-<!-- END GLOBAL MANDATORY SCRIPTS -->
+ <!-- END GLOBAL MANDATORY SCRIPTS -->
 
-<!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
-{{-- <script src="{{ url('assets/src/plugins/src/apex/apexcharts.min.js') }}"></script>
+ <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+ {{-- <script src="{{ url('assets/src/plugins/src/apex/apexcharts.min.js') }}"></script>
 <script src="{{ url('assets/src/assets/js/dashboard/dash_1.js') }}"></script> --}}
  <!--  END NAVBAR  -->
