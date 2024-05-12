@@ -8,7 +8,7 @@
                 <div class="page-meta">
                     <nav class="breadcrumb-style-one" aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{route('tables')}}">Table</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('tables') }}">Table</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Department Table</li>
                         </ol>
                     </nav>
@@ -22,8 +22,14 @@
                                 <div class="row">
                                     <div class="col-xl-12 col-md-12 col-sm-12 col-12">
                                         <h4>Department Table</h4>
+                                        <div class="text">
+                                            <button type="button" class="btn btn-primary mr-2" data-bs-toggle="modal"
+                                                data-bs-target="#add_department">
+                                                Add More</button>
+                                        </div>
                                     </div>
                                 </div>
+
                             </div>
                             <div class="row layout-spacing">
                                 <div class="col-lg-12">
@@ -45,18 +51,16 @@
                                                             <td class="checkbox-column text-center"> {{ $row->id }}
                                                             </td>
                                                             <!-- <td class="text-center">
-                                                                <span><img src="../src/assets/img/profile-17.jpeg" class="profile-img" alt="avatar"></span>
-                                                            </td> -->
+                                                                            <span><img src="../src/assets/img/profile-17.jpeg" class="profile-img" alt="avatar"></span>
+                                                                        </td> -->
 
                                                             <td> {{ $row->dpt_name }} </td>
                                                             <td class="text-center"><span
-                                                                    class="shadow-none badge    @if ($row->status == 0)
-                                                                    badge-light-primary
+                                                                    class="shadow-none badge    @if ($row->status == 0) badge-light-primary
                                                                 @elseif($row->status == 1)
                                                                 badge-light-success
                                                                 @else
-                                                                badge-light-danger
-                                                                @endif ">
+                                                                badge-light-danger @endif ">
                                                                     @if ($row->status == 0)
                                                                         Pending
                                                                     @elseif($row->status == 1)
@@ -64,12 +68,14 @@
                                                                     @else
                                                                         Decline
                                                                     @endif
+
                                                                 </span></td>
                                                             <td class="text-center">
                                                                 <ul class="table-controls">
-                                                                    <li><a href="{{route('updating-department-form-edit',[$row->id])}}" class="bs-tooltip"
-                                                                            data-bs-toggle="tooltip" data-bs-placement="top"
-                                                                            title="Edit" data-original-title="Edit"><svg
+                                                                    <li><a href="{{ route('updating-department-form-edit', [$row->id]) }}"
+                                                                            class="bs-tooltip" data-bs-toggle="tooltip"
+                                                                            data-bs-placement="top" title="Edit"
+                                                                            data-original-title="Edit"><svg
                                                                                 xmlns="http://www.w3.org/2000/svg"
                                                                                 width="24" height="24"
                                                                                 viewBox="0 0 24 24" fill="none"
@@ -99,10 +105,50 @@
                                                                 </ul>
                                                             </td>
                                                         </tr>
-                                                        @endforeach
-                                                    </tbody>
-                                                    <a href="{{route('add_depart')}}"><button class="btn btn-info mb-2 me-4">Add More</button></a>
+                                                    @endforeach
+                                                </tbody>
                                             </table>
+                                        </div>
+                                    </div>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="add_department" tabindex="-1" role="dialog" aria-labelledby="add_departmentLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <form action="{{ route('add_depart') }}" method="POST">
+                                                    @csrf
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="add_departmentLabel">Add Department</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                                           
+                                                          </button>
+                                                    </div>
+                                                    <div class="modal-body">
+
+
+
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <label class="form-check-label" for="department">Add
+                                                                    Department:</label>
+                                                                <input type="text" id="department"
+                                                                    class="form-control" name="department" required>
+                                                            </div>
+                                                </form>
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <div class="row">
+
+                                                    <div class="col-sm-12">
+                                                        <button class="btn btn-light-dark" data-bs-dismiss="modal"
+                                                            type="button">Discard</button>
+
+                                                        <button class="btn btn-primary" type="submit">Add</button>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -112,5 +158,6 @@
                 </div>
             </div>
         </div>
+    </div>
     {{-- </div> --}}
 @endsection

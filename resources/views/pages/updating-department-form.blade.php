@@ -26,7 +26,7 @@
                     <nav class="breadcrumb-style-one" aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#">Form</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Updating-Employee</li>
+                            <li class="breadcrumb-item active" aria-current="page">Updating-Department</li>
                         </ol>
                     </nav>
                 </div>
@@ -39,7 +39,7 @@
                             <div class="widget-header">
                                 <div class="row">
                                     <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                        <h4>Updating-Employee</h4>
+                                        <h4>Updating-Department</h4>
                                     </div>
                                 </div>
                             </div>

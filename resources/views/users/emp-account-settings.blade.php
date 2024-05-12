@@ -36,43 +36,7 @@
                                                 <polyline points="9 22 9 12 15 12 15 22"></polyline>
                                             </svg> Home</button>
                                     </li>
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link" id="animated-underline-profile-tab" data-bs-toggle="tab"
-                                            href="#animated-underline-profile" role="tab"
-                                            aria-controls="animated-underline-profile" aria-selected="false"
-                                            tabindex="-1"><svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                class="feather feather-dollar-sign">
-                                                <line x1="12" y1="1" x2="12" y2="23"></line>
-                                                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-                                            </svg> Payment Details</button>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link" id="animated-underline-preferences-tab"
-                                            data-bs-toggle="tab" href="#animated-underline-preferences" role="tab"
-                                            aria-controls="animated-underline-preferences" aria-selected="false"
-                                            tabindex="-1"><svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                  class="feather feather-user">
-                                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                                <circle cx="12" cy="7" r="4"></circle>
-                                            </svg> Preferences</button>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link" id="animated-underline-contact-tab" data-bs-toggle="tab"
-                                            href="#animated-underline-contact" role="tab"
-                                            aria-controls="animated-underline-contact" aria-selected="false"
-                                            tabindex="-1"><svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                class="feather feather-phone">
-                                                <path
-                                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
-                                                </path>
-                                            </svg> Danger Zone</button>
-                                    </li>
+
                                 </ul>
                             </div>
                         </div>
@@ -92,14 +56,15 @@
                                                                 <div class="profile-image  mt-4 pe-md-4">
 
                                                                     <!-- // The classic file input element we'll enhance
-                                                                    // to a file pond, we moved the configuration
-                                                                    // properties to JavaScript -->
-                                    <input type="hidden" value="{{ $empdata = Session::get('emp_data') }}">
+                                                                        // to a file pond, we moved the configuration
+                                                                        // properties to JavaScript -->
+                                                                    <input type="hidden"
+                                                                        value="{{ $empdata = Session::get('emp_data') }}">
 
                                                                     <div class="img-uploader-content">
                                                                         <input type="file" class="filepond"
                                                                             name="filepond"
-                                                                            accept="image/png, image/jpeg, image/gif"  />
+                                                                            accept="image/png, image/jpeg, image/gif" />
                                                                     </div>
 
                                                                 </div>
@@ -121,8 +86,8 @@
                                                                             <div class="form-group">
                                                                                 <label for="last_name">Last Name</label>
                                                                                 <input type="text"
-                                                                                    class="form-control mb-3"
-                                                                                    id="last_name" placeholder="Designer"
+                                                                                    class="form-control mb-3" id="last_name"
+                                                                                    placeholder="Designer"
                                                                                     value="{{ $empdata->last_name }}">
                                                                             </div>
                                                                         </div>
@@ -131,9 +96,10 @@
                                                                             <div class="form-group">
                                                                                 <label for="country">Designation</label>
                                                                                 <input type="text"
-                                                                                class="form-control mb-3"
-                                                                                id="last_name" placeholder="Designer"
-                                                                                value="{{ $empdata->dst_name }}" readonly>
+                                                                                    class="form-control mb-3" id="last_name"
+                                                                                    placeholder="Designer"
+                                                                                    value="{{ $empdata->dst_name }}"
+                                                                                    readonly>
                                                                             </div>
                                                                         </div>
 
@@ -143,17 +109,18 @@
                                                                                 <input type="text"
                                                                                     class="form-control mb-3"
                                                                                     id="department" placeholder="department"
-                                                                                    value="{{ $empdata->dpt_name }}" readonly>
+                                                                                    value="{{ $empdata->dpt_name }}"
+                                                                                    readonly>
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-6">
                                                                             <div class="form-group">
                                                                                 <label for="phone">Phone</label>
                                                                                 <input type="text"
-                                                                                class="form-control mb-3"
-                                                                                id="phone"
-                                                                                placeholder="Write your phone number here"
-                                                                                value="{{ $empdata->mobile_no }}">
+                                                                                    class="form-control mb-3"
+                                                                                    id="phone"
+                                                                                    placeholder="Write your phone number here"
+                                                                                    value="{{ $empdata->mobile_no }}">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-6">
@@ -161,7 +128,8 @@
                                                                                 <label for="location">Location</label>
                                                                                 <input type="text"
                                                                                     class="form-control mb-3"
-                                                                                    id="location" placeholder="{{ $empdata->addresses }}">
+                                                                                    id="location"
+                                                                                    placeholder="{{ $empdata->addresses }}">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-6">
@@ -181,26 +149,44 @@
                                                                                     class="form-control mb-3"
                                                                                     id="website1"
                                                                                     placeholder="Enter URL"> --}}
-                                                                                </div>
                                                                             </div>
-                                                                            
-                                                                            <div class="col-md-12 mt-1">
-                                                                                <div class="form-check">
-                                                                                    <a href="{{route('send_email')}}">Reset Password </a>
-                                                                                    <br>
-                                                                                    @if (session()->has('success'))
+                                                                        </div>
+
+                                                                        <div class="col-md-12 mt-1">
+                                                                            <div class="form-check">
+                                                                                <a href="{{ route('send_email') }}">Reset
+                                                                                    Password </a>
+                                                                                <br>
+                                                                                @if (session()->has('success'))
                                                                                     {{-- <p>
                                                                             {{ session()->get('success') }}
                                                                         </p> --}}
                                                                                     <div class="alert alert-light-success alert-dismissible fade show border-0 md-2"
-                                                                                        role="alert"> <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                                                                            aria-label="Close"> <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                                                                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                                                                class="feather feather-x close" data-bs-dismiss="alert">
-                                                                                                <line x1="18" y1="6" x2="6" y2="18">
+                                                                                        role="alert"> <button
+                                                                                            type="button"
+                                                                                            class="btn-close"
+                                                                                            data-bs-dismiss="alert"
+                                                                                            aria-label="Close"> <svg
+                                                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                                                width="24"
+                                                                                                height="24"
+                                                                                                viewBox="0 0 24 24"
+                                                                                                fill="none"
+                                                                                                stroke="currentColor"
+                                                                                                stroke-width="2"
+                                                                                                stroke-linecap="round"
+                                                                                                stroke-linejoin="round"
+                                                                                                class="feather feather-x close"
+                                                                                                data-bs-dismiss="alert">
+                                                                                                <line x1="18"
+                                                                                                    y1="6"
+                                                                                                    x2="6"
+                                                                                                    y2="18">
                                                                                                 </line>
-                                                                                                <line x1="6" y1="6" x2="18" y2="18">
+                                                                                                <line x1="6"
+                                                                                                    y1="6"
+                                                                                                    x2="18"
+                                                                                                    y2="18">
                                                                                                 </line>
                                                                                             </svg></button><strong>{{ session()->get('success') }}</strong>
                                                                                     </div>
@@ -211,26 +197,43 @@
                                                                             @endforeach
                                                                         </ul> --}}
                                                                                     <div class="alert alert-light-danger alert-dismissible fade show border-0 sm-4"
-                                                                                        role="alert"> <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                                                                            aria-label="Close"> <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                                                                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                                                                class="feather feather-x close" data-bs-dismiss="alert">
-                                                                                                <line x1="18" y1="6" x2="6" y2="18">
+                                                                                        role="alert"> <button
+                                                                                            type="button"
+                                                                                            class="btn-close"
+                                                                                            data-bs-dismiss="alert"
+                                                                                            aria-label="Close"> <svg
+                                                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                                                width="24"
+                                                                                                height="24"
+                                                                                                viewBox="0 0 24 24"
+                                                                                                fill="none"
+                                                                                                stroke="currentColor"
+                                                                                                stroke-width="2"
+                                                                                                stroke-linecap="round"
+                                                                                                stroke-linejoin="round"
+                                                                                                class="feather feather-x close"
+                                                                                                data-bs-dismiss="alert">
+                                                                                                <line x1="18"
+                                                                                                    y1="6"
+                                                                                                    x2="6"
+                                                                                                    y2="18">
                                                                                                 </line>
-                                                                                                <line x1="6" y1="6" x2="18" y2="18">
+                                                                                                <line x1="6"
+                                                                                                    y1="6"
+                                                                                                    x2="18"
+                                                                                                    y2="18">
                                                                                                 </line>
                                                                                             </svg></button><strong>{{ session()->get('error') }}</strong>
                                                                                     </div>
                                                                                 @endif
-                                                                                    {{-- <input class="form-check-input"
+                                                                                {{-- <input class="form-check-input"
                                                                                     type="checkbox" value=""
                                                                                     id="customCheck1">
                                                                                     <label class="form-check-label"
                                                                                     for="customCheck1">Make this my default
                                                                                     address</label> --}}
-                                                                                </div>
                                                                             </div>
+                                                                        </div>
 
                                                                         <div class="col-md-12 mt-1">
                                                                             <div class="form-group text-end">

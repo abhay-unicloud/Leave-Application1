@@ -257,9 +257,9 @@ CREATE TABLE `notifications` (
 --
 
 INSERT INTO `notifications` (`id`, `name`, `path`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'New Leave Request', 'http://127.0.0.1:8000/updating-leaves-form/edit/1', 0, '2024-04-18 03:48:41', '2024-04-18 03:48:41'),
-(2, 'New Leave Request', 'http://127.0.0.1:8000/updating-leaves-form/edit/3', 0, '2024-04-18 04:55:28', '2024-04-18 04:55:28'),
-(3, 'New Leave Request', 'http://127.0.0.1:8000/updating-leaves-form/edit/3', 0, '2024-04-18 05:00:33', '2024-04-18 05:00:33');
+(1, 'New Leave Request', 'http://vbpc.lc/updating-leaves-form/edit/1', 0, '2024-04-18 03:48:41', '2024-04-18 03:48:41'),
+(2, 'New Leave Request', 'http://vbpc.lc/updating-leaves-form/edit/3', 0, '2024-04-18 04:55:28', '2024-04-18 04:55:28'),
+(3, 'New Leave Request', 'http://vbpc.lc/updating-leaves-form/edit/3', 0, '2024-04-18 05:00:33', '2024-04-18 05:00:33');
 
 -- --------------------------------------------------------
 
