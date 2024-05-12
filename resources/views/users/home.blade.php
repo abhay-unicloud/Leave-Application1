@@ -169,9 +169,9 @@
                                         <thead>
                                             <tr>
                                                 <th>Leave Id</th>
-                                                <th>Progress</th>
-                                                <th>Task Done</th>
-                                                <th class="text-center">Time</th>
+                                                <th>Leave Type</th>
+                                                <th>Time</th>
+                                                <th class="text-center">Status</th>
                                             </tr>
                                         </thead>
                                         <tbody>

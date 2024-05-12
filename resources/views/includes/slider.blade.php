@@ -176,12 +176,12 @@
                           <li>
                               <a href="{{ route('registration-employee-form') }}"> Registration-employee-form </a>
                           </li>
-                          <li>
+                          {{-- <li>
                               <a href="{{ route('add_depart') }}"> Add Departments </a>
                           </li>
                           <li>
                               <a href="{{ route('add_design') }}"> Add Designations </a>
-                          </li>
+                          </li> --}}
 
                       </ul>
                   </li>

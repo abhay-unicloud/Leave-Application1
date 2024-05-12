@@ -31,6 +31,8 @@ Route::get('/datatable-leaves', [Mycontroller::class, 'datatable_leaves'])->name
 Route::get('/datatable-migrations', [Mycontroller::class, 'migrations'])->name('datatable-migrations');
 Route::get('/datatable-admins', [Mycontroller::class, 'migrations'])->name('datatable-admins');
 Route::get('/notification', [Mycontroller::class, 'notification'])->name('datatable-notifications');
+Route::get('/delete_design/{id}', [Mycontroller::class, 'delete_design'])->name('delete_design');
+Route::get('/delete_depart/{id}', [Mycontroller::class, 'delete_depart'])->name('delete_depart');
 /* Tables and Datatables End*/
 /* Forms update Start*/
 Route::get('updating-employee-form', [Mycontroller::class, 'updating_employee'])->name('updating-employee-form-dst-dpt');

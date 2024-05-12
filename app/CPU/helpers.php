@@ -9,7 +9,7 @@ class Helpers {
 
     public static function sendEmail($employee ,$mail, $pass)
     {
-        $url="http://127.0.0.1:8000/employee-login";
+        $url="http://vbpc.lc/employee-login";
         
         $content = [
             'subject' => 'VBPC Employee Id Password',
@@ -36,7 +36,7 @@ class Helpers {
             'singh121hitan@gmail.com',
             // Add more email addresses as needed
         ];
-        $url="http://127.0.0.1:8000/updating-leaves-form/edit/".$leaveid;
+        $url="http://vbpc.lc/updating-leaves-form/edit/".$leaveid;
         
         $content = [
             'subject' => 'VBPC Leave Request',

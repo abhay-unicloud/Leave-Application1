@@ -155,7 +155,7 @@ class Mycontroller extends Controller
             $sendmail = Helpers::leave_mail_admins($data,$lvid,$empleave, $employeeid->first_name, $employeeid->last_name,$leavetpye->lt_name);
             $notificaton = new Notification();
             $notificaton->name = "New Leave Request";
-            $notificaton->path = 'http://127.0.0.1:8000/updating-leaves-form/edit/' . $lvid;
+            $notificaton->path = 'http://vbpc.lc/updating-leaves-form/edit/' . $lvid;
             $notificaton->status = 0;
             $notificaton->save();
             return redirect()->back()->with('success', 'Request Send successfully');
@@ -487,6 +487,20 @@ class Mycontroller extends Controller
         $Notification = Notification::all();
         return view("includes.header", compact('Notification'));
     }
+    public function delete_design($id)
+    {
+        $design = Designation::find($id);
+        $design->delete();
+
+        return redirect()->back()->with('success', 'Data deleted successfully');
+    }
+    public function delete_depart($id)
+    {
+        $depart = Department::find($id);
+        $depart->delete();
+
+        return redirect()->back()->with('success', 'Data deleted successfully');
+    }
     public function datatable_leaves()
     {
         // $leaves = Leave::all();
@@ -644,7 +658,7 @@ class Mycontroller extends Controller
         $leavesdata->save();
         $notificaton = new Notification();
         $notificaton->name = "New Leave Request";
-        $notificaton->path = 'http://127.0.0.1:8000/updating-leaves-form/edit/' . $leavesdata->id;
+        $notificaton->path = 'http://vbpc.lc/updating-leaves-form/edit/' . $leavesdata->id;
         $notificaton->status = 0;
         $notificaton->save();
 

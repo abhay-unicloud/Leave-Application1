@@ -69,7 +69,7 @@
                       </a>
                       <ul class="collapse submenu list-unstyled show" id="dashboard" data-bs-parent="#accordionExample">
                           <li class="active">
-                              <a href="{{ route('home') }}"> Employee status </a>
+                              <a href="{{ route('home') }}"> Employee Profile </a>
                           </li>
                           {{-- <li>
                               <a href="{{ route('index2') }}"> Sales </a>
@@ -114,8 +114,6 @@
                           <li>
                               <a href="{{ route('Leave_Application_user') }}"> Leave-Application-From </a>
                           </li>
-
-
                       </ul>
                   </li>
                   
