@@ -170,7 +170,7 @@
                                             <tr>
                                                 <th>Leave Id</th>
                                                 <th>Leave Type</th>
-                                                <th>Time</th>
+                                                <th>Date</th>
                                                 <th class="text-center">Status</th>
                                             </tr>
                                         </thead>
