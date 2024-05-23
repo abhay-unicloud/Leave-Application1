@@ -163,22 +163,22 @@
 
                         <div class="usr-tasks ">
                             <div class="widget-content widget-content-area">
-                                <h3 class="">Task</h3>
+                                <h3 class="">Total Leave's</h3>
                                 <div class="table-responsive">
                                     <table class="table table-bordered">
                                         <thead>
                                             <tr>
-                                                <th>Leave Id</th>
-                                                <th>Leave Type</th>
-                                                <th>Date</th>
+                                                <th class="text-center">Leave Id</th>
+                                                <th class="text-center">Leave Type</th>
+                                                <th class="text-center">Date</th>
                                                 <th class="text-center">Status</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($leaves as $row)
                                                 <tr>
-                                                    <td>{{ $row->leave_id }}</td>
-                                                    <td>
+                                                    <td class="text-center">{{ $row->leave_id }}</td>
+                                                    <td class="text-center">
                                                         {{-- <div class="progress br-30">
                                                             <div class="progress-bar br-30 bg-danger" role="progressbar"
                                                                 style="width: 29.56%" aria-valuenow="25"
@@ -186,7 +186,7 @@
                                                         </div> --}}
                                                         {{ $row->lt_name }}
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         {{-- <p class="text-danger">29.56%</p> --}}
                                                         {{ $row->start_date }}
                                                     </td>

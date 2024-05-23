@@ -376,7 +376,7 @@ class Mycontroller extends Controller
                 Session::put('admin_logged', true);
                 Session::put('admin_data', $employee);
 
-                return redirect()->route('index');
+                return redirect()->route('tables');
             } else {
 
                 return redirect()->back()->with('error', 'Incorrect email or password');
