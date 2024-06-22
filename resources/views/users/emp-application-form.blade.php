@@ -51,10 +51,7 @@
                             <div class="widget-content widget-content-area m-1 p-2">
 
                                 @if (session()->has('success'))
-                                    {{-- <p>
-                                {{ session()->get('success') }}
-                            </p> --}}
-                                    <div class="alert alert-light-success alert-dismissible fade show border-0 mb-4"
+                                    <div class="alert alert-light-success alert-dismissible fade col-5 show border-0 mb-4"
                                         role="alert"> <button type="button" class="btn-close" data-bs-dismiss="alert"
                                             aria-label="Close"> <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                 height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -67,12 +64,7 @@
                                             </svg></button><strong>{{ session()->get('success') }}</strong>
                                     </div>
                                 @elseif (session()->has('error'))
-                                    {{-- <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul> --}}
-                                    <div class="alert alert-light-danger alert-dismissible fade show border-0 mb-4"
+                                    <div class="alert alert-light-danger alert-dismissible fade show col-5 border-0 mb-4"
                                         role="alert"> <button type="button" class="btn-close" data-bs-dismiss="alert"
                                             aria-label="Close"> <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                 height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -184,71 +176,33 @@
                                             <textarea id="leave-reason" class="form-control" name="location" rows="4" cols="50"></textarea>
                                         </div>
                                     </div>
+
+
+
+                                    <div class="row ">
+                                        <div class="col-sm-12">
+                                            <br>
+                                            <button class="btn btn-primary" id="submitBtn"
+                                                type="submit">Request</button>
+                                        </div>
+                                    </div>
+
+                                </form>
                             </div>
-
-
-                            <div class="row mb-4">
-                                <div class="col-sm-12">
-                                    <br>
-                                    <button class="btn btn-primary" id="submitBtn" type="submit">Request</button>
-                                </div>
-                            </div>
-
-                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        {{-- </div> --}}
-        {{-- </div> --}}
+
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script>
             $(document).ready(function() {
-                $('#emp_id').on('input', function() {
-                    var id = $(this).val();
-                    var route = "{{ route('emp_data', ['+id+']) }}";
-                    $.ajax({
-                        type: 'POST',
-                        url: route,
-                        data: {
-                            emp_id: id,
-                            _token: '{{ csrf_token() }}'
-                        },
-                        success: function(response) {
-                            if (response.success) {
-                                $('#first_name').text(response.employee.first_name);
-                                $('#last_name').text(response.employee.last_name);
-                                $('#dpt_id').text(response.employee.dpt_id);
-                                $('#dst_id').text(response.employee.dst_id);
-                                $('#mobile_no').text(response.employee.mobile_no);
-                                $('#gender').text(response.employee.gender);
-                                $('#email').text(response.employee.email);
-                            } else {
-                                $('#first_name').text('');
-                                $('#last_name').text('');
-                                $('#dpt_id').text('');
-                                $('#dst_id').text('');
-                                $('#mobile_no').text('');
-                                $('#gender').text('');
-                                $('#email').text('');
-                                alert(response.message);
-                            }
-                        },
-                        error: function(xhr, status, error) {
-                            console.error(xhr.responseText);
-                            alert('An error occurred while processing your request.');
-                        }
-                    });
-                });
+
                 $("#how_long").on('change', function() {
-
-                    // var mobile_no = document.getElementById('mobile_no').val();
                     var mobile_no = $(this).val();
-
-                    var route = "{{ route('check_exists') }}";
                     let text;
-                    if (($.isNumeric(mobile_no)) && ((mobile_no) > 0) && ((mobile_no) < 20)) {
+                    if (((mobile_no) > 0) && ((mobile_no) < 20)) {
                         text = "Input OK";
                         $('#submitBtn').prop('disabled', false);
 
@@ -259,32 +213,6 @@
                     }
                     document.getElementById("result_how").innerHTML = text;
 
-                    // $.ajax({
-                    //     type: 'POST',
-                    //     url: "{{ route('check_exists') }}",
-                    //     data: {
-                    //         // emp_mobile_no: mobile_no,
-
-                    //         '_token': '{{ csrf_token() }}',
-                    //         'mobile_no': mobile_no
-
-                    //     },
-                    //     success: function(response) {
-                    //         if (response.exists) {
-                    //             $('#result_mobile_no').text('Mobile Number is already exists.');
-                    //             // Disable the submit button
-                    //             $('#submitBtn').prop('disabled', true);
-                    //         } else {
-                    //             // $('#result').text('Data does not exist.');
-                    //             // Enable the submit button
-                    //             $('#submitBtn').prop('disabled', false);
-                    //         }
-                    //     },
-                    //     error: function(xhr, status, error) {
-                    //         console.error(error);
-                    //         // alert('An error occurred while processing your request.');
-                    //     }
-                    // })
 
                 });
             });

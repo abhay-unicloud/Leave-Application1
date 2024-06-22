@@ -129,7 +129,7 @@ class Mycontroller extends Controller
         if (($request->input('end_date')) >= $request->input('start_date')) {
 
             $leave = new Leave();
-           $data= $leave->emp_id = $request->input('emp_id');
+            $data = $leave->emp_id = $request->input('emp_id');
             $employee = Employee::where('employees.id',  $request->input('emp_id'))->first();
             // dd($employee);
             // die();
@@ -145,14 +145,14 @@ class Mycontroller extends Controller
             $leave->approval_hod = 0;
             $leave->approval_vc = 0;
             $leave->save();
-            $leaveid=Leave::where('leaves.emp_id',  $request->input('emp_id'))->orderBy('id', 'DESC')->first();
+            $leaveid = Leave::where('leaves.emp_id',  $request->input('emp_id'))->orderBy('id', 'DESC')->first();
             // dd($leaveid);
             // die();
             $lvid = $leaveid->id;
             $employeeid = Employee::where('employees.id',  $request->input('emp_id'))->first();
-            $empleave=  $employeeid->leave_taken;
+            $empleave =  $employeeid->leave_taken;
             $leavetpye = Leave_types::where('id',  $request->input('lt_id'))->first();
-            $sendmail = Helpers::leave_mail_admins($data,$lvid,$empleave, $employeeid->first_name, $employeeid->last_name,$leavetpye->lt_name);
+            $sendmail = Helpers::leave_mail_admins($data, $lvid, $empleave, $employeeid->first_name, $employeeid->last_name, $leavetpye->lt_name);
             $notificaton = new Notification();
             $notificaton->name = "New Leave Request";
             $notificaton->path = 'http://vbpc.lc/updating-leaves-form/edit/' . $lvid;
@@ -300,54 +300,50 @@ class Mycontroller extends Controller
     }
     public function password_reset_view()
     {
-            // return view('users.emp-password-reset');
+        // return view('users.emp-password-reset');
         return view('users.employee-lockscreen');
-
-            
     }
-    public function reset_view(){
+    public function reset_view()
+    {
 
         $sending_mail = Session::has('emp_data');
-
     }
     public function password_reset(Request $request)
     {
         $employee = Employee::where('email', $request->input('email'))
-        ->first();
+            ->first();
         // dd($employee);
         // die();
         if ($employee) {
-         Session::put('reset_data', $employee);
-        $data= $employee;
-            return redirect()->route('password_reset_view',compact('data'));
-            } else {
+            Session::put('reset_data', $employee);
+            $data = $employee;
+            return redirect()->route('password_reset_view', compact('data'));
+        } else {
 
-                return redirect()->back()->with('error', 'Incorrect email or password');
-            }
-       
+            return redirect()->back()->with('error', 'Incorrect email or password');
+        }
     }
     public function reset_password(Request $request)
-    {  
+    {
         $data =  Session::get('reset_data');
         // dd($data);
         // die();
         $employee =  Employee::where('email', $data->email)->first();
-         if(($request->input('password')) === ($request->input('confirm_password'))){
-        $employee->password = Hash::Make($request->input('confirm_password'));
-        $Admin =  Admin::where('email', $data->email)->first();
-        if(isset($Admin)){
-            
-            $Admin->password = Hash::Make($request->input('confirm_password'));
-            $Admin->save(); 
-        }
-        $employee->save(); 
-        Session::forget('reset_data');
-        return redirect()->route('home')->with('success', 'Password Change');
-    }else {
+        if (($request->input('password')) === ($request->input('confirm_password'))) {
+            $employee->password = Hash::Make($request->input('confirm_password'));
+            $Admin =  Admin::where('email', $data->email)->first();
+            if (isset($Admin)) {
 
-        return redirect()->back()->with('error', 'password not matched');
-    }
-       
+                $Admin->password = Hash::Make($request->input('confirm_password'));
+                $Admin->save();
+            }
+            $employee->save();
+            Session::forget('reset_data');
+            return redirect()->route('home')->with('success', 'Password Change');
+        } else {
+
+            return redirect()->back()->with('error', 'password not matched');
+        }
     }
     public function admin_login(Request $request)
     {
@@ -505,16 +501,16 @@ class Mycontroller extends Controller
     {
         // $leaves = Leave::all();
         $leaves = DB::table('leaves')
-            ->select('leaves.id as leave_id', 'emp_id','first_name','last_name','image', 'lt_name', 'start_date', 'end_date','how_long', 'reason', 'location', 'approval_pcp', 'approval_hod', 'approval_vc' ,'final_approval', 'comment', 'leaves.status as leave_status')
+            ->select('leaves.id as leave_id', 'emp_id', 'first_name', 'last_name', 'image', 'lt_name', 'start_date', 'end_date', 'how_long', 'reason', 'location', 'approval_pcp', 'approval_hod', 'approval_vc', 'final_approval', 'comment', 'leaves.status as leave_status')
             ->leftJoin('leave_types', 'leave_types.id', '=', 'leaves.lt_id')
             ->leftJoin('employees', 'employees.id', '=', 'leaves.emp_id')
             ->orderBy('leave_id', 'DESC')
-            
-            ->get() ;
+
+            ->get();
         //     dd($leaves);
         // die();
-        $i=0;
-        return view("pages.datatable-leaves", compact('leaves','i'));
+        $i = 0;
+        return view("pages.datatable-leaves", compact('leaves', 'i'));
     }
     public function datatable_employee()
     {
@@ -562,7 +558,7 @@ class Mycontroller extends Controller
     public function edit_leaves($id)
     {
 
-        $leaves = Leave::select('leaves.id as leave_id', 'leave_types.id as leave_type_id', 'employees.id as emp_id','how_long', 'lt_name', 'start_date', 'end_date', 'reason', 'location', 'approval_pcp', 'approval_hod', 'approval_vc', 'comment', 'first_name', 'last_name', 'dpt_name', 'dst_name', 'mobile_no', 'gender', 'addresses', 'email')
+        $leaves = Leave::select('leaves.id as leave_id', 'leave_types.id as leave_type_id', 'employees.id as emp_id', 'how_long', 'lt_name', 'start_date', 'end_date', 'reason', 'location', 'approval_pcp', 'approval_hod', 'approval_vc', 'comment', 'first_name', 'last_name', 'dpt_name', 'dst_name', 'mobile_no', 'gender', 'addresses', 'email')
             ->join('leave_types', 'leaves.lt_id', '=', 'leave_types.id')
             ->join('employees', 'leaves.emp_id', '=', 'employees.id')
             ->join('designations', 'employees.dst_id', '=', 'designations.id')
@@ -636,9 +632,9 @@ class Mycontroller extends Controller
         $employee = Employee::where('employees.id', '=', $request->input('emp_id'))->first();
 
         $leavesdata = Leave::find($request->input('id'));
-    // dd($employee);
-    //     die();
-        if ($leaves->approval_pcp == 1 && $leaves->approval_hod == 1 || $leaves->approval_pcp == 1 && $leaves->approval_vc == 1 || $leaves->approval_hod == 1 && $leaves->approval_vc == 1 || $leaves->final_approval== 1) {
+        // dd($employee);
+        //     die();
+        if ($leaves->approval_pcp == 1 && $leaves->approval_hod == 1 || $leaves->approval_pcp == 1 && $leaves->approval_vc == 1 || $leaves->approval_hod == 1 && $leaves->approval_vc == 1 || $leaves->final_approval == 1) {
 
             // if($leavesdata->approval_pcp == 1 && $leavesdata->approval_hod == 1){
             if (($request->input('approval')) == 1) {
@@ -648,7 +644,7 @@ class Mycontroller extends Controller
             $leavesdata->final_approval = 1;
 
             $sendmail = Helpers::leave_mail($request->input('id'), $employee->email,  $leavesdata->final_approval, $leaves->comment);
-        } elseif ($leaves->approval_pcp == 2 && $leaves->approval_hod == 2 || $leaves->approval_pcp == 2 && $leaves->approval_vc == 2 || $leaves->approval_hod == 2 && $leaves->approval_vc == 2 ||  $leaves->final_approval==2) {
+        } elseif ($leaves->approval_pcp == 2 && $leaves->approval_hod == 2 || $leaves->approval_pcp == 2 && $leaves->approval_vc == 2 || $leaves->approval_hod == 2 && $leaves->approval_vc == 2 ||  $leaves->final_approval == 2) {
 
             $leavesdata->final_approval = 2;
 
@@ -691,8 +687,9 @@ class Mycontroller extends Controller
         return redirect()->route('datatable-designations')->with('success', 'updated successfully');
     }
     public function sendEmail()
-    {   $sending_mail = Session::get('emp_data');
-        $mail= $sending_mail->email;
+    {
+        $sending_mail = Session::get('emp_data');
+        $mail = $sending_mail->email;
         $content = [
             'subject' => 'Password reset',
             'body' => 'IF you want to reset Your Password',

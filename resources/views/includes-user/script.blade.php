@@ -133,4 +133,4 @@
  <script src="{{ url('assets/src/plugins/src/sweetalerts2/sweetalerts2.min.js') }}"></script>
  <script src="{{ url('assets/src/assets/js/users/account-settings.js') }}"></script>
  <!--  END CUSTOM SCRIPTS FILE  -->
-@stack('script');
+@stack('script')

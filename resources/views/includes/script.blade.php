@@ -166,4 +166,4 @@
     } );
 </script>
 <!-- END PAGE LEVEL SCRIPTS -->
-@stack('script');
+@stack('script')

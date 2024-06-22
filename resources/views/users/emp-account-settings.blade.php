@@ -56,8 +56,8 @@
                                                                 <div class="profile-image  mt-4 pe-md-4">
 
                                                                     <!-- // The classic file input element we'll enhance
-                                                                        // to a file pond, we moved the configuration
-                                                                        // properties to JavaScript -->
+                                                                                // to a file pond, we moved the configuration
+                                                                                // properties to JavaScript -->
                                                                     <input type="hidden"
                                                                         value="{{ $empdata = Session::get('emp_data') }}">
 
@@ -140,99 +140,70 @@
                                                                                     id="email"
                                                                                     placeholder="Write your email here"
                                                                                     value="{{ $empdata->email }}">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                            <div class="form-group">
-                                                                                {{-- <label for="website1">Website</label>
-                                                                                <input type="text"
-                                                                                    class="form-control mb-3"
-                                                                                    id="website1"
-                                                                                    placeholder="Enter URL"> --}}
+                                                                                <a href="{{ route('send_email') }}">Reset
+                                                                                    Password </a>
                                                                             </div>
                                                                         </div>
 
-                                                                        <div class="col-md-12 mt-1">
-                                                                            <div class="form-check">
-                                                                                <a href="{{ route('send_email') }}">Reset
-                                                                                    Password </a>
-                                                                                <br>
-                                                                                @if (session()->has('success'))
-                                                                                    {{-- <p>
-                                                                            {{ session()->get('success') }}
-                                                                        </p> --}}
-                                                                                    <div class="alert alert-light-success alert-dismissible fade show border-0 md-2"
-                                                                                        role="alert"> <button
-                                                                                            type="button"
-                                                                                            class="btn-close"
-                                                                                            data-bs-dismiss="alert"
-                                                                                            aria-label="Close"> <svg
-                                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                                width="24"
-                                                                                                height="24"
-                                                                                                viewBox="0 0 24 24"
-                                                                                                fill="none"
-                                                                                                stroke="currentColor"
-                                                                                                stroke-width="2"
-                                                                                                stroke-linecap="round"
-                                                                                                stroke-linejoin="round"
-                                                                                                class="feather feather-x close"
-                                                                                                data-bs-dismiss="alert">
-                                                                                                <line x1="18"
-                                                                                                    y1="6"
-                                                                                                    x2="6"
-                                                                                                    y2="18">
-                                                                                                </line>
-                                                                                                <line x1="6"
-                                                                                                    y1="6"
-                                                                                                    x2="18"
-                                                                                                    y2="18">
-                                                                                                </line>
-                                                                                            </svg></button><strong>{{ session()->get('success') }}</strong>
-                                                                                    </div>
-                                                                                @elseif (session()->has('error'))
-                                                                                    {{-- <ul>
-                                                                            @foreach ($errors->all() as $error)
-                                                                                <li>{{ $error }}</li>
-                                                                            @endforeach
-                                                                        </ul> --}}
-                                                                                    <div class="alert alert-light-danger alert-dismissible fade show border-0 sm-4"
-                                                                                        role="alert"> <button
-                                                                                            type="button"
-                                                                                            class="btn-close"
-                                                                                            data-bs-dismiss="alert"
-                                                                                            aria-label="Close"> <svg
-                                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                                width="24"
-                                                                                                height="24"
-                                                                                                viewBox="0 0 24 24"
-                                                                                                fill="none"
-                                                                                                stroke="currentColor"
-                                                                                                stroke-width="2"
-                                                                                                stroke-linecap="round"
-                                                                                                stroke-linejoin="round"
-                                                                                                class="feather feather-x close"
-                                                                                                data-bs-dismiss="alert">
-                                                                                                <line x1="18"
-                                                                                                    y1="6"
-                                                                                                    x2="6"
-                                                                                                    y2="18">
-                                                                                                </line>
-                                                                                                <line x1="6"
-                                                                                                    y1="6"
-                                                                                                    x2="18"
-                                                                                                    y2="18">
-                                                                                                </line>
-                                                                                            </svg></button><strong>{{ session()->get('error') }}</strong>
-                                                                                    </div>
-                                                                                @endif
-                                                                                {{-- <input class="form-check-input"
-                                                                                    type="checkbox" value=""
-                                                                                    id="customCheck1">
-                                                                                    <label class="form-check-label"
-                                                                                    for="customCheck1">Make this my default
-                                                                                    address</label> --}}
-                                                                            </div>
+                                                                        <div class="col-md-10 mb-1">
+
+                                                                            @if (session()->has('success'))
+                                                                                <div class="alert alert-light-success alert-dismissible fade show border-0 md-2"
+                                                                                    role="alert"> <button type="button"
+                                                                                        class="btn-close"
+                                                                                        data-bs-dismiss="alert"
+                                                                                        aria-label="Close"> <svg
+                                                                                            xmlns="http://www.w3.org/2000/svg"
+                                                                                            width="24" height="24"
+                                                                                            viewBox="0 0 24 24"
+                                                                                            fill="none"
+                                                                                            stroke="currentColor"
+                                                                                            stroke-width="2"
+                                                                                            stroke-linecap="round"
+                                                                                            stroke-linejoin="round"
+                                                                                            class="feather feather-x close"
+                                                                                            data-bs-dismiss="alert">
+                                                                                            <line x1="18"
+                                                                                                y1="6"
+                                                                                                x2="6"
+                                                                                                y2="18">
+                                                                                            </line>
+                                                                                            <line x1="6"
+                                                                                                y1="6"
+                                                                                                x2="18"
+                                                                                                y2="18">
+                                                                                            </line>
+                                                                                        </svg></button><strong>{{ session()->get('success') }}</strong>
+                                                                                </div>
+                                                                            @elseif (session()->has('error'))
+                                                                                <div class="alert alert-light-danger alert-dismissible fade show border-0 sm-4"
+                                                                                    role="alert"> <button type="button"
+                                                                                        class="btn-close"
+                                                                                        data-bs-dismiss="alert"
+                                                                                        aria-label="Close"> <svg
+                                                                                            xmlns="http://www.w3.org/2000/svg"
+                                                                                            width="24" height="24"
+                                                                                            viewBox="0 0 24 24"
+                                                                                            fill="none"
+                                                                                            stroke="currentColor"
+                                                                                            stroke-width="2"
+                                                                                            stroke-linecap="round"
+                                                                                            stroke-linejoin="round"
+                                                                                            class="feather feather-x close"
+                                                                                            data-bs-dismiss="alert">
+                                                                                            <line x1="18"
+                                                                                                y1="6"
+                                                                                                x2="6"
+                                                                                                y2="18">
+                                                                                            </line>
+                                                                                            <line x1="6"
+                                                                                                y1="6"
+                                                                                                x2="18"
+                                                                                                y2="18">
+                                                                                            </line>
+                                                                                        </svg></button><strong>{{ session()->get('error') }}</strong>
+                                                                                </div>
+                                                                            @endif
                                                                         </div>
 
                                                                         <div class="col-md-12 mt-1">

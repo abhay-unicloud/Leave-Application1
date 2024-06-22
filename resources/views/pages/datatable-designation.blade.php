@@ -1,7 +1,7 @@
 @extends('layouts.default')
 @section('content')
     <div id="content" class="main-content">
-        <div class="container">
+       
             <div class="container">
 
                 <!-- BREADCRUMB -->
@@ -23,10 +23,7 @@
                                 <div class="row">
                                     <div class="col-xl-12 col-md-12 col-sm-12 col-12">
                                         <h4>Designation Table</h4>
-                                        <div class="text">
-                                            <button type="button" class="btn btn-primary mr-2" data-bs-toggle="modal"
-                                                data-bs-target="#add_designation">Add More</button>
-                                        </div>
+                                       
 
                                     </div>
                                 </div>
@@ -40,6 +37,10 @@
                                 <div class="col-lg-12">
                                     <div class="statbox widget box box-shadow">
                                         <div class="widget-content widget-content-area m-1 p-2">
+                                            <div class="text-end">
+                                                <button type="button" class="btn btn-primary mr-2" data-bs-toggle="modal"
+                                                    data-bs-target="#add_designation">Add More</button>
+                                            </div>
                                             <table id="style-3" class="table style-3 dt-table-hover">
                                                 <thead>
                                                     <tr>
@@ -164,6 +165,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        {{-- </div> --}}
+   
+        
     @endsection
