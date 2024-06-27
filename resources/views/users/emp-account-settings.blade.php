@@ -347,7 +347,7 @@
                                                         <div class="d-flex w-100">
                                                             <div class="billing-radio me-2">
                                                                 <div class="form-check">
-                                                                    <input class="form-check-input" type="radio"
+                                                                    <input class="form-check-input" type="radio" class="form-check-input"
                                                                         name="billingAddress" id="billingAddress1"
                                                                         checked>
                                                                 </div>
@@ -366,7 +366,7 @@
                                                         <div class="d-flex w-100">
                                                             <div class="billing-radio me-2">
                                                                 <div class="form-check">
-                                                                    <input class="form-check-input" type="radio"
+                                                                    <input class="form-check-input" type="radio" class="form-check-input"
                                                                         name="billingAddress" id="billingAddress2">
                                                                 </div>
                                                             </div>
@@ -383,7 +383,7 @@
                                                         <div class="d-flex w-100">
                                                             <div class="billing-radio me-2">
                                                                 <div class="form-check">
-                                                                    <input class="form-check-input" type="radio"
+                                                                    <input class="form-check-input" type="radio" class="form-check-input"
                                                                         name="billingAddress" id="billingAddress3">
                                                                 </div>
                                                             </div>
@@ -417,7 +417,7 @@
                                                         <div class="d-flex w-100">
                                                             <div class="billing-radio me-2">
                                                                 <div class="form-check">
-                                                                    <input class="form-check-input" type="radio"
+                                                                    <input class="form-check-input" type="radio" class="form-check-input"
                                                                         name="paymentMethod" id="paymentMethod1">
                                                                 </div>
                                                             </div>
@@ -438,7 +438,7 @@
                                                         <div class="d-flex w-100">
                                                             <div class="billing-radio me-2">
                                                                 <div class="form-check">
-                                                                    <input class="form-check-input" type="radio"
+                                                                    <input class="form-check-input" type="radio" class="form-check-input"
                                                                         name="paymentMethod" id="paymentMethod2" checked>
                                                                 </div>
                                                             </div>
@@ -459,7 +459,7 @@
                                                         <div class="d-flex w-100">
                                                             <div class="billing-radio me-2">
                                                                 <div class="form-check">
-                                                                    <input class="form-check-input" type="radio"
+                                                                    <input class="form-check-input" type="radio" class="form-check-input"
                                                                         name="paymentMethod" id="paymentMethod3">
                                                                 </div>
                                                             </div>
@@ -655,7 +655,7 @@
                                                 <h6 class="">Choose Theme</h6>
                                                 <div class="d-sm-flex justify-content-around">
                                                     <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="radio"
+                                                        <input class="form-check-input" type="radio" class="form-check-input"
                                                             name="flexRadioDefault" id="flexRadioDefault1" checked>
                                                         <label class="form-check-label" for="flexRadioDefault1">
                                                             <img class="ms-3" width="100" height="68"
@@ -665,7 +665,7 @@
                                                     </div>
 
                                                     <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="radio"
+                                                        <input class="form-check-input" type="radio" class="form-check-input"
                                                             name="flexRadioDefault" id="flexRadioDefault2">
                                                         <label class="form-check-label" for="flexRadioDefault2">
                                                             <img class="ms-3" width="100" height="68"

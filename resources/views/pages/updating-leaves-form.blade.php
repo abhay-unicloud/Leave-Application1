@@ -46,9 +46,6 @@
                             <div class="widget-content widget-content-area m-1 p-2">
 
                                 @if (session()->has('success'))
-                                    {{-- <p>
-                                {{ session()->get('success') }}
-                            </p> --}}
                                     <div class="alert alert-light-success alert-dismissible fade show border-0 mb-4"
                                         role="alert"> <button type="button" class="btn-close" data-bs-dismiss="alert"
                                             aria-label="Close"> <svg xmlns="http://www.w3.org/2000/svg" width="24"
@@ -62,11 +59,7 @@
                                             </svg></button><strong>{{ session()->get('success') }}</strong>
                                     </div>
                                 @elseif (session()->has('error'))
-                                    {{-- <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul> --}}
+                              
                                     <div class="alert alert-light-danger alert-dismissible fade show border-0 mb-4"
                                         role="alert"> <button type="button" class="btn-close" data-bs-dismiss="alert"
                                             aria-label="Close"> <svg xmlns="http://www.w3.org/2000/svg" width="24"
@@ -89,15 +82,15 @@
                                         <div class="col-md-2">
                                             <label class="form-check-label" for="firstName">Employee-Id:</label>
                                             <input type="text" id="emp_id" value="{{ $leaves->emp_id }}"
-                                            class="form-control" name="emp_id" readonly>
+                                                class="form-control" name="emp_id" readonly>
                                         </div>
                                     </div>
                                     <div class="row mt-2">
-                                        
+
                                         <div class="col-md-3">
                                             <label class="form-check-label" for="firstName">First Name:</label>
                                             <input type="text" id="emp_id" value="{{ $leaves->first_name }}"
-                                            class="form-control" name="#" readonly>
+                                                class="form-control" name="#" readonly>
                                         </div>
 
 
@@ -111,17 +104,17 @@
                                             <input type="text" id="#" value="{{ $leaves->mobile_no }}"
                                                 class="form-control" name="#" readonly>
                                         </div>
-                                        <div class="col-md-2">
+                                        <div class="col-md-3">
                                             <label class="form-check-label" for="">Gender:</label>
                                             <input type="text" id="#"
-                                                value="@if ($leaves->gender == 1)Male
+                                                value="@if ($leaves->gender == 1) Male
                                             @elseif($leaves->gender == 2)Female
                                             @elseif($leaves->gender == 3)Other
                                             @else Undefined @endif "
                                                 class="form-control" name="#" readonly>
                                         </div>
-                                        </div>
-                                        <div class="row mt-2">
+                                    </div>
+                                    <div class="row mt-2">
                                         <div class="col-md-3">
                                             <label class="form-check-label" for="designation">Designation:</label>
                                             <input type="text" id="#" value="{{ $leaves->dst_name }}"
@@ -133,7 +126,7 @@
                                                 class="form-control" name="#" readonly>
                                         </div>
 
-                                        
+
 
                                         <div class="col-md-4">
                                             <label class="form-check-label" for="">Email:</label>
@@ -171,39 +164,39 @@
                                     </div>
 
                                     <div class="row mb-4  mt-3">
-                                        <div class="col-md-4">
+                                        <div class="col-md-6">
                                             <label class="form-check-label" for="email">Reason:</label>
-                                            <textarea id="leave-reason" class="form-control" name="reason" rows="4" cols="50" readonly>{{ $leaves->reason }}</textarea>
+                                            <textarea id="leave-reason" class="form-control" name="reason" rows="1"  readonly>{{ $leaves->reason }}</textarea>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-6">
                                             <label class="form-check-label" for="email">Location:</label>
-                                            <textarea id="leave-reason" class="form-control" name="location" rows="4" cols="50" readonly>{{ $leaves->location }}</textarea>
+                                            <textarea id="leave-reason" class="form-control" name="location" rows="1"  readonly>{{ $leaves->location }}</textarea>
                                         </div>
                                     </div>
                                     <div class="row mb-4  mt-3">
-                                        <div class="col-md-4">
+                                        <div class="col-md-6">
                                             <div class="form-check form-check-primary form-check-inline">
                                                 <label class="form-check-label">Select your approval:</label>
                                             </div><br>
                                             <div class="form-check form-check-primary form-check-inline">
-                                                <input type="radio" id="pending" name="approval" value="0"
+                                                <input type="radio" class="form-check-input" id="pending" name="approval" value="0"
                                                     {{ $leaves->approval === 0 ? 'checked' : '' }}>
                                                 <label for="pending">Pending</label>
                                             </div>
                                             <div class="form-check form-check-primary form-check-inline">
-                                                <input type="radio" id="approved" name="approval" value="1"
+                                                <input type="radio" class="form-check-input" id="approved" name="approval" value="1"
                                                     {{ $leaves->approval === 1 ? 'checked' : '' }}>
                                                 <label for="approved">Approved</label>
                                             </div>
                                             <div class="form-check form-check-primary form-check-inline">
-                                                <input type="radio" id="decline" name="approval" value="2"
+                                                <input type="radio" class="form-check-input"  id="decline" name="approval" value="2"
                                                     {{ $leaves->approval === 2 ? 'checked' : '' }}>
                                                 <label for="decline">Decline</label>
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-6">
                                             <label class="form-check-label" for="email">Comment:</label>
-                                            <textarea id="leave-reason" class="form-control" name="comment" rows="4" cols="50">{{ $leaves->comment }}</textarea>
+                                            <textarea id="leave-reason" class="form-control" name="comment" rows="2" >{{ $leaves->comment }}</textarea>
                                         </div>
                                     </div>
 

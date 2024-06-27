@@ -104,17 +104,17 @@
                                                 <label class="form-check-label">Select your status:</label>
                                             </div><br>
                                             <div class="form-check form-check-primary form-check-inline">
-                                                <input type="radio" id="pending" name="status" value="0"
+                                                <input type="radio" class="form-check-input" id="pending" name="status" value="0"
                                                     {{ $department->status === 0 ? 'checked' : '' }}>
                                                 <label for="pending">Pending</label>
                                             </div>
                                             <div class="form-check form-check-primary form-check-inline">
-                                                <input type="radio" id="active" name="status" value="1"
+                                                <input type="radio" class="form-check-input" id="active" name="status" value="1"
                                                     {{ $department->status === 1 ? 'checked' : '' }}>
                                                 <label for="approved">Active</label>
                                             </div>
                                             <div class="form-check form-check-primary form-check-inline">
-                                                <input type="radio" id="offline" name="status" value="2"
+                                                <input type="radio" class="form-check-input" id="offline" name="status" value="2"
                                                     {{ $department->status === 2 ? 'checked' : '' }}>
                                                 <label for="decline">Offline</label>
                                             </div>
