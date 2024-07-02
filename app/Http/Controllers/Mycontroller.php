@@ -372,6 +372,7 @@ class Mycontroller extends Controller
                 Session::put('admin_logged', true);
                 Session::put('admin_data', $employee);
 
+                
                 return redirect()->route('tables');
             } else {
 
