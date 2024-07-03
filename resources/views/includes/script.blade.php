@@ -1,39 +1,39 @@
 <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
-<script src="{{ url('assets/src/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-<script src="{{ url('assets/src/plugins/src/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
-<script src="{{ url('assets/src/plugins/src/mousetrap/mousetrap.min.js') }}"></script>
-<script src="{{ url('assets/src/plugins/src/waves/waves.min.js') }}"></script>
-{{-- <script src="{{ url('assets/layouts/modern-light-menu/app.js') }}"></script> --}}
-<script src="{{ url('assets/src/plugins/src/highlight/highlight.pack.js') }}"></script>
+<script src="{{ asset('assets/src/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('assets/src/plugins/src/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
+<script src="{{ asset('assets/src/plugins/src/mousetrap/mousetrap.min.js') }}"></script>
+<script src="{{ asset('assets/src/plugins/src/waves/waves.min.js') }}"></script>
+{{-- <script src="{{ asset('assets/layouts/modern-light-menu/app.js') }}"></script> --}}
+<script src="{{ asset('assets/src/plugins/src/highlight/highlight.pack.js') }}"></script>
 <!-- END GLOBAL MANDATORY SCRIPTS -->
 
 <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
-<script src="{{ url('assets/src/plugins/src/apex/apexcharts.min.js') }}"></script>
-<script src="{{ url('assets/src/assets/js/dashboard/dash_1.js') }}"></script>
+<script src="{{ asset('assets/src/plugins/src/apex/apexcharts.min.js') }}"></script>
+<script src="{{ asset('assets/src/assets/js/dashboard/dash_1.js') }}"></script>
 <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
-<script src="{{ url('assets/src/assets/js/custom.js') }}"></script>
-<script src="{{ url('assets/src/plugins/src/global/vendors.min.js') }}"></script>
+<script src="{{ asset('assets/src/assets/js/custom.js') }}"></script>
+<script src="{{ asset('assets/src/plugins/src/global/vendors.min.js') }}"></script>
 
-<script src="{{ url('assets/src/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('assets/src/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
-<script src="{{ url('assets/src/plugins/src/table/datatable/datatables.js') }}"></script>
-<script src="{{ url('assets/src/assets/js/scrollspyNav.js') }}"></script>
-<script src="{{ url('assets/src/assets/js/apps/invoice-preview.js') }}"></script>
+<script src="{{ asset('assets/src/plugins/src/table/datatable/datatables.js') }}"></script>
+<script src="{{ asset('assets/src/assets/js/scrollspyNav.js') }}"></script>
+<script src="{{ asset('assets/src/assets/js/apps/invoice-preview.js') }}"></script>
 
 
 
-<script src="{{ url('assets/src/plugins/src/filepond/filepondPluginFileValidateSize.min.js') }}"></script>
-<script src="{{ url('assets/src/plugins/src/flatpickr/flatpickr.js') }}"></script>
+<script src="{{ asset('assets/src/plugins/src/filepond/filepondPluginFileValidateSize.min.js') }}"></script>
+<script src="{{ asset('assets/src/plugins/src/flatpickr/flatpickr.js') }}"></script>
 
-<script src="{{ url('assets/src/assets/js/apps/invoice-edit.js') }}"></script>
+<script src="{{ asset('assets/src/assets/js/apps/invoice-edit.js') }}"></script>
 
-<script src="{{ url('assets/src/plugins/src/table/datatable/datatables.js') }}"></script>
-<script src="{{ url('assets/src/plugins/src/table/datatable/button-ext/dataTables.buttons.min.js') }}"></script>
-<script src="{{ url('assets/src/plugins/src/table/datatable/button-ext/jszip.min.js') }}"></script>
-<script src="{{ url('assets/src/plugins/src/table/datatable/button-ext/buttons.html5.min.js') }}"></script>
-<script src="{{ url('assets/src/plugins/src/table/datatable/button-ext/buttons.print.min.js') }}"></script>
-<script src="{{ url('assets/src/plugins/src/table/datatable/custom_miscellaneous.js') }}"></script>
+<script src="{{ asset('assets/src/plugins/src/table/datatable/datatables.js') }}"></script>
+<script src="{{ asset('assets/src/plugins/src/table/datatable/button-ext/dataTables.buttons.min.js') }}"></script>
+<script src="{{ asset('assets/src/plugins/src/table/datatable/button-ext/jszip.min.js') }}"></script>
+<script src="{{ asset('assets/src/plugins/src/table/datatable/button-ext/buttons.html5.min.js') }}"></script>
+<script src="{{ asset('assets/src/plugins/src/table/datatable/button-ext/buttons.print.min.js') }}"></script>
+<script src="{{ asset('assets/src/plugins/src/table/datatable/custom_miscellaneous.js') }}"></script>
 <script>
     // var e;
     c1 = $('#style-1').DataTable({

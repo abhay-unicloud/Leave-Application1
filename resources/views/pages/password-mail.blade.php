@@ -17,7 +17,7 @@
                         Password : {{$content['body']}}
                      </div>
                     <div class="card-header">
-                        <a href="http://vbpc.lc/email-verification"> Click here </a>
+                        <a href="{{URL::to('/email-verification')}}"> Click here </a>
                        
                      </div>
                      <p>Reset your Password To login with your <strong>Employee's Email Password</strong></p>

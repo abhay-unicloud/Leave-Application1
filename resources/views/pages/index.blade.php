@@ -116,7 +116,7 @@
                                     <div class="info-box">
                                         <div class="icon">
                                             <span>
-                                                <img src="{{url('assets/src/assets/img/money-bag.png')}}" alt="money-bag">
+                                                <img src="{{asset('assets/src/assets/img/money-bag.png')}}" alt="money-bag">
                                             </span>
                                         </div>
 
@@ -541,13 +541,13 @@
                                             <span class="avatar-title">+6</span>
                                         </div>
                                         <div class="avatar translateY-axis">
-                                            <img alt="avatar" src="{{url('assets/src/assets/img/profile-8.jpeg')}}" />
+                                            <img alt="avatar" src="{{asset('assets/src/assets/img/profile-8.jpeg')}}" />
                                         </div>
                                         <div class="avatar translateY-axis">
-                                            <img alt="avatar" src="{{url('assets/src/assets/img/profile-12.jpeg')}}" />
+                                            <img alt="avatar" src="{{asset('assets/src/assets/img/profile-12.jpeg')}}" />
                                         </div>
                                         <div class="avatar translateY-axis">
-                                            <img alt="avatar" src="{{url('assets/src/assets/img/profile-19.jpeg')}}" />
+                                            <img alt="avatar" src="{{asset('assets/src/assets/img/profile-19.jpeg')}}" />
                                         </div>
 
                                     </div>
@@ -567,7 +567,7 @@
 
                                 <div class="media">
                                     <div class="w-img">
-                                        <img src="{{url('assets/src/assets/img/profile-19.jpeg')}}" alt="avatar">
+                                        <img src="{{asset('assets/src/assets/img/profile-19.jpeg')}}" alt="avatar">
                                     </div>
                                     <div class="media-body">
                                         <h6>Jimmy Turner</h6>
@@ -602,7 +602,7 @@
 
                                 <div class="media">
                                     <div class="w-img">
-                                        <img src="{{url('assets/src/assets/img/g-8.png')}}" alt="avatar">
+                                        <img src="{{asset('assets/src/assets/img/g-8.png')}}" alt="avatar">
                                     </div>
                                     <div class="media-body">
                                         <h6>Dev Summit - New York</h6>
@@ -613,10 +613,10 @@
                                 <div class="card-bottom-section">
                                     <h5>4 Members Going</h5>
                                     <div class="img-group">
-                                        <img src="{{url('assets/src/assets/img/profile-19.jpeg')}}" alt="avatar">
-                                        <img src="{{url('assets/src/assets/img/profile-6.jpeg')}}" alt="avatar">
-                                        <img src="{{url('assets/src/assets/img/profile-8.jpeg')}}" alt="avatar">
-                                        <img src="{{url('assets/src/assets/img/profile-3.jpeg')}}" alt="avatar">
+                                        <img src="{{asset('assets/src/assets/img/profile-19.jpeg')}}" alt="avatar">
+                                        <img src="{{asset('assets/src/assets/img/profile-6.jpeg')}}" alt="avatar">
+                                        <img src="{{asset('assets/src/assets/img/profile-8.jpeg')}}" alt="avatar">
+                                        <img src="{{asset('assets/src/assets/img/profile-3.jpeg')}}" alt="avatar">
                                     </div>
                                     <a href="javascript:void(0);" class="btn">View Details</a>
                                 </div>

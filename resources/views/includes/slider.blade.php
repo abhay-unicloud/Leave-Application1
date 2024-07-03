@@ -69,7 +69,7 @@
                      </a>
                      <ul class="collapse submenu list-unstyled show" id="dashboard" data-bs-parent="#accordionExample">
                          <li class="active">
-                             <a href="{{ route('index') }}"> Analytics </a>
+                             <a href="#"> Analytics </a>
                          </li>
                          {{-- <li>
                               <a href="{{ route('index2') }}"> Sales </a>
@@ -195,7 +195,7 @@
 
  <!--  END SIDEBAR  -->
  <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
- <script src="{{ url('assets/src/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
- <script src="{{ url('assets/src/plugins/src/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
+ <script src="{{ asset('assets/src/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+ <script src="{{ asset('assets/src/plugins/src/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
 
- <script src="{{ url('assets/layouts/modern-light-menu/app.js') }}"></script>
+ <script src="{{ asset('assets/layouts/modern-light-menu/app.js') }}"></script>

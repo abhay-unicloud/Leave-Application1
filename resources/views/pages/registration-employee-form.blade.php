@@ -214,7 +214,7 @@
                 document.getElementById("demo").innerHTML = text;
             }
             $(document).ready(function() {
-                $("#email").on('change', function() {
+                $("#email").on('keyup', function() {
 
                     // var mobile_no = document.getElementById('mobile_no').val();
                     var email = $(this).val();
@@ -238,7 +238,7 @@
                                 // Disable the submit button
                                 $('#submitBtn').prop('disabled', true);
                             } else {
-                                // $('#result').text('Data does not exist.');
+                                $('#result').text('Data does not exist.');
                                 // Enable the submit button
                                 $('#submitBtn').prop('disabled', false);
                             }
@@ -250,7 +250,7 @@
                     })
 
                 });
-                $("#mobile_no").on('change', function() {
+                $("#mobile_no").on('keyup', function() {
 
                     // var mobile_no = document.getElementById('mobile_no').val();
                     var mobile_no = $(this).val();

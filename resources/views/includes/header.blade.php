@@ -96,7 +96,7 @@
                  <div class="dropdown-menu position-absolute" aria-labelledby="notificationDropdown">
 
                      <div class="notification-scroll">
-                         @php($notifyList = App\CPU\helpers::Notification())
+                         @php($notifyList = App\CPU\Helpers::Notification())
 
 
 

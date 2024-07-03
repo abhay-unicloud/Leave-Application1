@@ -22,7 +22,7 @@
                         Password : {{$content['pass']}}
                      </div>
                     <div class="card-header">
-                        <a href="http://vbpc.lc/employee-login"> Login here </a>
+                        <a href="{{URL::to('/employee-login')}}"> Login here </a>
                        
                      </div>
                      <p>You have to login with <strong>Employee Email Password</strong></p>

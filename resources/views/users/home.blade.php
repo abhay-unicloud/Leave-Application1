@@ -44,7 +44,7 @@
                                         </svg></a>
                                 </div>
                                 <div class="text-center user-info">
-                                    <img src="{{ url($empdata->image) }}" style="width: 100px" alt="avatar">
+                                    <img src="{{ asset($empdata->image) }}" style="width: 100px" alt="avatar">
                                     <p class="">{{ $empdata->first_name }} {{ $empdata->last_name }}</p>
                                 </div>
                                 <div class="user-info-list">
