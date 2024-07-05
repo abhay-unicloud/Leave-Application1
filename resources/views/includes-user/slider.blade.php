@@ -37,7 +37,7 @@
                   <div class="user-info">
                       <div class="profile-img">
                           <input type="hidden" value="{{ $empdata = Session::get('emp_data') }}">
-                          <a href=""> <img src="{{ asset($empdata->image) }}" alt="avatar"></a>
+                          <a href=""> <img src="{{$empdata->image}}" alt="avatar"></a>
                       </div>
                       <div class="profile-content">
                           <h6>{{ $empdata->first_name }} {{ $empdata->last_name }}</h6>

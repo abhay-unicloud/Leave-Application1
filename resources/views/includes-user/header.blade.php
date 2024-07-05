@@ -286,7 +286,7 @@
                      <div class="avatar-container">
                          <div class="avatar avatar-sm avatar-indicators avatar-online">
                              <input type="hidden" value="{{$empdata= Session::get('emp_data')}}">
-                             <img alt="avatar" src="{{ asset($empdata->image) }}"
+                             <img alt="avatar" src="{{ $empdata->image }}"
                                  class="rounded-circle">
                          </div>
                      </div>
