@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::middleware('auth.dashboard')->group(function () {
     Route::get('/admin-lockscreen', [Mycontroller::class, 'admin_lockscreen'])->name('admin_lockscreen');
     Route::get('/dashboard', [Mycontroller::class, 'index'])->name('index');
