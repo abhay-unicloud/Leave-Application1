@@ -197,6 +197,10 @@ class Mycontroller extends Controller
     {   //hhh
         return view("pages.index");
     }
+    public function check_in()
+    {   //hhh
+        return view("check_in");
+    }
 
     public function home()
     {
